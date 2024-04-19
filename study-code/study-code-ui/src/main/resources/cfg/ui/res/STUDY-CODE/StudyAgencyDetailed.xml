@@ -158,9 +158,12 @@
                 </GroupPane>
                 <!--2 保证金信息-->
                 <GroupPane name="st_xy_prot_margin" title="${RES.$.title.F.grp.marginmoney}" layoutm="grid" cellcols="4" clayoutwids="${RES.$.D.R.4CW}" uiprops.subCompOpts="2">
+                    <!--保证金类型-->
                     <c name="margintype" title="${RES.C}" disableDelIfAI="true" sqltype="12" tipIfOverflow="true" droplist="true" disableed="true" aidInputerBtn="true" showname="true" cliInitAllCodes="true"
-                       codedata="#DT_FT-TRD.AgcyImpIMarginType" submitOnInput="true"/>
+                       codedata="#DT_FT-TRD.AgcyImpIMarginType" noblankOnSubmit="true" submitOnInput="true"/>
+                    <!--保证金比例-->
                     <c name="marginrate" title="${RES.C}" sqltype="2" percent="true"/>
+                    <!--保证金金额-->
                     <c name="marginfcy" title="${RES.C}" sqltype="2" mindeci="2"/>
                 </GroupPane>
                 <!-- 3 金额信息-->
