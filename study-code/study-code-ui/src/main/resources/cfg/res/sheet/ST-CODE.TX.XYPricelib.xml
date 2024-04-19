@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Sheet xmlns="http://www.snsoft.com.cn/schema/Sheet">
+<!--    单据表定义-->
+    <name>价格库管理</name>
+    <!--主表名-->
+    <tblname>st_xy_pricelib</tblname>
+    <!--内码-->
+    <innerfld>item</innerfld>
+    <!--外码-->
+    <outerfld></outerfld>
+    <!--vo类路径-->
+    <voclass>snsoft.study.code.vo.StudyPriceLib</voclass>
+    <!--acs bean 名称-->
+    <acsbean>STUDY-CODE.StudyCodePricelibService</acsbean>
+    <remark><![CDATA[
+	代理进口协议
+    1、负责人：项园；
+    2、启用单据编码规则；
+    3、启用审批链；
+    4、启用权限：
+        （1）操作编码：
+            R：查询
+            C：操作
+        （2）权限字段
+            astn：关系类型
+            corpbcode：公司
+            bcode：部门
+            wcode：人员
+            vprepare：创建人
+	]]></remark>
+</Sheet>

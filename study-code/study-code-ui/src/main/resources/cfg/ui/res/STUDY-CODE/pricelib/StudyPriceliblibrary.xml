@@ -1,0 +1,79 @@
+<B xmlns="http://www.snsoft.com.cn/schema/UI"
+   xmlns:m="http://www.snsoft.com.cn/schema/UI"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   title="${RES.STUDY-CODE.title_ST-CODE.TX.FJDPricelib?价格库管理}"
+   fullPage="true" xsi:schemaLocation="http://www.snsoft.com.cn/schema/UI http://www.snsoft.com.cn/schema/UI.xsd">
+
+    <m:DialogPane name="query" title="查询面板" region="north" uiprops.backInitValues="true" xprops.showRefreshPane="true" xprops.showFoldPaneBtn="true" xprops.showAdvancedQueryBtn="true" xprops.btnsLayoutMode="3" uiprops.fixhByContent="1">
+        <uilisteners>
+<!--            <![CDATA[ snsoft.ft.code.bcode.bcode.FTUcodeWcodeInitValueListener.new; snsoft.ft.comm.busi.FTBusiFilterDateDefaultUIListener.new?dateColumns=predatefm ]]>-->
+                <![CDATA[ snsoft.ft.code.bcode.bcode.FTUcodeWcodeInitValueListener.new ]]>
+        </uilisteners>
+
+
+        <P name="p1" layoutm="grid" cellcols="5" uiprops.className="basic-query-con" clayoutwids="${RES.$.E.Q.4CW}" uiprops.subCompOpts="2">
+            <c name="item" title="" sqltype="12" uiprops.bgLabel="${RES.$.st_fjd_price.item}" uiprops.cellClassName="td-input-align" suffixMatch="true" prefixMatch="true" nmpre="filter"/>
+            <c name="stdate" title="${RES.$.st_fjd_price.stdate}" sqltype="91" aidInputerBtn="true" nmpre="filter"/>
+            <c name="ledate" title="${RES.$.ledate}" sqltype="91" aidInputerBtn="true" nmpre="filter"/>
+            <c name="ccode" sqltype="12" showname="true" submitOnInput="true" cmparams="JSONFILTER_FIX:null" codedata="#FT-CODE.CcodeLMExt" title="${RES.$.st_fjd_price.ccode}" aiprops="initParasVales:{ccodetypes:'14'}" disableed="true" aidInputerBtn="true" nmpre="filter"/>
+            <c name="sccode" sqltype="12" showname="true" submitOnInput="true" cmparams="JSONFILTER_FIX:null" codedata="#FT-CODE.CcodeLMExt" title="${RES.$.st_fjd_price.sccode}" aiprops="initParasVales:{ccodetypes:'12'}" disableed="true" aidInputerBtn="true" nmpre="filter"/>
+<!--            <c name="purccode" title="${RES.C}" codedata="#FT-CODE.CcodeLMExt" submitOnInput="true" disableed="true" showname="true" aidInputerBtn="true" sqlexpr="ft_trd_prj_extpe.purccode" cascadeflds="purccode" sqltype="12" noblankOnSubmit="true" disableDelIfAI="true" layoutwidth="2" aiprops="initParasVales:{ccodetypes:'14',dompur:'1'},dlgParam:{bcode:'ft_trd_prj.bcode',wcode:'ft_trd_prj.wcode'},copyMap:{purlinkmanname:'linkmanname',purlinkmanmobile:'mobile',purncode:'ncode'}"/>-->
+<!--            <c name="salccode" title="${RES.C}" codedata="#FT-CODE.CcodeLMExt" disableed="true" submitOnInput="true" showname="true" aidInputerBtn="true" sqlexpr="ft_trd_prj_extse.salccode" cascadeflds="salccode" sqltype="12" noblankOnSubmit="true" disableDelIfAI="true" layoutwidth="2" aiprops="initParasVales:{ccodetypes:'12',ccodearea:'20'},dlgParam:{bcode:'ft_trd_prj.bcode',wcode:'ft_trd_prj.wcode'},copyMap:{sallinkmanname:'linkmanname',sallinkmanmobile:'mobile',salncode:'ncode'}"/>-->
+        </P>
+
+
+
+        <P name="p2" uiprops.className="advanced-query-con">
+            <P name="more0" layoutm="grid" cellcols="4" clayoutwids="${RES.$.E.Q.4CW}" uiprops.subCompOpts="2">
+<!--                <c name="ccode" title="${RES.$.st_fjd_price.ccode}" sqltype="12" codedata="#FT-CODE.CcodeLMExt" cmparams="JSONFILTER_FIX:null" cmparams.sheetcode="ST-CODE.TX.FJDPricelib" cmparams.opids="R,C"  showname="true" aidInputerBtn="true" nmpre="filter"/>-->
+<!--                <c name="sccode" title="${RES.$.st_fjd_price.sccode}" sqltype="12" codedata="#FT-CODE.CcodeLMExt" cmparams="JSONFILTER_FIX:null" cmparams.sheetcode="ST-CODE.TX.FJDPricelib" cmparams.opids="R,C" showname="true" aidInputerBtn="true" nmpre="filter"/>-->
+            </P>
+            <QParamsEditor1 name="more1" title="高级查询" titleHidden="true" uiprops.cellColCount="4" uiprops.fixVisFldCount="4" uiprops.cellWidths="${RES.$.E.Q.3CW.M}"
+                            uiprops.subCompOpts="2" uiprops.hideDelIcon="true" uiprops.layoutInCopyFm="more0">
+                <c name="suitbcode" sqltype="12" sqlexpr="suitbcode" title="适用部门" codedata="#FT-CODE.BWcode" aidInputerBtn="true" opComp="true" nmpre="filter"/>
+                <c name="ct_fcode" sqlexpr="ct_fcode" sqltype="12" title="销售币种类型" codedata="FT-CODE.Fcode" aidInputerBtn="true" opComp="true" nmpre="filter"/>
+                <c name="sc_fcode" sqlexpr="sc_fcode" sqltype="12" title="采购币种类型" codedata="FT-CODE.Fcode" aidInputerBtn="true" opComp="true" nmpre="filter"/>
+                <invoke method="snsoft.plat.bas.tools.ui.XMLUICompLoaderTools.addQParamEditorExComps" cpfrom="p1,more0" exclude="ledate,stdate,item"/>
+                <c name="ct_exprice" sqlexpr="ct_exprice" title="销售不含税单价" sqltype="2" aidInputerBtn="true" nmpre="filter" opComp="true"/>
+                <c name="sc_exprice" sqlexpr="ct_exprice" title="采购不含税单价" sqltype="2" aidInputerBtn="true" nmpre="filter" opComp="true"/>
+                <c name="stdate" sqlexpr="stdate" title="起始日期" sqltype="91" aidInputerBtn="true" nmpre="filter" opComp="true"/>
+                <c name="ledate" sqlexpr="ledate" title="终止日期" sqltype="91" aidInputerBtn="true" dateDelayToNextDay="true" nmpre="filter" opComp="true"/>
+            </QParamsEditor1>
+        </P>
+    </m:DialogPane>
+
+
+
+    <m:Toolbar name="proToolbar" region="north" uiprops.cellClassName="toolbar-panel">
+        <ToolbarBtn name="taxgcode_btn_newSheet" title="${RES.FT-CODE.newSheet?新建}" noClientComponent="true"/>
+        <ToolbarBtn name="st_fjd_price_btn_sheetCopy" title="${RES.$.title.F.btn.sheetcopy}" noClientComponent="true"/>
+        <ToolbarBtn name="st_fjd_price_btn_queryappr" title="${RES.$.title.F.btn.queryappr}" noClientComponent="true"/>
+<!--        <ToolbarBtn name="st_fjd_prot_btn_queryappr" title="${RES.$.title.F.btn.queryappr}" noClientComponent="true"/>-->
+    </m:Toolbar>
+
+    <m:GridTable title="价格库" nmpre="filter" name="st_fjd_price" sqlexpr="st_fjd_price" mainui="query" region="center" noCollapseQPaneAfterRefresh="true"  mutiple="true" rdonly="true" uiprops="autoSaveOnPopupedit:true,closeTabOnDelete:false" dstoreprops="keyDupTip:'TipKeyColumns=hscode'"
+                 disableInsert="true" autoRefresh="true" disableAppend="true" dsprops.pageRows="10" disableed="true"
+                 uiprops.markSeledRow="1" >
+<!--        xprops.LoadDataService="FT-CODE.FTHscodeUIService#queryUI" xprops.SaveDataService="FT-CODE.FTHscodeUIService#saveUI">-->
+
+        <uilisteners> snsoft.plat.bas.busi.PlatFunctionListener.new?funccode=ST-CODE.TX.Prj.PriceLib.Entry.UI.xml</uilisteners>
+        <jslistener>
+<!--            <![CDATA[ #new snsoft.plat.bas.busi.PlatFunctionListener({}); #new snsoft.plat.bas.comm.PlatEntryAutoPageJSListener({"tgtUINames":["hscode"]}) ]]>-->
+            <![CDATA[ #new snsoft.plat.bas.busi.PlatFunctionListener({}) ]]>
+        </jslistener>
+
+        <attrs>
+            <attr type="203" name="newSheet" title="${RES.FT-CODE.newSheet?新建}"/>
+            <attr type="203" name="importFromComplex" title="调整日期"/>
+            <attr type="203" name="importFromCusbroker" title="导入价格"/>
+        </attrs>
+        <Operate fixedLeft="true" name="operate" title="${RES.FT-CODE.operate?操作}" width="80" sqlexpr="null" disableEnterEd="true" staticText="true" align="center"/>
+        <c name="sheetcode" sqltype="12" title="${RES.C}" hidden="true" width="${RES.$.E.G.CW}"/>
+        <c name="status" sqltype="12" tipIfOverflow="true" title="${RES.$.status}" fixedLeft="true" codedata="#90.status" cmparams="sheetcode:'ST-CODE.TX.FJDPricelib'" showname="true" width="${RES.$.E.G.CW.status}" uiprops.renderer="new snsoft.plat.bas.comm.render.StatusCellRender({})"/>
+        <c name="gvname2" sqlexpr="null" width="120" sqltype="12"/>
+        <c name="gvname3" sqlexpr="null" width="120" sqltype="12"/>
+        <c name="gvname4" sqlexpr="null" width="120" sqltype="12"/>
+
+    </m:GridTable>
+
+</B>

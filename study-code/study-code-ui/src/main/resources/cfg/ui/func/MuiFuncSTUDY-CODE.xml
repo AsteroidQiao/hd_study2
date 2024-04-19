@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<MuiFuncs xmlns="http://www.snsoft.com.cn/schema/MuiFunc.xsd">-->
+<!--<MuiFuncs xmlns="http://snsoft.cn/schema/MuiFunc.xsd">-->
+<!--    <MuiFunc funcid="90.Users1" funcname="路由名称1" muiid="90.Users1" />-->
+<!--    <MuiFunc funcid="90.Users2" funcname="路由名称1" muiid="90.Users2" />-->
+<!--</MuiFuncs>-->
+<!--        funcid：界面路由号，唯一标识当前菜单界面的路由号。-->
+<!--        funcname：路由名称。-->
+<!--        muiid：路由对应的窗口号。-->
+
+<MuiFuncs xmlns="http://www.snsoft.com.cn/schema/MuiFuncs"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://www.snsoft.com.cn/schema/MuiFuncs http://www.snsoft.com.cn/schema/MuiFuncs.xsd">
+
+    <MuiFunc funcid="90.UsersFromFile" funcname="用户维护" muiid="90.Users"/>
+    <MuiFunc funcid="90.BcodeFromFile" funcname="部门维护" muiid="90.Bcode"/>
+
+</MuiFuncs>
+

@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--createDatabaseLP_DEMO.XML-->
+<db id="STUDY-CODE" title="代理进口(项园版)" xmlns="http://www.snsoft.com.cn/schema/CreateDatabase"
+    xsi:schemaLocation="http://www.snsoft.com.cn/schema/CreateDatabase http://www.snsoft.com.cn/schema/CreateDatabase.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+<!--    <include src="sndata/DBMacroLP_DEMO.xml"/>-->
+<!--    <include src="sndata/DBMacroSTUDY-CODE.xml"/>-->
+    <include src="sndata/DBMacroSTUDY-CODE.xml"/>
+<!--table id 上多加一个1-->
+    <table id="339981" name="st_xy_prot" title="贸易协议主表(项园版)" datasrcid="FT-TRD_W" rdatasrcid="FT-TRD_R"  storegrp="SNFTTRDDATA_TBS">
+        <column name="agcyrule" title="代理规则" type="VARCHAR(3)" remark="类似[备注]字段"/>
+        <column name="agcyconstraint" title="约束规则" type="VARCHAR(SZFCODE)" remark="码表字段，值域[10:中国法律;20:外国法律]"/>
+        <column name="disfcy" title="优惠原币金额" type="NUMERIC(MNYINT.MNYDEC)"/>
+        <column name="disscy" title="优惠本位币金额" type="NUMERIC(MNYINT.MNYDEC)"/>
+        <column name="diszcny" title="优惠人民币金额" type="NUMERIC(MNYINT.MNYDEC)"/>
+        <column name="diszusd" title="优惠美元金额" type="NUMERIC(MNYINT.MNYDEC)"/>
+        <column name="pticode" title="协议内码" type="VARCHAR(SZIBILL)" primkey="true"/>
+        <column name="ptcode" title="协议号" type="VARCHAR(SZNBILL)" notnull="true"/>
+        <column name="status" title="状态" type="VARCHAR(SZSTATUS)"/>
+        <column name="wfcode" type="VARCHAR(SZWFCODE)" title="审批编码" />
+        <column name="wfuid" type="VARCHAR(SZWFUID)" title="审批节点" />
+        <column name="cuicode" title="商户" type="VARCHAR(SZCUICODE)"/>
+        <column name="bcode" title="业务员部门" type="VARCHAR(SZBCODE)"/>
+        <column name="wcode" title="业务员" type="VARCHAR(SZWCODE)"/>
+        <column name="corpbcode" title="公司" type="VARCHAR(SZBCODE)"/>
+        <column name="costbcode" title="核算组" type="VARCHAR(SZBCODE)"/>
+        <column name="sheetcode" title="单据号" type="VARCHAR(SZSHEET)"/>
+        <column name="curratifydate" title="本版本生效时间" type="DATE"/>
+        <column name="ratifydate" title="生效时间" type="DATE"/>
+        <column name="submitdate" title="提交时间" type="DATE"/>
+        <column name="performdate" title="审核时间" type="DATE"/>
+        <column name="signdate" title="签订日期" type="DATE"/>
+        <column name="signsite" title="签约地点" type="VARCHAR(SZSIGNSITE)"/>
+        <column name="protinnertype" title="业务类型" type="VARCHAR(SZTYPE)"/>
+        <column name="protprop" title="协议性质" type="VARCHAR(SZTYPE)"/>
+        <column name="sysprotprop" title="系统协议性质" type="VARCHAR(SZTYPE)"/>
+        <column name="ispurtrust" title="委托方是否为工厂" type="CHAR(SZYN)"/>
+        <column name="prottype" title="协议类型" type="VARCHAR(SZTYPE)"/>
+        <column name="invmode" title="开票方式" type="VARCHAR(SZTYPE)"/>
+        <column name="startdate" title="协议开始日期" type="DATE"/>
+        <column name="duedate" title="协议截止日期" type="DATE"/>
+        <column name="pntprjicode" title="父项目内码" type="VARCHAR(SZIBILL)" />
+        <column name="pntprjcode" title="父项目号" type="VARCHAR(SZNBILL)" />
+        <column name="ccodetrust" title="委托方" type="VARCHAR(SZCCODE)"/>
+        <column name="ccode" title="客户" type="VARCHAR(SZCCODE)"/>
+        <column name="endpticode" title="终结协议内码" type="VARCHAR(SZIBILL)"/>
+        <column name="pa_lrname" title="甲方法定代表人" type="VARCHAR(SZLGRE)"/>
+        <column name="pa_lrename" title="甲方英文法定代表人" type="VARCHAR(SZNAME)"/>
+        <column name="pa_addr" title="甲方地址" type="VARCHAR(SZTEXT)"/>
+        <column name="pa_eaddr" title="甲方英文联系地址" type="VARCHAR(SZTEXT)"/>
+        <column name="pa_ctname" title="甲方联系人姓名" type="VARCHAR(SZNAME)"/>
+        <column name="pa_ctename" title="甲方联系人英文名" type="VARCHAR(SZNAME)"/>
+        <column name="pa_ctpost" title="甲方联系人职务" type="VARCHAR(SZTEXT)"/>
+        <column name="pa_ctepost" title="甲方联系人英文职务" type="VARCHAR(SZTEXT)"/>
+        <column name="pa_corpename" title="甲方英文公司名称" type="VARCHAR(SZTEXT)"/>
+        <column name="pa_ctmobile" title="甲方联系人电话" type="VARCHAR(SZTELEPH)"/>
+        <column name="pa_ctemail" title="甲方联系人邮箱" type="VARCHAR(SZEMAIL)"/>
+        <column name="pa_ctfax" title="甲方联系人传真" type="VARCHAR(SZTELEPH)"/>
+        <column name="pa_bearcostype" title="甲方承担费用类型" type="VARCHAR(SZBEARCOSTYPES)"/>
+        <column name="pa_remark" title="其他说明(甲)" type="VARCHAR(SZTEXT2048)"/>
+        <column name="pa_maddr" title="甲方邮寄地址" type="VARCHAR(SZTEXT)"/>
+        <column name="pb_ctname" title="乙方联系人姓名" type="VARCHAR(SZNAME)"/>
+        <column name="pb_ctename" title="乙方联系人英文名" type="VARCHAR(SZNAME)"/>
+        <column name="pb_ctpost" title="乙方联系人职务" type="VARCHAR(SZTEXT)"/>
+        <column name="pb_ctepost" title="乙方联系人英文职务" type="VARCHAR(SZTEXT)"/>
+        <column name="pb_ctmobile" title="乙方联系人电话" type="VARCHAR(SZTELEPH)"/>
+        <column name="pb_ctemail" title="乙方联系人邮箱" type="VARCHAR(SZEMAIL)"/>
+        <column name="pb_ctfax" title="乙方联系人传真" type="VARCHAR(SZTELEPH)"/>
+        <column name="pb_bearcostype" title="乙方承担费用类型" type="VARCHAR(SZBEARCOSTYPES)"/>
+        <column name="pb_remark" title="其他说明(乙)" type="VARCHAR(SZTEXT2048)"/>
+        <column name="pb_maddr" title="乙方邮寄地址" type="VARCHAR(SZTEXT)"/>
+        <column name="agentfeemode" title="服务费收取方式" type="CHAR(SZAGENTFEEMODE)"/>
+        <column name="agentfeevalue" title="服务费收取方式值" type="NUMERIC(MNYINT.MNYDEC)"/>
+        <column name="isagentfeetax" title="服务费是否含税" type="CHAR(SZYN)"/>
+        <column name="sscleastrmb" title="单笔服务费不低于人民币" type="NUMERIC(MNYINT.MNYDEC)"/>
+        <column name="cusratetype" title="报关币种折人民币汇率取" type="CHAR(SZCUSRATETYPE)"/>
+        <column name="atcdinvdays"  title="报关后开票天数" type="INTEGER" />
+        <column name="atcdrcpdays"  title="报关后收款天数" type="INTEGER" />
+        <column name="pntprjtype" title="父项目类型" type="VARCHAR(SZTYPE)"/>
+        <column name="remark" title="备注" type="VARCHAR(SZTEXT)"/>
+        <column name="outptcode" title="外部协议号" type="VARCHAR(SZOUTCODE)"/>
+        <column name="vsn" title="版本号" type="SMALLINT"/>
+        <column name="vsnflag" title="版本标记" type="SMALLINT"/>
+        <column name="ttcode" title="合约条款模板编号" type="VARCHAR(SZTERMTEMPLATECODE)"/>
+        <column name="tmcode" title="合约条款公式编号" type="VARCHAR(SZTERMMACROCODE)"/>
+        <column name="termflags" title="合约条款标识" type="SMALLINT"/>
+        <column name="signbacker" title="回签人" type="VARCHAR(SZUCODE)"/>
+        <column name="signbacktime" title="回签时间" type="DATE"/>
+        <column name="vprepare" title="创建人" type="VARCHAR(SZUCODE)"/>
+        <column name="predate" title="创建时间" type="DATE"/>
+        <column name="modifier" title="修改人" type="VARCHAR(SZUCODE)"/>
+        <column name="modifydate" title="修改时间" type="DATE"/>
+        <column name="istrans"  title="结转单结转标识" type="CHAR(SZYN)" />
+        <column name="isfmtprot" title="是否格式协议" type="CHAR(SZYN)"/>
+        <column name="isgood" title="有无商品" type="CHAR(SZYN)"/>
+        <!-- <column name="ismulticur" title="币种类型" type="CHAR(SZYN)"/> -->
+        <column name="curtype" title="币种类型" type="VARCHAR(SZTYPE)"/>
+        <column name="margintype" title="保证金类型" type="VARCHAR(SZTYPE)"/>
+        <column name="marginrate"  title="保证金比例" type="NUMERIC(EXUINT.EXUDEC)" />
+        <column name="marginfcy"  title="保证金金额" type="NUMERIC(MNYINT.MNYDEC)" />
+        <!-- <column name="marginvalue" title="保证金类型值" type="NUMERIC(MNYINT.MNYDEC)"/> -->
+        <column name="fcode" title="币种" type="VARCHAR(SZFCODE)" />
+        <column name="sfcode" title="本位币种" type="VARCHAR(SZFCODE)" />
+        <column name="fserate" title="对本位币汇率" type="NUMERIC(RATINT.RATDEC)"/>
+        <column name="fcerate" title="对人民币汇率" type="NUMERIC(RATINT.RATDEC)"/>
+        <column name="fuerate" title="对美元汇率" type="NUMERIC(RATINT.RATDEC)"/>
+        <column name="fcy" title="原币金额" type="NUMERIC(MNYINT.MNYDEC)" />
+        <column name="scy" title="本位币金额" type="NUMERIC(MNYINT.MNYDEC)" />
+        <column name="zcny" title="人民币金额" type="NUMERIC(MNYINT.MNYDEC)" />
+        <column name="zusd" title="美元金额" type="NUMERIC(MNYINT.MNYDEC)" />
+        <column name="backtaxpaytype" title="退税款支付方式" type="VARCHAR(SZTYPE)"/>
+        <column name="nodetype" title="节点类型" type="VARCHAR(SZTYPE)" />
+    
+        <column name="agentdesc" title="服务内容描述" type="VARCHAR(SZTEXT)"/>
+        <column name="paydesc" title="付款条件描述" type="VARCHAR(SZTEXT)"/>
+        <!-- 扩展字段 start -->
+        <column name="txt00" title="预留文本字段00" type="VARCHAR(SZPRETXT)" />
+        <column name="txt01" title="预留文本字段01" type="VARCHAR(SZPRETXT)" />
+        <column name="txt02" title="预留文本字段02" type="VARCHAR(SZPRETXT)" />
+        <column name="txt03" title="预留文本字段03" type="VARCHAR(SZPRETXT)" />
+        <column name="txt04" title="预留文本字段04" type="VARCHAR(SZPRETXT)" />
+        <column name="txt05" title="预留文本字段05" type="VARCHAR(SZPRETXT)" />
+        <column name="txt06" title="预留文本字段06" type="VARCHAR(SZPRETXT)" />
+        <column name="txt07" title="预留文本字段07" type="VARCHAR(SZPRETXT)" />
+        <column name="txt08" title="预留文本字段08" type="VARCHAR(SZPRETXT)" />
+        <column name="txt09" title="预留文本字段09" type="VARCHAR(SZPRETXT)" />
+        <column name="ltxt01" title="预留大文本字段01" type="VARCHAR(SZPRELONGTXT)" />
+        <column name="ltxt02" title="预留大文本字段02" type="VARCHAR(SZPRELONGTXT)" />
+        <column name="dat00"  title="预留日期字段00" type="DATE" />
+        <column name="dat01"  title="预留日期字段01" type="DATE" />
+        <column name="dat02"  title="预留日期字段02" type="DATE" />
+        <column name="int00"  title="预留整数字段00" type="INTEGER" />
+        <column name="int01"  title="预留整数字段01" type="INTEGER" />
+        <column name="int02"  title="预留整数字段02" type="INTEGER" />
+        <column name="num00"  title="预留数值字段00" type="NUMERIC(SZNUMINT.SZNUMDEC)" />
+        <column name="num01"  title="预留数值字段01" type="NUMERIC(SZNUMINT.SZNUMDEC)" />
+        <column name="num02"  title="预留数值字段02" type="NUMERIC(SZNUMINT.SZNUMDEC)" />
+    
+        <column name="stsext00" title="统计扩充字段00" type="VARCHAR(SZSTSEXT)" />
+        <column name="stsext01" title="统计扩充字段01" type="VARCHAR(SZSTSEXT)" />
+        <column name="stsext02" title="统计扩充字段02" type="VARCHAR(SZSTSEXT)" />
+        <column name="stsext03" title="统计扩充字段03" type="VARCHAR(SZSTSEXT)" />
+        <column name="stsext04" title="统计扩充字段04" type="VARCHAR(SZSTSEXT)" />
+        <column name="stsext05" title="统计扩充字段05" type="VARCHAR(SZSTSEXT)" />
+        <column name="stsext06" title="统计扩充字段06" type="VARCHAR(SZSTSEXT)" />
+        <!-- 扩展字段 end -->
+        <index name="ft_trd_prot_ptcode" fields="ptcode" storegrp="SNFTTRDINDX_TBS" />
+        <index name="ft_trd_prot_predate" fields="predate" storegrp="SNFTTRDINDX_TBS" />
+        <index name="ft_trd_prot_sddate" fields="startdate,duedate" storegrp="SNFTTRDINDX_TBS" />
+        
+        
+        <!--<column name="agcyrule" title="代理规则" type="VARCHAR(SZTEXT)" remark="类似[备注]字段"/>-->
+        <!--<column name="agcyconstraint" title="约束规则" type="VARCHAR(SZTYPE)" remark="码表字段，值域[10:中国法律;20:外国法律]"/>-->
+        <!--<column name="disfcy" title="优惠原币金额" type="NUMERIC(MNYINT.MNYDEC)"/>-->
+        <!--<column name="disscy" title="优惠本位币金额" type="NUMERIC(MNYINT.MNYDEC)"/>-->
+        <!--<column name="diszcny" title="优惠人民币金额" type="NUMERIC(MNYINT.MNYDEC)"/>-->
+        <!--<column name="diszusd" title="优惠美元金额" type="NUMERIC(MNYINT.MNYDEC)"/>-->
+        <!-- 索引 -->
+        <!--<index name="ft_trd_prot_good_pticode" fields="pticode" storegrp="SNFTTRDINDX_TBS" />-->
+    </table>
+    
+    <table id="339991" name="st_xy_prot_good" title="贸易协议商品(项园版)" datasrcid="FT-TRD_W" rdatasrcid="FT-TRD_R"  storegrp="SNFTTRDDATA_TBS">
+        <column name="disupric" title="优惠单价" type="NUMERIC(MNYINT.MNYDEC)"/>
+        <column name="disfcy" title="优惠原币金额" type="NUMERIC(MNYINT.MNYDEC)"/>
+        <column name="disscy" title="优惠本位币金额" type="NUMERIC(MNYINT.MNYDEC)"/>
+        <column name="diszcny" title="优惠人民币金额" type="NUMERIC(MNYINT.MNYDEC)"/>
+        <column name="diszusd" title="优惠美元金额" type="NUMERIC(MNYINT.MNYDEC)"/>
+    
+        <column name="ptgicode" title="协议结算项目内码" type="VARCHAR(SZIBILL)" primkey="true"/>
+        <column name="pticode" title="协议内码" type="VARCHAR(SZIBILL)" notnull="true"/>
+        <column name="idx"  title="序号" type="INTEGER" />
+        <column name="gcode"  title="商品编码" type="VARCHAR(SZGCODE)" />
+        <column name="cgcode"  title="客户货号" type="VARCHAR(SZNBILL)" />
+        <column name="hscode"  title="海关编码" type="VARCHAR(SZHSCODE)" />
+        <column name="enamedesc"  title="商品英文名称" type="VARCHAR(SZGNAME)" />
+        <column name="cnamedesc"  title="商品名称" type="VARCHAR(SZGNAME)" />
+        <column name="brand"  title="品牌" type="VARCHAR(SZGATTRVALUE)" />
+        <column name="specifidesc"  title="规格型号" type="VARCHAR(SZGATTRVALUE)" />
+        <column name="goodsdesc" title="货物描述" type="VARCHAR(SZTEXT)"/>
+        <column name="gvcode"  title="商品类目" type="VARCHAR(SZGVCODE)" />
+        <column name="tgvattr00"  title="商品类目属性00" type="VARCHAR(SZTGVATTRVALUE)" />
+        <column name="has_me"  title="启用申报要素属性标识" type="CHAR(SZHASMEFLAG)" />
+        <column name="sgtrgrpcode"  title="库存属性组" type="VARCHAR(SZGATTRGRP)" />
+        <column name="sgattr00"  title="库存属性00" type="VARCHAR(SZGATTRVALUE)" />
+        <column name="sgattr01"  title="库存属性01" type="VARCHAR(SZGATTRVALUE)" />
+        <column name="sgattr02"  title="库存属性02" type="VARCHAR(SZGATTRVALUE)" />
+        <column name="sgattr03"  title="库存属性03" type="VARCHAR(SZGATTRVALUE)" />
+        <column name="sgattr04"  title="库存属性04" type="VARCHAR(SZGATTRVALUE)" />
+        <column name="sgattr05"  title="库存属性05" type="VARCHAR(SZGATTRVALUE)" />
+        <column name="sgattr06"  title="库存属性06" type="VARCHAR(SZGATTRVALUE)" />
+        <column name="sgattr07"  title="库存属性07" type="VARCHAR(SZGATTRVALUE)" />
+        <column name="sgattr08"  title="库存属性08" type="VARCHAR(SZGATTRVALUE)" />
+        <column name="sgattr09"  title="库存属性09" type="VARCHAR(SZGATTRVALUE)" />
+        <column name="sgattr10"  title="库存属性10" type="VARCHAR(SZGATTRVALUE)" />
+        <column name="sgattr11"  title="库存属性11" type="VARCHAR(SZGATTRVALUE)" />
+        <column name="sgattr12"  title="库存属性12" type="VARCHAR(SZGATTRVALUE)" />
+        <column name="sgattr13"  title="库存属性13" type="VARCHAR(SZGATTRVALUE)" />
+        <column name="sgattr14"  title="库存属性14" type="VARCHAR(SZGATTRVALUE)" />
+        <column name="sgattr15"  title="库存属性15" type="VARCHAR(SZGATTRVALUE)" />
+        <column name="sgattr16"  title="库存属性16" type="VARCHAR(SZGATTRVALUE)" />
+        <column name="sgattr17"  title="库存属性17" type="VARCHAR(SZGATTRVALUE)" />
+        <column name="sgattr18"  title="库存属性18" type="VARCHAR(SZGATTRVALUE)" />
+        <column name="sgattr19"  title="库存属性19" type="VARCHAR(SZGATTRVALUE)" />
+        <column name="qtc"  title="合同数量" type="NUMERIC(QTYINT.QTYDEC)" />
+        <column name="qtcunit"  title="合同单位" type="VARCHAR(SZUNIT)" />
+        <column name="qty"  title="统计数量" type="NUMERIC(QTYINT.QTYDEC)" />
+        <column name="qtyunit"  title="统计单位" type="VARCHAR(SZUNIT)" />
+        <column name="qcyrate"  title="合同单位对统计单位换算比例" type="NUMERIC(EXUINT.EXUDEC)" />
+        <column name="upric"  title="单价" type="NUMERIC(UPRINT.UPRDEC)" />
+        <column name="fcy"  title="原币金额" type="NUMERIC(MNYINT.MNYDEC)" />
+        <column name="scy"  title="本位币金额" type="NUMERIC(MNYINT.MNYDEC)" />
+        <column name="zcny"  title="人民币金额" type="NUMERIC(MNYINT.MNYDEC)" />
+        <column name="zusd"  title="美元金额" type="NUMERIC(MNYINT.MNYDEC)" />
+        <column name="fcode"  title="币种" type="VARCHAR(SZFCODE)" />
+        <column name="sfcode"  title="本位币种" type="VARCHAR(SZFCODE)" />
+        <column name="fserate"  title="对本位币汇率" type="NUMERIC(RATINT.RATDEC)" />
+        <column name="fcerate"  title="对人民币汇率" type="NUMERIC(RATINT.RATDEC)" />
+        <column name="fuerate"  title="对美元汇率" type="NUMERIC(RATINT.RATDEC)" />
+        <column name="customrate"  title="关税税率" type="NUMERIC(TRATINT.TRATDEC)" />
+        <column name="consumerate"  title="消费税税率" type="NUMERIC(TRATINT.TRATDEC)" />
+        <column name="addtaxrate"  title="增值税税率" type="NUMERIC(TRATINT.TRATDEC)" />
+        <column name="hisflag"  title="历史标识" type="INTEGER" />
+        <column name="virtualflag" title="虚拟商品标识" type="INTEGER"/>
+    
+        <column name="prictype" title="定价方式" type="VARCHAR(SZTYPE)"/>
+        <column name="natupric" title="不含税单价" type="NUMERIC(UPRINT.UPRDEC)"/>
+        <column name="natfcy" title="不含税金额" type="NUMERIC(MNYINT.MNYDEC)"/>
+        <column name="addtaxscy" title="增值税额" type="NUMERIC(MNYINT.MNYDEC)"/>
+    
+        <!-- 扩展字段 start -->
+        <column name="txt00" title="预留文本字段00" type="VARCHAR(SZPRETXT)" />
+        <column name="txt01" title="预留文本字段01" type="VARCHAR(SZPRETXT)" />
+        <column name="txt02" title="预留文本字段02" type="VARCHAR(SZPRETXT)" />
+        <column name="txt03" title="预留文本字段03" type="VARCHAR(SZPRETXT)" />
+        <column name="txt04" title="预留文本字段04" type="VARCHAR(SZPRETXT)" />
+        <column name="txt05" title="预留文本字段05" type="VARCHAR(SZPRETXT)" />
+        <column name="txt06" title="预留文本字段06" type="VARCHAR(SZPRETXT)" />
+        <column name="txt07" title="预留文本字段07" type="VARCHAR(SZPRETXT)" />
+        <column name="txt08" title="预留文本字段08" type="VARCHAR(SZPRETXT)" />
+        <column name="txt09" title="预留文本字段09" type="VARCHAR(SZPRETXT)" />
+        <column name="ltxt01" title="预留大文本字段01" type="VARCHAR(SZPRELONGTXT)" />
+        <column name="ltxt02" title="预留大文本字段02" type="VARCHAR(SZPRELONGTXT)" />
+        <column name="dat00"  title="预留日期字段00" type="DATE" />
+        <column name="dat01"  title="预留日期字段01" type="DATE" />
+        <column name="dat02"  title="预留日期字段02" type="DATE" />
+        <column name="int00"  title="预留整数字段00" type="INTEGER" />
+        <column name="int01"  title="预留整数字段01" type="INTEGER" />
+        <column name="int02"  title="预留整数字段02" type="INTEGER" />
+        <column name="num00"  title="预留数值字段00" type="NUMERIC(SZNUMINT.SZNUMDEC)" />
+        <column name="num01"  title="预留数值字段01" type="NUMERIC(SZNUMINT.SZNUMDEC)" />
+        <column name="num02"  title="预留数值字段02" type="NUMERIC(SZNUMINT.SZNUMDEC)" />
+        <!-- 扩展字段 end -->
+        <index name="ft_trd_prot_good_pticode" fields="pticode" storegrp="SNFTTRDINDX_TBS" />
+        
+        
+        
+        <!--<column name="disupric" title="优惠单价" type="NUMERIC(MNYINT.MNYDEC)"/>-->
+        <!--<column name="disfcy" title="优惠原币金额" type="NUMERIC(MNYINT.MNYDEC)"/>-->
+        <!--<column name="disscy" title="优惠本位币金额" type="NUMERIC(MNYINT.MNYDEC)"/>-->
+        <!--<column name="diszcny" title="优惠人民币金额" type="NUMERIC(MNYINT.MNYDEC)"/>-->
+        <!--<column name="diszusd" title="优惠美元金额" type="NUMERIC(MNYINT.MNYDEC)"/>-->
+    </table>
+    
+    <table id="331111" name="st_xy_pricelib" title="价格库(项园版)" datasrcid="FT-TRD_W" rdatasrcid="FT-TRD_R"  storegrp="SNFTTRDDATA_TBS">
+        <column name="suitbcode" title="适用部门" type="VARCHAR(SZBCODE)"/>
+    </table>
+    
+    
+    <table id="330211" name="st_xy_prot_si" title="贸易协议结算项目(项园版)" datasrcid="FT-TRD_W" rdatasrcid="FT-TRD_R"  storegrp="SNFTTRDDATA_TBS">
+        <column name="ptsicode" title="协议结算项目内码" type="VARCHAR(SZIBILL)" primkey="true"/>
+        <column name="pticode" title="协议内码" type="VARCHAR(SZIBILL)" notnull="true"/>
+        <column name="idx" title="序号" type="INTEGER"/>
+        <column name="rptype" title="结算项目" type="VARCHAR(SZRPTYPES)" />
+        <column name="feeproperty" title="性质" type="VARCHAR(SZTYPE)" />
+        <column name="setteratetype" title="结算汇率类型" type="VARCHAR(SZTYPE)"/>
+        <column name="remark" title="备注" type="VARCHAR(SZTEXT)"/>
+        <column name="hisflag"  title="历史标识" type="INTEGER" />
+        <!-- 扩展字段 start -->
+        <column name="txt00" title="预留文本字段00" type="VARCHAR(SZPRETXT)" />
+        <column name="txt01" title="预留文本字段01" type="VARCHAR(SZPRETXT)" />
+        <column name="txt02" title="预留文本字段02" type="VARCHAR(SZPRETXT)" />
+        <column name="txt03" title="预留文本字段03" type="VARCHAR(SZPRETXT)" />
+        <column name="txt04" title="预留文本字段04" type="VARCHAR(SZPRETXT)" />
+        <column name="txt05" title="预留文本字段05" type="VARCHAR(SZPRETXT)" />
+        <column name="txt06" title="预留文本字段06" type="VARCHAR(SZPRETXT)" />
+        <column name="txt07" title="预留文本字段07" type="VARCHAR(SZPRETXT)" />
+        <column name="txt08" title="预留文本字段08" type="VARCHAR(SZPRETXT)" />
+        <column name="txt09" title="预留文本字段09" type="VARCHAR(SZPRETXT)" />
+        <column name="ltxt01" title="预留大文本字段01" type="VARCHAR(SZPRELONGTXT)" />
+        <column name="ltxt02" title="预留大文本字段02" type="VARCHAR(SZPRELONGTXT)" />
+        <column name="dat00"  title="预留日期字段00" type="DATE" />
+        <column name="dat01"  title="预留日期字段01" type="DATE" />
+        <column name="dat02"  title="预留日期字段02" type="DATE" />
+        <column name="int00"  title="预留整数字段00" type="INTEGER" />
+        <column name="int01"  title="预留整数字段01" type="INTEGER" />
+        <column name="int02"  title="预留整数字段02" type="INTEGER" />
+        <column name="num00"  title="预留数值字段00" type="NUMERIC(SZNUMINT.SZNUMDEC)" />
+        <column name="num01"  title="预留数值字段01" type="NUMERIC(SZNUMINT.SZNUMDEC)" />
+        <column name="num02"  title="预留数值字段02" type="NUMERIC(SZNUMINT.SZNUMDEC)" />
+        <!-- 扩展字段 end -->
+        <index name="st_xy_prot_si_pticode" fields="pticode" storegrp="SNFTTRDINDX_TBS" />
+    </table>
+    
+    
+</db>

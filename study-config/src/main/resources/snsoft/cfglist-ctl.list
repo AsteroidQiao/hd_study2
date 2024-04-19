@@ -1,0 +1,12 @@
+#优先级上面的高于下面的!
+#/开头标示绝对路径
+
+#底层
+
+#snadk_product/product-mq/mq-ui/src/main/resources
+#snadk_product/product-umc/umc-ui/src/main/resources
+#snadk_product/product-sla/sla-ui/src/main/resources
+#snsoft_adk/snadk-ui/snadk-ui/src/main/resources
+#snsoft_adk/snadk-cmc/cmc-ui/src/main/resources
+#snsoft_adk/snadk-core/snadk-bas/src/main/resources
+#sn_plat/bas/plat-bas/bas-ui/src/main/resources

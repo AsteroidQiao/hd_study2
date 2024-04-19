@@ -1,0 +1,75 @@
+<B xmlns="http://www.snsoft.com.cn/schema/UI" xmlns:m="http://www.snsoft.com.cn/schema/UI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" title="${RES.FT-CODE.title_FT-CODE.Bas.Hscode?海关商品库}" fullPage="true" uiprops.helpFile="help/FT-CODE/Bas/Hscode.md#海关商品设计" xsi:schemaLocation="http://www.snsoft.com.cn/schema/UI http://www.snsoft.com.cn/schema/UI.xsd" options0="32">
+    <m:DialogPane layoutm="grid" name="query" region="north" uiprops.backInitValues="true" title="参数" showToolbar="false" cellcols="5" layoutOnClient="true">
+        <c name="hscode" title="${RES.FT-CODE.hscode}" sqltype="12" width="135" nmpre="filter" prefixMatch="true"/>
+        <c name="hsname" title="${RES.FT-CODE.hsname}" sqltype="12" width="135" nmpre="filter" prefixMatch="true" suffixMatch="true"/>
+        <c name="monitorcondition" title="${RES.FT-CODE.monitorcondition}" sqltype="12" nmpre="filter" prefixMatch="true" suffixMatch="true" width="135"/>
+        <c aidInputerBtn="true" codedata="#90.status" cmparams="sheetcode:'FT-CODE.Bas.Hscode'" droplist="true" name="status" nmpre="filter" sqltype="12" title="${RES.FT-CODE.status?状态}" disableed="true" width="135"/>
+    </m:DialogPane>
+    <m:Toolbar name="hscodeToolbar" uiprops.cellClassName="toolbar-panel" region="north">
+        <ToolbarBtn name="hscode_btn_newSheet" title="${RES.FT-CODE.newsheet}" noClientComponent="true"/>
+        <ToolbarBtn name="hscode_btn_importFromComplex" title="${RES.FT-CODE.ImpComplexProgPane.title}" noClientComponent="true"/>
+        <ToolbarBtn name="hscode_btn_importFromCusbroker" title="${RES.FT-CODE.ImpCusbrokerProgPane.title}" noClientComponent="true"/>
+        <ToolbarBtn name="hscode_btn_XLSIMP_FT-CODE_HscodeExpCusRate" title="${RES.FT-CODE.HscodeExpCusRat}" noClientComponent="true"/>
+        <ToolbarBtn name="hscode_btn_XLSIMP_FT-CODE_HscodeImpCusRate" title="${RES.FT-CODE.HscodeImpCusRate}" noClientComponent="true"/>
+        <!-- <ToolbarBtn name="hscode_btn_syncAll" title="${RES.UI.title.F.btn.syncAll?初始化}" noClientComponent="true"/> -->
+    </m:Toolbar>
+    <m:GridTable title="海关商品库" nmpre="filter" name="hscode" sqlexpr="ft_cd_hs" mainui="query" noCollapseQPaneAfterRefresh="true" xprops.LoadDataService="FT-CODE.FTHscodeUIService#queryUI" xprops.SaveDataService="FT-CODE.FTHscodeUIService#saveUI" uiprops="autoSaveOnPopupedit:true,closeTabOnDelete:false" dstoreprops="keyDupTip:'TipKeyColumns=hscode'" disableInsert="true" autoRefresh="true" disableAppend="true" dsprops.pageRows="10" disableed="true">
+        <uilisteners> snsoft.plat.bas.busi.PlatFunctionListener.new?funccode=FT-CODE.Bas.Hscode.UI </uilisteners>
+        <jslistener>
+            <![CDATA[ #new snsoft.plat.bas.busi.PlatFunctionListener({}); #new snsoft.plat.bas.comm.PlatEntryAutoPageJSListener({"tgtUINames":["hscode"]}) ]]>
+        </jslistener>
+        <attrs>
+            <attr type="203" name="newSheet" title="新建"/>
+            <attr type="203" name="importFromComplex" title="导入海关光盘商品"/>
+            <attr type="203" name="importFromCusbroker" title="导入报关行海关商品"/>
+            <attr type="203" name="importExpRate" title="导入出口商品税率"/>
+            <attr type="203" name="XLSIMP_FT-CODE_HscodeExpCusRate" title="导入出口商品税率"/>
+            <attr type="203" name="XLSIMP_FT-CODE_HscodeImpCusRate" title="导入进口商品税率"/>
+            <!-- <attr type="203" name="syncAll" title="${RES.UI.title.F.btn.syncAll?初始化}"/> -->
+        </attrs>
+        <Operate fixedLeft="true" name="operate" title="${RES.FT-CODE.operate}" width="75" sqlexpr="null" disableEnterEd="true" staticText="true" align="center"/>
+        <c name="hscode" title="${RES.FT-CODE.hscode}" asceOrd="true" sqltype="12"/>
+        <c name="hsname" title="${RES.FT-CODE.hsname}" width="175" sqltype="12" tipIfOverflow="true" fixedLeft="true"/>
+        <c name="qtyunit" title="${RES.FT-CODE.stdunit}" sqltype="12" width="75" showname="true" codedata="#FT-CODE.HscodeUnit"/>
+        <c name="qtyunit1" title="${RES.FT-CODE.stdunit1}" sqltype="12" width="75" codedata="#FT-CODE.HscodeUnit" showname="true"/>
+        <c name="impcustomrate" title="${RES.FT-CODE.impcustomrate}" width="75" percent="true" sqltype="2"/>
+        <c name="impcustomrate2" title="${RES.FT-CODE.impcustomrate2}" width="75" percent="true" sqltype="2"/>
+        <c name="comm_rate" title="${RES.FT-CODE.comm_rate}" percent="true" width="75" sqltype="2"/>
+        <c name="expcustomrate" title="${RES.FT-CODE.expcustomrate}" percent="true" width="75" sqltype="2"/>
+        <c name="addtaxrate" title="${RES.FT-CODE.addtaxrate}" percent="true" width="75" sqltype="2"/>
+        <c name="monitorcondition" title="${RES.FT-CODE.monitorcondition}" sqltype="12" codedata="#DT_FT-CODE.MonitorCondition" tipIfOverflow="true" mutiple="true"/>
+        <c name="ledate" title="${RES.FT-CODE.ledate}" sqltype="91" width="135"/>
+        <c name="remark" title="${RES.FT-CODE.remark}" sqltype="12" tipIfOverflow="true" aidInputerBtn="true" mutipleLine="true" aidInputableIfRdonly="true"/>
+        <c name="vprepare" title="${RES.FT-CODE.vprepare?创建人}" sqltype="12" width="${RES.FT-CODE.G.CW.ucode}" codedata="#users" showname="true" rdonly="true"/>
+        <c name="predate" title="${RES.FT-CODE.predate?创建时间}" sqltype="93" width="${RES.FT-CODE.E.G.CW.time}" rdonly="true"/>
+        <c name="modifier" title="${RES.FT-CODE.modifier?修改人}" sqltype="12" width="${RES.FT-CODE.G.CW.ucode}" codedata="#users" showname="true" modifierColumn="true" rdonly="true"/>
+        <c name="modifydate" title="${RES.FT-CODE.modifydate?修改时间}" sqltype="93" width="${RES.FT-CODE.E.G.CW.time}" modifydateColumn="true" rdonly="true"/>
+    </m:GridTable>
+    <m:RecordTable cellcols="2" layoutm="grid" mainui="hscode" name="hscodeadd" region="null" dialogMode="true" title="${RES.FT-CODE.newsheet}">
+        <c name="hscode" title="${RES.FT-CODE.hscode}" sqltype="12" layoutwidth="2" noblank="true" width="445"/>
+        <c name="hsname" title="${RES.FT-CODE.hsname}" sqltype="12" layoutwidth="2" noblank="true" width="445"/>
+        <c name="qtyunit" title="${RES.FT-CODE.stdunit}" sqltype="12" width="164" aidInputerBtn="true" submitOnInput="true" codedata="#FT-CODE.HscodeUnit" showname="true" noblank="true" disableed="true"/>
+        <c name="qtyunit1" title="${RES.FT-CODE.stdunit1}" sqltype="12" width="164" aidInputerBtn="true" submitOnInput="true" codedata="#FT-CODE.HscodeUnit" showname="true" disableed="true"/>
+        <c name="impcustomrate" title="${RES.FT-CODE.impcustomrate}" width="164" percent="true" sqltype="2"/>
+        <c name="impcustomrate2" title="${RES.FT-CODE.impcustomrate2}" width="164" percent="true" sqltype="2"/>
+        <c name="comm_rate" title="${RES.FT-CODE.comm_rate}" width="164" percent="true" sqltype="2"/>
+        <c name="expcustomrate" title="${RES.FT-CODE.expcustomrate}" width="164" percent="true" sqltype="2"/>
+        <c name="addtaxrate" title="${RES.FT-CODE.addtaxrate}" width="164" percent="true" sqltype="2"/>
+        <c name="monitorcondition" title="${RES.FT-CODE.monitorcondition}" width="164" sqltype="12"/>
+        <c name="remark" title="${RES.FT-CODE.remark}" sqltype="12" layoutwidth="2" submitOnInput="true" layoutheight="3" mutipleLine="true" aidInputerBtn="true" aidInputableIfRdonly="true" tipIfOverflow="true" cellrows="3" width="445"/>
+    </m:RecordTable>
+    <m:RecordTable cellcols="2" layoutm="grid" mainui="hscode" name="hscodeedit" region="null" dialogMode="true" title="${RES.FT-CODE.updsheet}">
+        <c name="hscode" title="${RES.FT-CODE.hscode}" sqltype="12" layoutwidth="2" width="445" noblank="true"/>
+        <c name="hsname" title="${RES.FT-CODE.hsname}" sqltype="12" layoutwidth="2" width="445" noblank="true"/>
+        <c name="qtyunit" title="${RES.FT-CODE.stdunit}" width="164" sqltype="12" aidInputerBtn="true" submitOnInput="true" codedata="#FT-CODE.HscodeUnit" showname="true" noblank="true" disableed="true"/>
+        <c name="qtyunit1" title="${RES.FT-CODE.stdunit1}" width="164" sqltype="12" aidInputerBtn="true" submitOnInput="true" codedata="#FT-CODE.HscodeUnit" showname="true" disableed="true"/>
+        <c name="impcustomrate" title="${RES.FT-CODE.impcustomrate}" width="164" percent="true" sqltype="2"/>
+        <c name="impcustomrate2" title="${RES.FT-CODE.impcustomrate2}" width="164" percent="true" sqltype="2"/>
+        <c name="comm_rate" title="${RES.FT-CODE.comm_rate}" width="164" percent="true" sqltype="2"/>
+        <c name="expcustomrate" title="${RES.FT-CODE.expcustomrate}" width="164" percent="true" sqltype="2"/>
+        <c name="addtaxrate" title="${RES.FT-CODE.addtaxrate}" width="164" percent="true" sqltype="2"/>
+        <c name="monitorcondition" title="${RES.FT-CODE.monitorcondition}" width="164" sqltype="12"/>
+        <c name="remark" title="${RES.FT-CODE.remark}" sqltype="12" layoutwidth="2" submitOnInput="true" layoutheight="3" mutipleLine="true" aidInputerBtn="true" aidInputableIfRdonly="true" tipIfOverflow="true" cellrows="3" width="445"/>
+        <c name="ledate" title="${RES.FT-CODE.ledate}" sqltype="91" aidInputerBtn="true" width="164"/>
+    </m:RecordTable>
+</B>

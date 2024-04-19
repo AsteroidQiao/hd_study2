@@ -1,0 +1,14 @@
+{
+    "properties": [
+        {
+            "name": "web.path1",
+            "type": "java.lang.String",
+            "description": "底层产品WEB资源"
+        },
+        {
+            "name": "web.path2",
+            "type": "java.lang.String",
+            "description": "(study-code)WEB资源"
+        }
+    ]
+}

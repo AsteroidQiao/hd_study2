@@ -1,0 +1,431 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>cn.snsoft.hd</groupId>
+        <artifactId>study-parents-java</artifactId>
+        <version>4.0.0-SNAPSHOT</version>
+        <relativePath>../study-parents/study-parents-java/pom.xml</relativePath>
+    </parent>
+
+    <artifactId>study-config</artifactId>
+    <packaging>jar</packaging>
+    <name>${project.artifactId}-${project.version}.jar</name>
+    
+    <dependencies>
+        <dependency>
+            <groupId>cn.snsoft.snadk</groupId>
+            <artifactId>N9B-snadk-web</artifactId>
+            <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>cn.snsoft.snadk</groupId>
+            <artifactId>appr-web</artifactId>
+            <version>${snadk.version}</version>
+            <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>cn.snsoft.snadk</groupId>
+            <artifactId>mq-web</artifactId>
+            <version>${snadk.version}</version>
+            <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>cn.snsoft.snadk</groupId>
+            <artifactId>acs-web</artifactId>
+            <version>${snadk.version}</version>
+            <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>cn.snsoft.snadk</groupId>
+            <artifactId>mdm-web</artifactId>
+            <version>${snadk.version}</version>
+            <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>cn.snsoft.snadk</groupId>
+            <artifactId>umc-web</artifactId>
+            <version>${snadk.version}</version>
+            <type>war</type>
+        </dependency>
+        
+        <!-- 税控接口 -->
+        <dependency>
+            <groupId>cn.snsoft.snadk</groupId>
+            <artifactId>invoice-web</artifactId>
+            <version>${snadk.version}</version>
+            <type>war</type>
+        </dependency>
+        
+        <!-- ft-code资源包 -->
+        <dependency>
+            <groupId>cn.snsoft.ft</groupId>
+            <artifactId>ft-code-web</artifactId>
+            <version>${ft.code.version}</version>
+            <type>war</type>
+        </dependency>
+        <!-- ft-trd资源包 -->
+        <dependency>
+            <groupId>cn.snsoft.ft</groupId>
+            <artifactId>ft-trd-web</artifactId>
+            <version>${ft.trd.version}</version>
+            <type>war</type>
+        </dependency>
+        <!-- ft-settle资源包 -->
+        <dependency>
+            <groupId>cn.snsoft.ft</groupId>
+            <artifactId>ft-settle-web</artifactId>
+            <version>${ft.settle.version}</version>
+            <type>war</type>
+        </dependency>
+        <!-- ft-sna资源包 -->
+        <dependency>
+            <groupId>cn.snsoft.ft</groupId>
+            <artifactId>ft-sna-web</artifactId>
+            <version>${ft.sna.version}</version>
+            <type>war</type>
+        </dependency>
+        <!-- ft-cmc资源包 -->
+        <dependency>
+            <groupId>cn.snsoft.ft</groupId>
+            <artifactId>ft-cmc-web</artifactId>
+            <version>${ft.cmc.version}</version>
+            <type>war</type>
+        </dependency>
+    </dependencies>
+    
+    <build>
+        
+        <resources>
+            <!-- 控制资源文件的拷贝 -->
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+        <plugins>
+            <!-- 设置源文件编码方式(Groovy) -->
+            <plugin>
+                <groupId>org.codehaus.gmavenplus</groupId>
+                <artifactId>gmavenplus-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <!--展开web资源配置与cfg配置包到指定目录 项目中的开发环境使用【针对发版】 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>unpack</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <artifactItems>
+                        
+                        <!--war-->
+                        <artifactItem>
+                            <groupId>cn.snsoft.snadk</groupId>
+                            <artifactId>N9B-snadk-web</artifactId>
+                            <version>${snadk.version}</version>
+                            <type>war</type>
+                            <outputDirectory>../../../../web/study/webapp/</outputDirectory>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>cn.snsoft.snadk</groupId>
+                            <artifactId>mq-web</artifactId>
+                            <version>${snadk.version}</version>
+                            <type>war</type>
+                            <outputDirectory>../../../../web/study/webapp/</outputDirectory>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>cn.snsoft.snadk</groupId>
+                            <artifactId>acs-web</artifactId>
+                            <version>${snadk.version}</version>
+                            <type>war</type>
+                            <outputDirectory>../../../../web/study/webapp/</outputDirectory>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>cn.snsoft.snadk</groupId>
+                            <artifactId>umc-web</artifactId>
+                            <version>${snadk.version}</version>
+                            <type>war</type>
+                            <outputDirectory>../../../../web/study/webapp/</outputDirectory>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>cn.snsoft.snadk</groupId>
+                            <artifactId>mdm-web</artifactId>
+                            <version>${snadk.version}</version>
+                            <type>war</type>
+                            <outputDirectory>../../../../web/study/webapp/</outputDirectory>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>cn.snsoft.snadk</groupId>
+                            <artifactId>appr-web</artifactId>
+                            <version>${snadk.version}</version>
+                            <type>war</type>
+                            <outputDirectory>../../../../web/study/webapp/</outputDirectory>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>cn.snsoft.snadk</groupId>
+                            <artifactId>invoice-web</artifactId>
+                            <version>${snadk.version}</version>
+                            <type>war</type>
+                            <outputDirectory>../../../../web/study/webapp/</outputDirectory>
+                        </artifactItem>
+                        <!--jar-->
+                        <artifactItem>
+                            <groupId>cn.snsoft.snadk</groupId>
+                            <artifactId>snadk-dx</artifactId>
+                            <version>${snadk.version}</version>
+                            <type>jar</type>
+                            <outputDirectory>../../../../web/study/</outputDirectory>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>cn.snsoft.snadk</groupId>
+                            <artifactId>snadk-bas</artifactId>
+                            <version>${snadk.version}</version>
+                            <type>jar</type>
+                            <outputDirectory>../../../../web/study/</outputDirectory>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>cn.snsoft.snadk</groupId>
+                            <artifactId>snadk-ui</artifactId>
+                            <version>${snadk.version}</version>
+                            <type>jar</type>
+                            <outputDirectory>../../../../web/study/</outputDirectory>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>cn.snsoft.snadk</groupId>
+                            <artifactId>snadk-cmc-ui</artifactId>
+                            <version>${snadk.version}</version>
+                            <type>jar</type>
+                            <outputDirectory>../../../../web/study/</outputDirectory>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>cn.snsoft.plat</groupId>
+                            <artifactId>plat-bas-ui</artifactId>
+                            <version>${snadk.version}</version>
+                            <type>jar</type>
+                            <outputDirectory>../../../../web/study/</outputDirectory>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>cn.snsoft.snadk</groupId>
+                            <artifactId>snadk-mq-ui</artifactId>
+                            <version>${snadk.version}</version>
+                            <type>jar</type>
+                            <outputDirectory>../../../../web/study/</outputDirectory>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>cn.snsoft.snadk</groupId>
+                            <artifactId>snadk-acs-ui</artifactId>
+                            <version>${snadk.version}</version>
+                            <type>jar</type>
+                            <outputDirectory>../../../../web/study/</outputDirectory>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>cn.snsoft.snadk</groupId>
+                            <artifactId>snadk-umc-ui</artifactId>
+                            <version>${snadk.version}</version>
+                            <type>jar</type>
+                            <outputDirectory>../../../../web/study/</outputDirectory>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>cn.snsoft.snadk</groupId>
+                            <artifactId>snadk-mdm-ui</artifactId>
+                            <version>${snadk.version}</version>
+                            <type>jar</type>
+                            <outputDirectory>../../../../web/study/</outputDirectory>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>cn.snsoft.snadk</groupId>
+                            <artifactId>snadk-acs-client</artifactId>
+                            <version>${snadk.version}</version>
+                            <type>jar</type>
+                            <outputDirectory>../../../../web/study/</outputDirectory>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>cn.snsoft.snadk</groupId>
+                            <artifactId>snadk-appr-ui</artifactId>
+                            <version>${snadk.version}</version>
+                            <type>jar</type>
+                            <outputDirectory>../../../../web/study/</outputDirectory>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>cn.snsoft.snadk</groupId>
+                            <artifactId>snadk-invoice-ui</artifactId>
+                            <version>${snadk.version}</version>
+                            <type>jar</type>
+                            <outputDirectory>../../../../web/study/</outputDirectory>
+                        </artifactItem>
+                        
+                        <!-- ft-code资源包 js -->
+                        <artifactItem>
+                            <groupId>cn.snsoft.ft</groupId>
+                            <artifactId>ft-code-web</artifactId>
+                            <version>${ft.code.version}</version>
+                            <type>war</type>
+                            <outputDirectory>../../../../web/study/webapp/</outputDirectory>
+                        </artifactItem>
+                        <!-- ft-trd资源包 js -->
+                        <artifactItem>
+                            <groupId>cn.snsoft.ft</groupId>
+                            <artifactId>ft-trd-web</artifactId>
+                            <version>${ft.trd.version}</version>
+                            <type>war</type>
+                            <outputDirectory>../../../../web/study/webapp/</outputDirectory>
+                        </artifactItem>
+                        <!-- ft-settle资源包  js -->
+                        <artifactItem>
+                            <groupId>cn.snsoft.ft</groupId>
+                            <artifactId>ft-settle-web</artifactId>
+                            <version>${ft.settle.version}</version>
+                            <type>war</type>
+                            <outputDirectory>../../../../web/study/webapp/</outputDirectory>
+                        </artifactItem>
+                        <!-- ft-sna资源包  js -->
+                        <artifactItem>
+                            <groupId>cn.snsoft.ft</groupId>
+                            <artifactId>ft-sna-web</artifactId>
+                            <version>${ft.sna.version}</version>
+                            <type>war</type>
+                            <outputDirectory>../../../../web/study/webapp/</outputDirectory>
+                        </artifactItem>
+                        <!-- ft-cmc资源包  js -->
+                        <artifactItem>
+                            <groupId>cn.snsoft.ft</groupId>
+                            <artifactId>ft-cmc-web</artifactId>
+                            <version>${ft.cmc.version}</version>
+                            <type>war</type>
+                            <outputDirectory>../../../../web/study/webapp/</outputDirectory>
+                        </artifactItem>
+                        <!-- ft-plat资源包  js -->
+                        <artifactItem>
+                            <groupId>cn.snsoft.ft</groupId>
+                            <artifactId>ft-plat-web</artifactId>
+                            <version>${ft.plat.version}</version>
+                            <type>war</type>
+                            <outputDirectory>../../../../web/study/webapp/</outputDirectory>
+                        </artifactItem>
+                        
+                        <!-- ft-plat资源包 res -->
+                        <artifactItem>
+                            <groupId>cn.snsoft.ft</groupId>
+                            <artifactId>ft-plat-ui</artifactId>
+                            <version>${ft.plat.version}</version>
+                            <type>jar</type>
+                            <outputDirectory>../../../../web/study/</outputDirectory>
+                        </artifactItem>
+                        <!-- ft-code资源包 res -->
+                        <artifactItem>
+                            <groupId>cn.snsoft.ft</groupId>
+                            <artifactId>ft-code-ui</artifactId>
+                            <version>${ft.code.version}</version>
+                            <type>jar</type>
+                            <outputDirectory>../../../../web/study/</outputDirectory>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>cn.snsoft.ft</groupId>
+                            <artifactId>ft-cfg</artifactId>
+                            <version>${ft.code.version}</version>
+                            <type>jar</type>
+                            <outputDirectory>../../../../web/study/</outputDirectory>
+                        </artifactItem>
+                        <!-- ft-trd资源包 res -->
+                        <artifactItem>
+                            <groupId>cn.snsoft.ft</groupId>
+                            <artifactId>ft-trd-ui</artifactId>
+                            <version>${ft.trd.version}</version>
+                            <type>jar</type>
+                            <outputDirectory>../../../../web/study/</outputDirectory>
+                        </artifactItem>
+                        <!-- ft-settle资源包  res -->
+                        <artifactItem>
+                            <groupId>cn.snsoft.ft</groupId>
+                            <artifactId>ft-settle-ui</artifactId>
+                            <version>${ft.settle.version}</version>
+                            <type>jar</type>
+                            <outputDirectory>../../../../web/study/</outputDirectory>
+                        </artifactItem>
+                        <!-- ft-sna资源包  res -->
+                        <artifactItem>
+                            <groupId>cn.snsoft.ft</groupId>
+                            <artifactId>ft-sna-ui</artifactId>
+                            <version>${ft.sna.version}</version>
+                            <type>jar</type>
+                            <outputDirectory>../../../../web/study/</outputDirectory>
+                        </artifactItem>
+                        <!-- ft-cmc资源包  res -->
+                        <artifactItem>
+                            <groupId>cn.snsoft.ft</groupId>
+                            <artifactId>ft-cmc-ui</artifactId>
+                            <version>${ft.cmc.version}</version>
+                            <type>jar</type>
+                            <outputDirectory>../../../../web/study/</outputDirectory>
+                        </artifactItem>
+                    </artifactItems>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <!--<delete dir="../../../../web/study/snsoft"/>-->
+                                <!--<delete dir="../../../../web/study/snsoftt"/>-->
+                                <!--<delete dir="../../../../web/study/snsoftx"/>-->
+                                <delete dir="../../../../web/study/META-INF"/>
+                                <!--<delete dir="../../../../web/study/init"/>-->-->
+                                <delete>
+                                    <fileset dir="../../../../web/study/" includes="**/.gitkeep"/>
+                                    <fileset dir="../../../../web/study/" includes="**/.getkeep"/>
+                                    <fileset dir="../../../../web/study/" includes="**/*.iml"/>
+                                </delete>
+                            </tasks>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.eclipse.m2e</groupId>
+                    <artifactId>lifecycle-mapping</artifactId>
+                    <version>1.0.0</version>
+                    <configuration>
+                        <lifecycleMappingMetadata>
+                            <pluginExecutions>
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>org.codehaus.gmavenplus</groupId>
+                                        <artifactId>gmavenplus-plugin</artifactId>
+                                        <versionRange>[1.5,)</versionRange>
+                                        <goals>
+                                            <goal>addSources</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <ignore/>
+                                    </action>
+                                </pluginExecution>
+                            </pluginExecutions>
+                        </lifecycleMappingMetadata>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>

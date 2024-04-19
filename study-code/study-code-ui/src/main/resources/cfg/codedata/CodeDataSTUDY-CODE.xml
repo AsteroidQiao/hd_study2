@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<codedata-list xmlns="http://www.snsoft.com.cn/schema/CodeData"
+               xsi:schemaLocation="http://www.snsoft.com.cn/schema/CodeData http://www.snsoft.com.cn/schema/CodeData.xsd"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <codedata id="agcyconstraint" table="st_fjd_prot" title="约束规则" expl="约束规则">
+        <column name="agcyconstraint" type="12" title="约束规则"/>
+        <column name="agcyconstraint" type="12" title="约束规则2"/>
+    </codedata>
+
+    <codedata id="CcodeTypeExt" title="客商码表(客商合并使用)" expl="客商码表可带出类型" table="ft_cd_cc_cc" cuicodeColumn="cuicode"
+              ui.aidinputer="snsoft.ft.code.ccode.codedata.SelectCcodeTypeExtDialog.new">
+        <column name="ccode" type="12" title="编码" width="200" primkey="true" />
+        <column name="cname" type="12" title="名称" width="300" />
+        <column name="ccodearea" type="12" title="客商地域" width="300" displayFlags="0x10" />
+        <column name="sncitycode" type="12" title="市及地区" width="300" displayFlags="0x10" />
+    </codedata>
+</codedata-list>

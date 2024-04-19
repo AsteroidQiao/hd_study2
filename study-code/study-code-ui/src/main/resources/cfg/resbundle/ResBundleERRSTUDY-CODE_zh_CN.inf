@@ -1,0 +1,8 @@
+## 学习系统资源文件
+###公用
+$PARENT$=FT-COMM
+$PARENT$=FT-TRD-COMM
+##标准表资源文件
+$PARENT$=FT-TRD
+##定义自有资源
+$PARENT$=STUDY-CODE

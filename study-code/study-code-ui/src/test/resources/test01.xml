@@ -1,0 +1,255 @@
+<m:PageBody xmlns="http://www.snsoft.com.cn/schema/UI" xmlns:m="http://www.snsoft.com.cn/schema/UI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" title="${RES.$.title_FT-TRD.TX.Prot.AgcyImpProtDetail?代理进口协议}" name="pagebody" xprops.hasFixToolbar="true" xprops.showPageTitle="true" xprops.PageClsName="ui-page-scryvis" xsi:schemaLocation="http://www.snsoft.com.cn/schema/UI http://www.snsoft.com.cn/schema/UI.xsd">
+    <m:DialogPane name="param" title="参数" hidden="true" region="north" layoutm="grid">
+        <c name="pticode" title="协议内码" sqltype="12" noblank="true"/>
+        <c name="vsn" title="版本" sqltype="4"/>
+        <c name="oldvsn" title="历史版本号" sqltype="4"/>
+    </m:DialogPane>
+    <m:Toolbar name="ft_trd_prot_toolbar" title="工具条" uiprops.cellClassName="head-toolbar-panel">
+        <ToolbarBtn name="ft_trd_prot_btn_save" noClientComponent="true" title="${RES.$.title.F.btn.save}" uiprops.cellClassName="ui-head-btn" xprops.iconClassName="icons-btn-saves"/>
+        <ToolbarBtn name="ft_trd_prot_btn_trefresh" noClientComponent="true" title="${RES.$.title.F.btn.trefresh}" uiprops.cellClassName="ui-head-btn" xprops.iconClassName="icons-btn-refresh"/>
+        <ToolbarBtn name="ft_trd_prot_btn_submitappr" noClientComponent="true" title="${RES.$.title.F.btn.submitappr}" uiprops.cellClassName="ui-head-btn" xprops.iconClassName="icons-btn-submit"/>
+        <ToolbarBtn name="ft_trd_prot_btn_backsubmit" noClientComponent="true" title="${RES.$.title.F.btn.backsubmit}" uiprops.cellClassName="ui-head-btn" xprops.iconClassName="icons-btn-recall"/>
+        <ToolbarBtn name="ft_trd_prot_btn_ratify" noClientComponent="true" title="${RES.$.title.F.btn.ratify}" uiprops.cellClassName="ui-head-btn" xprops.iconClassName="icons-btn-approve"/>
+        <ToolbarBtn name="ft_trd_prot_btn_checkError" noClientComponent="true" title="${RES.$.title.F.btn.checkerror}" uiprops.cellClassName="ui-head-btn" xprops.iconClassName="icons-btn-checkerror"/>
+        <ToolbarBtn name="ft_trd_prot_btn_delete" noClientComponent="true" title="${RES.$.title.F.btn.delete}" uiprops.cellClassName="ui-head-btn" xprops.iconClassName="icons-btn-delete"/>
+        <ToolbarBtn name="ft_trd_prot_btn_vbBackup" noClientComponent="true" title="${RES.$.title.F.btn.vbbackup}" uiprops.cellClassName="ui-head-btn" xprops.iconClassName="icons-btn-version"/>
+        <ToolbarBtn name="ft_trd_prot_btn_vbCancel" noClientComponent="true" title="${RES.$.title.F.btn.vbcancel}" uiprops.cellClassName="ui-head-btn" xprops.iconClassName="icons-btn-version"/>
+        <ToolbarBtn name="ft_trd_prot_btn_sheetCopy" noClientComponent="true" title="${RES.$.title.F.btn.sheetcopy}" uiprops.cellClassName="ui-head-btn" xprops.iconClassName="icons-btn-copy"/>
+        <ToolbarBtn name="ft_trd_prot_btn_statusEnd" noClientComponent="true" title="${RES.$.title.F.btn.final}" uiprops.cellClassName="ui-head-btn" xprops.iconClassName="icons-btn-stop"/>
+        <ToolbarBtn name="ft_trd_prot_btn_statusCancelEnd" noClientComponent="true" title="${RES.$.title.F.btn.cancelfinal}" uiprops.cellClassName="ui-head-btn" xprops.iconClassName="icons-btn-nstop"/>
+        <!--  <ToolbarBtn name="ft_trd_prot_btn_statusStop" noClientComponent="true" title="${RES.$.title.F.btn.invalid}" uiprops.cellClassName="ui-head-btn" xprops.iconClassName="icons-btn-stop"/>
+                <ToolbarBtn name="ft_trd_prot_btn_statusCancelStop" noClientComponent="true" title="${RES.$.title.F.btn.cancelinvalid}" uiprops.cellClassName="ui-head-btn" xprops.iconClassName="icons-btn-nstop"/>  -->
+    </m:Toolbar>
+    <m:RecordTable title="代理进口协议" layoutOnClient="true" name="ft_trd_prot" sqlexpr="ft_trd_prot" mainui="param" skipRdOnlyCellOnEnterKey="true" region="center" layoutm="grid" align="center" uiprops.resetKeyFilterOnRefresh="2" cellcols="5" xprops.LoadDataService="FT-TRD.TX.AgcyImpProtUIService#queryProtUI" xprops.SaveDataService="FT-TRD.TX.AgcyImpProtUIService#saveProtUI">
+        <uilisteners>
+            <![CDATA[ snsoft.plat.bas.busi.PlatFunctionListener.new?funccode=FT-TRD.TX.Prot.AgcyImpProt.UI; ]]>
+        </uilisteners>
+        <jslistener>
+            <![CDATA[ #new snsoft.plat.bas.busi.PlatFunctionListener({}); ]]>
+</jslistener>
+        <attrs>
+            <attr type="203" name="submitappr" title="${RES.$.title.F.btn.submitappr}" _rlog="true"/>
+            <attr type="203" name="checkError" title="${RES.$.title.F.btn.checkerror}" _rlog="true"/>
+            <attr type="203" name="vbBackup" title="${RES.$.title.F.btn.vbbackup}" _rlog="true"/>
+            <attr type="203" name="vbCancel" title="${RES.$.title.F.btn.vbcancel}" _rlog="true"/>
+            <attr type="203" name="ratify" title="${RES.$.title.F.btn.ratify}" _rlog="true"/>
+            <attr type="203" name="backsubmit" title="${RES.$.title.F.btn.backsubmit}" _rlog="true"/>
+            <attr type="203" name="sheetCopy" title="${RES.$.title.F.btn.sheetcopy}" _rlog="true"/>
+            <attr type="203" name="statusEnd" title="${RES.$.title.F.btn.final}" _rlog="true"/>
+            <attr type="203" name="statusCancelEnd" title="${RES.$.title.F.btn.cancelfinal}" _rlog="true"/>
+            <!--   <attr type="203" name="statusStop" title="${RES.$.title.F.btn.invalid}" _rlog="true"/>
+                        <attr type="203" name="statusCancelStop" title="${RES.$.title.F.btn.cancelinvalid}" _rlog="true"/>  -->
+        </attrs>
+        <c name="pticode" title="${RES.C}" sqltype="12" hidden="true"/>
+        <c name="ptcode" title="${RES.$.ptcode}" sqltype="12" width="${RES.$.D.HR.CW.outcode}" rdonly="true" noblankOnSubmit="true" toUpper="true"/>
+        <c name="cuicode" title="${RES.$.cuicode}" sqltype="12" hidden="true"/>
+        <c name="status" tipIfOverflow="true" title="${RES.$.status}" sqltype="12" width="${RES.$.D.HR.CW.status}" rdonly="true" codedata="#90.status" showname="true" cmparams="sheetcode:'FT-TRD.TX.Prot.AgcyImpProt'"/>
+        <c name="bcode" title="${RES.$.wcode}" submitOnInput="true" sqltype="12" width="${RES.$.D.HR.CW.bwcode}" codedata="#FT-CODE.BWcode" disableed="true" selectMiddle="false" aidInputerBtn="true" uiprops.renderer="new snsoft.ft.code.bcode.codedata.BWcodeNameRender({})" disableDelIfAI="true" showfname="true" tipIfOverflow="true" uiprops.textDir="rtl" cmparams="hasUser:true,sheetcode:'FT-TRD.TX.Prot.AgcyImpProt',opids:'C'" aiprops="copyMap:{wcode:'wcode'}" noblankOnSubmit="true"/>
+        <c name="wcode" title="${RES.$.wcode}" submitOnInput="true" sqltype="12" width="80" noblankOnSubmit="true" rdonly="true" codedata="#FT-CODE.Wcode" showname="true" hidden="true"/>
+        <c name="corpbcode" title="${RES.$.corpbcode}" aidInputerBtn="true" disableed="true" showname="true" codedata="#FT-CODE.CorpBcode" cmparams.sheetcode="FT-TRD.TX.Prot.AgcyImpProt" cmparams.opids="C" cmparams.status="70" aiprops="copyMap:{sfcode:'sfcode'}" cmprops.pmFromPane="{fromBcode:'bcode'}" cmparams.fromBtype=""01"" sqltype="12" noblankOnSubmit="true" width="${RES.$.D.HR.CW.corpbcode}" disableDelIfAI="true"/>
+    <!--  <c name="costbcode"  title="${RES.$.costbcode}" width="${RES.$.D.HR.CW.costbcode}" disableed="true" aidInputerBtn="true" codedata="#FT-CODE.CostBcode" showname="true"
+               cmparams.sheetcode="FT-TRD.TX.Prot.AgcyImpProt" cmparams.opids="C" cmprops.pmFromPane="{fromBcode:'bcode',fromWcode:'wcode'}" cmparams.fromBtype="&quot;01&quot;" sqltype="12" hidden="true"/>  -->
+    <c name="sheetcode" title="单据号" sqltype="12" hidden="true"/>
+    <!--         <c hidden="true" name="vprepare" title="${RES.$.vprepare}"  sqltype="12"     width="80" rdonly="true" codedata="#FT-CODE.Users" showname="true" /> -->
+    <!--         <c hidden="true" name="predate" title="${RES.$.predate}" sqltype="93"    width="130" rdonly="true" /> -->
+    <!--         <c hidden="true" name="modifier" title="${RES.$.modifier}" sqltype="12"    width="80" rdonly="true" codedata="#FT-CODE.Users" showname="true"    modifierColumn="true" /> -->
+    <!--         <c hidden="true" name="modifydate"  title="${RES.$.modifydate}" sqltype="93"   width="130" rdonly="true" modifydateColumn="true" /> -->
+    <c name="agentfeemode" title="服务费收取方式" sqltype="12" showname="true" codedata="#DT_FT-TRD.AgcyImpAgentFeeMode" cliInitAllCodes="true" hidden="true"/>
+    <c name="ttcode" title="合约条款模板编号" sqltype="12" hidden="true"/>
+    <c name="tmcode" title="合约条款公式编号" sqltype="12" hidden="true"/>
+    <c name="termflags" title="合约条款标识" sqltype="4" hidden="true"/>
+    <c name="agentfeevalue" title="服务费收取方式值" sqltype="2" hidden="true"/>
+    <c name="vsnflag" title="版本标记" sqltype="4" width="100" rdonly="true" hidden="true"/>
+    <c name="sscleastrmb" title="单笔最低服务费" sqltype="2" hidden="true"/>
+    <c name="prottype" sqltype="12" title="协议类型" hidden="true" codedata="#DT_FT-TRD.AgcyProtType" showname="true"/>
+    <c name="ccodetrust" sqltype="12" title="${RES.C}" hidden="true" codedata="#FT-CODE.CcodeLMExt" showname="true"/>
+    <c name="wfcode" title="${RES.$.wfcode}" sqltype="12" hidden="true"/>
+    <c name="wfuid" title="${RES.$.wfuid}" sqltype="12" hidden="true" codedata="#SN-APPR.wfunit" showname="true" tipIfOverflow="true" xprops.CodeData.KeyNames="wfcode"/>
+    <c name="isfmtprot" title="${RES.C}" sqltype="12" aidInputerBtn="true" showname="true" disableed="true" codedata="#DT_90.YN" hidden="true"/>
+    <c name="isgood" title="${RES.C}" sqltype="12" aidInputerBtn="true" showname="true" disableed="true" codedata="#DT_FT-TRD.HASORNO" hidden="true"/>
+    <c name="isagentfeetax" title="${RES.C}" sqltype="12" codedata="#DT_90.YN" showname="true" cliInitAllCodes="true" cellcols="2" hidden="true"/>
+    <include src="FT-TRD.Comm.BusiKeyPubCells#ft_trd_pub_sys" includeCell="true"/>
+</m:RecordTable>
+<m:T name="tab">
+    <m:P name="ft_trd_pot_basbas" title="${RES.$.title.F.tab.bas}">
+        <m:RecordTable title="${RES.$.title.F.tab.bas}" name="ft_trd_prot_bas" mainui="ft_trd_prot">
+            <attrs>
+                <attr type="203" name="editisgood" title="${RES.$.title.F.btn.modify}" _rlog="true"/>
+            </attrs>
+            <GroupPane name="ft_trd_prot_busi" title="${RES.$.title.F.grp.bas}" layoutm="grid" cellcols="4" clayoutwids="${RES.$.D.R.4CW}" uiprops.subCompOpts="2">
+                <c name="ccodetrust" sqltype="12" title="${RES.C}" disableed="true" codedata="#FT-CODE.CcodeLMExt" showname="true" aidInputerBtn="true" layoutwidth="2" disableDelIfAI="true" aiprops="initParasVales:{ccodetypes:'10'},dlgParam:{bcode:'bcode',wcode:'wcode'},copyMap:{pa_ctname:'linkmanname',pa_ctmobile:'mobile'}" noblankOnSubmit="true"/>
+                <c name="pa_ctname" title="${RES.C}" sqltype="12" codedata="#FT-CODE.CcodeLinkManBWcode" aidInputerBtn="true" aiprops="dlgParam:{ccode:'ft_trd_prot.ccodetrust',bcode:'ft_trd_prot.bcode',wcode:'ft_trd_prot.wcode'},copyMap:{pa_ctname:'linkmanname',pa_ctmobile:'phone'}"/>
+                <c name="pa_ctmobile" title="${RES.C}" sqltype="12"/>
+                <c name="signdate" title="${RES.C}" sqltype="91" aidInputerBtn="true" noblankOnSubmit="true"/>
+                <c name="signsite" title="${RES.C}" sqltype="12" aidInputerBtn="true" mutipleLine="true" aidInputableIfRdonly="true" tipIfOverflow="true"/>
+                <c name="outptcode" title="${RES.C}" sqltype="12" aidInputerBtn="false" mutipleLine="true" aidInputableIfRdonly="false" tipIfOverflow="true"/>
+                <c name="prottype" sqltype="12" title="${RES.C}" disableed="true" codedata="#DT_FT-TRD.AgcyProtType" showname="true" aidInputerBtn="true"/>
+                <c name="startdate" title="${RES.C}" sqltype="91" aidInputerBtn="true" noblankOnSubmit="true"/>
+                <c name="duedate" title="${RES.C}" sqltype="91" aidInputerBtn="true" noblankOnSubmit="true"/>
+                <c name="invmode" title="${RES.C}" sqltype="12" aidInputerBtn="true" showname="true" disableed="true" codedata="#DT_FT-TRD.AgcyImpInvMode"/>
+                <c name="isgood" title="${RES.C}" sqltype="12" aidInputerBtn="true" showname="true" disableed="true" codedata="#DT_FT-TRD.HASORNO" noblankOnSubmit="true" submitOnInput="true" rdonly="true" disableDelIfAI="true"/>
+                <ToolbarBtn name="ft_trd_prot_bas_btn_editisgood" notInDataSet="true" noClientComponent="true" uiprops.className="ui-btn" xprops.iconClassName="icons-btn-edit" titleHidden="true" xprops.domTitle="${RES.$.title.F.btn.modify}" followLayout="true"/>
+                <c name="remark" title="${RES.$.remark}" sqltype="12" aidInputerBtn="true" mutipleLine="true" aidInputableIfRdonly="true" layoutwidth="2" tipIfOverflow="true"/>
+                <c name="isfmtprot" title="${RES.C}" sqltype="12" aidInputerBtn="true" showname="true" disableed="true" codedata="#DT_90.YN" noblankOnSubmit="true" disableDelIfAI="true" submitOnInput="true"/>
+                <c name="stsext00" title="${RES.C}" sqltype="12" hidden="true"/>
+                <c name="stsext01" title="${RES.C}" sqltype="12" hidden="true"/>
+                <c name="stsext02" title="${RES.C}" sqltype="12" hidden="true"/>
+                <c name="stsext03" title="${RES.C}" sqltype="12" hidden="true"/>
+                <c name="stsext04" title="${RES.C}" sqltype="12" hidden="true"/>
+                <c name="stsext05" title="${RES.C}" sqltype="12" hidden="true"/>
+                <c name="stsext06" title="${RES.C}" sqltype="12" hidden="true"/>
+            </GroupPane>
+            <GroupPane name="ft_trd_prot_margin" title="${RES.$.title.F.grp.marginmoney}" layoutm="grid" cellcols="4" clayoutwids="${RES.$.D.R.4CW}" uiprops.subCompOpts="2">
+                <c name="margintype" title="${RES.C}" disableDelIfAI="true" sqltype="12" tipIfOverflow="true" droplist="true" disableed="true" aidInputerBtn="true" showname="true" cliInitAllCodes="true" codedata="#DT_FT-TRD.AgcyImpIMarginType" noblankOnSubmit="true" submitOnInput="true"/>
+                <c name="marginrate" title="${RES.C}" sqltype="2" percent="true"/>
+                <c name="marginfcy" title="${RES.C}" sqltype="2" mindeci="2"/>
+            </GroupPane>
+            <GroupPane name="ft_trd_prot_fcy" title="${RES.$.title.F.grp.money}" layoutm="grid" cellcols="4" clayoutwids="${RES.$.D.R.4CW}" uiprops.subCompOpts="2">
+                <c name="fcode" title="${RES.$.fcode}" sqltype="12" codedata="#FT-CODE.Fcode" showcode="true" disableed="true" disableDelIfAI="true" noblankOnSubmit="true" submitOnInput="true"/>
+                <c name="sfcode" title="${RES.C}" sqltype="12" codedata="#FT-CODE.Fcode" showcode="true" disableed="true" disableDelIfAI="true" hidden="true"/>
+                <c name="fserate" title="${RES.C}" sqltype="2" rdonly="true" noblankOnSubmit="true"/>
+                <c name="fcerate" title="${RES.C}" sqltype="2" noblankOnSubmit="true" hidden="true"/>
+                <c name="fuerate" title="${RES.C}" sqltype="2" noblankOnSubmit="true" hidden="true"/>
+                <c name="fcy" title="${RES.C}" sqltype="2" mindeci="2" rdonly="true" noblankOnSubmit="true"/>
+                <c name="zusd" title="${RES.C}" sqltype="2" mindeci="2" rdonly="true" noblankOnSubmit="true"/>
+                <c name="zcny" title="${RES.C}" sqltype="2" mindeci="2" rdonly="true" hidden="true"/>
+                <c name="scy" title="${RES.C}" sqltype="2" mindeci="2" rdonly="true" hidden="true"/>
+            </GroupPane>
+            <GroupPane name="ft_trd_prot_paytype" title="${RES.$.title.F.grp.settmode}" layoutm="grid" cellcols="4" clayoutwids="${RES.$.D.R.4CW}" uiprops.subCompOpts="2">
+                <c name="agentfeemode" title="${RES.C}" disableDelIfAI="true" sqltype="12" tipIfOverflow="true" droplist="true" disableed="true" aidInputerBtn="true" showname="true" cliInitAllCodes="true" codedata="#DT_FT-TRD.AgcyImpAgentFeeMode" noblankOnSubmit="true" submitOnInput="true"/>
+                <c name="agentfeevalue" title="${RES.C}" sqltype="2" noblankOnSubmit="true"/>
+                <c name="isagentfeetax" title="${RES.C}" sqltype="12" codedata="#DT_90.YN" showname="true" button="true" disableed="true" cliInitAllCodes="true" cellcols="2" noblankOnSubmit="true"/>
+            </GroupPane>
+        </m:RecordTable>
+        <m:GroupPane name="ft_trd_prot_bas3" title="${RES.$.title.F.grp.settitem}">
+            <m:P name="ft_trd_prot_si_toolbar" tags="tbtn">
+                <ToolbarBtn name="ft_trd_prot_si_btn_addSettItem" title="${RES.$.title.F.btn.addSettItem}" noClientComponent="true" xprops="iconClassName:icons-btn-add"/>
+                <ToolbarBtn name="ft_trd_prot_si_btn_batchModify" title="${RES.$.title.F.btn.batchmodify}" noClientComponent="true" xprops="iconClassName:icons-btn-batch_edit"/>
+            </m:P>
+            <m:GridTable title="${RES.$.title.F.grp.settitem}" titleHidden="true" name="ft_trd_prot_si" mutiple="true" sqlexpr="ft_trd_prot_si" mainui="ft_trd_prot" skipRdOnlyCellOnEnterKey="true" uiprops.minVisibleRows="3" uiprops.fitInDOMHeight="0" uiprops="hideVBar:true" all_c_columns="true" xprops.LoadDataService="FT-TRD.TX.AgcyImpProtUIService#queryProtSiUI" dsprops="masterColumnsOnRefresh:['pticode']" disableAppend="true">
+                <attrs>
+                    <attr type="203" name="addSettItem" title="${RES.$.title.F.btn.addSettItem}" _rlog="true"/>
+                    <attr type="203" name="batchModify" title="${RES.$.title.F.btn.batchmodify}" _rlog="true"/>
+                </attrs>
+                <Operate fixedLeft="true" name="operate" title="${RES.$.operate}" width="60" sqlexpr="null" disableEnterEd="true" staticText="true" align="center" bottomval="recind"/>
+                <c name="pticode" title="项目内码" sqltype="12" width="120" xprops.cpmastercol=":pticode" hidden="true" rdonly="true"/>
+                <c name="ptsicode" title="内码" sqltype="12" width="120" rdonly="true" hidden="true"/>
+                <c name="idx" title="${RES.C}" sqltype="4" noblankOnSubmit="true" width="${RES.$.D.G.CW.idx}" asceOrd="true"/>
+                <c name="rptype" title="${RES.C}" sqltype="12" width="120" noblankOnSubmit="true" disableDelIfAI="true" rdonly="true" codedata="#FT-SET.RptypeDefSheetDialog" aiprops="nonBlank:true" showname="true" aidInputerBtn="true" mutiple="true" tipIfOverflow="true"/>
+                <c name="feeproperty" title="${RES.C}" sqltype="12" disableDelIfAI="true" width="80" noblankOnSubmit="true" codedata="#DT_FT-CODE.FeeProperty" disableed="true" showname="true" align="center"/>
+                <c name="setteratetype" title="${RES.C}" sqltype="12" width="100" codedata="#DT_FT-TRD.AgcyImpSettErateType" disableed="true" showname="true" align="center" aidInputerBtn="true" noblankOnSubmit="true"/>
+                <c name="remark" title="${RES.$.remark}" sqltype="12" width="${RES.$.D.G.CW.remark}" aidInputerBtn="true" mutipleLine="true" tipIfOverflow="true" aidInputableIfRdonly="true"/>
+                <c name="hisflag" title="历史" sqltype="4" rdonly="true" showname="true" disableed="true" align="center" codedata="#DT_90.YESNO" width="80" hidden="true"/>
+            </m:GridTable>
+        </m:GroupPane>
+        <include src="FT-TRD.Comm.BusiClassifyRelaInfo#ft_trd_prot_busiclassify_bas" mainui="ft_trd_prot"/>
+    </m:P>
+    <m:P name="ft_trd_prot_good_bas" title="${RES.$.title.F.tab.goods}">
+        <m:P>
+            <ToolbarBtn name="ft_trd_prot_good_btn_getGoods" noClientComponent="true" title="${RES.$.title.F.btn.selgoods}" xprops.iconClassName="icons-btn-add"/>
+            <ToolbarBtn name="ft_trd_prot_good_btn_XLSIMP_FT-TRD_Ft_trd_prot_aimp_g" noClientComponent="true" title="${RES.$.title.F.btn.importgoods}" xprops.iconClassName="icons-btn-import"/>
+            <ToolbarBtn name="ft_trd_prot_good_btn_batchModify" noClientComponent="true" title="${RES.$.title.F.btn.batchmodify}" xprops.iconClassName="icons-btn-batch_edit"/>
+        </m:P>
+        <m:GridTable title="${RES.$.title.F.tab.goods}" all_c_columns="true" titleHidden="true" mutiple="true" name="ft_trd_prot_good" sqlexpr="ft_trd_prot_good" mainui="ft_trd_prot" xprops.LoadDataService="FT-TRD.TX.AgcyImpProtUIService#queryProtGoodUI" skipRdOnlyCellOnEnterKey="true" uiprops.minVisibleRows="10" uiprops.fitSizeOnWinResize="{flags:0x15,oheight:10}" dsprops="masterColumnsOnRefresh:['cuicode','bcode','corpbcode']" uiprops.zdomid="@ft_trd_prot_good_bas">
+            <attrs>
+                <attr type="203" name="getGoods" title="${RES.$.title.F.btn.selgoods}" _rlog="true"/>
+                <attr type="203" name="XLSIMP_FT-TRD_Ft_trd_prot_aimp_g" title="${RES.$.title.F.btn.importgoods}" _rlog="true"/>
+                <attr type="203" name="batchModify" title="${RES.$.title.F.btn.batchmodify}" _rlog="true"/>
+            </attrs>
+            <Operate fixedLeft="true" name="operate" title="${RES.$.operate}" width="110" sqlexpr="null" disableEnterEd="true" staticText="true" align="center" bottomval="recind"/>
+            <c name="pticode" title="协议内码" sqltype="12" xprops.cpmastercol=":pticode" hidden="true"/>
+            <c name="ptgicode" title="内码" sqltype="12" hidden="true"/>
+            <c name="idx" title="${RES.C}" sqltype="4" width="55" asceOrd="true" noblankOnSubmit="true"/>
+            <c name="gcode" title="${RES.$.gcode}" sqltype="12" disableDelIfAI="true" disableed="true" noblankOnSubmit="true" codedata="#FT-CODE.Gcodes" tipIfOverflow="true" showname="false" aidInputerBtn="true" width="${RES.$.D.G.CW.gcode}" fixedLeft="true" aiprops="__$thisCfg:true,dlgParam:{'sheetcode':'ft_trd_prot.sheetcode','corpbcode':'ft_trd_prot.corpbcode'},ignoreDftCopy:true,multiRow:true,copyMap:{gcode:'gcode',gvcode:'gvcode',hscode:'hscode',tgvattr00:'tgvattr00',has_me:'has_me',virtualflag:'virtualflag',customrate:'customrate',consumerate:'comm_rate',qtcunit:'qtcunit',qtyunit:'qtyunit',specifidesc:'specifidesc',cnamedesc:'gname',enamedesc:'gname1',brand:'brand',sgtrgrpcode:'sgtrgrpcode',sgattr00:'sgattr00',sgattr01:'sgattr01',sgattr02:'sgattr02',sgattr03:'sgattr03',sgattr04:'sgattr04',sgattr05:'sgattr05',sgattr06:'sgattr06',sgattr07:'sgattr07',sgattr08:'sgattr08',sgattr09:'sgattr09',sgattr10:'sgattr10',sgattr11:'sgattr11',sgattr12:'sgattr12',sgattr13:'sgattr13',sgattr14:'sgattr14',sgattr15:'sgattr15',sgattr16:'sgattr16',sgattr17:'sgattr17',sgattr18:'sgattr18',sgattr19:'sgattr19',addtaxrate:'addtaxrate_h',gtrgrpcode:'gtrgrpcode',gattr00:'gattr00',gattr01:'gattr01',gattr02:'gattr02',gattr03:'gattr03',gattr04:'gattr04',gattr05:'gattr05',gattr06:'gattr06',gattr07:'gattr07',gattr08:'gattr08',gattr09:'gattr09',gattr10:'gattr10',gattr11:'gattr11',gattr12:'gattr12',gattr13:'gattr13',gattr14:'gattr14',gattr15:'gattr15',gattr16:'gattr16',gattr17:'gattr17',gattr18:'gattr18',gattr19:'gattr19'}"/>
+            <c name="hscode" title="${RES.$.hscode}" sqltype="12" disableed="true" noblankOnSubmit="true" codedata="#FT-CODE.Hscode" showname="true" showcode="true" aidInputerBtn="true" width="${RES.$.D.G.CW.hscode}" tipIfOverflow="true" submitOnInput="true" disableDelIfAI="true" aiprops="ignoreDftCopy:true,copyMap:{customrate:'customrate',consumerate:'comm_rate',addtaxrate:'addtaxrate_h'}"/>
+            <c name="gvcode" title="${RES.$.gvcode}" sqltype="12" disableed="true" selectMiddle="false" tipIfOverflow="true" hidden="true" codedata="#FT-CODE.Gvcodes" showname="true" aidInputerBtn="true" width="${RES.$.D.G.CW.gvcode}" aiprops="ignoreDftCopy:true"/>
+            <c name="cnamedesc" title="${RES.$.cnamedesc?商品名称}" sqltype="12" width="${RES.$.D.G.CW.gcnamedesc}" mutipleLine="true" tipIfOverflow="true" aidInputerBtn="true" aidInputableIfRdonly="true" noblankOnSubmit="true"/>
+            <c name="enamedesc" title="${RES.$.enamedesc?商品英文名称}" sqltype="12" width="${RES.$.D.G.CW.genamedesc}" mutipleLine="true" aidInputerBtn="true" aidInputableIfRdonly="true" tipIfOverflow="true" noblankOnSubmit="true"/>
+            <c name="brand" title="${RES.C}" sqltype="12" width="${RES.$.D.G.CW.brand}" mutipleLine="true" tipIfOverflow="true" aidInputerBtn="true" aidInputableIfRdonly="true"/>
+            <c name="specifidesc" title="${RES.C}" sqltype="12" width="${RES.$.D.G.CW.specifidesc}" mutipleLine="true" tipIfOverflow="true" noblankOnSubmit="true" aidInputerBtn="true" aidInputableIfRdonly="true"/>
+            <include src="FT-TRD.Comm.SheetGridPubCells#GattrDCells" includeCell="true"/>
+            <c name="goodsdesc" title="${RES.C}" sqltype="12" width="${RES.$.D.G.CW.goodsdesc}" tipIfOverflow="true" mutipleLine="true" aidInputerBtn="true" aidInputableIfRdonly="true"/>
+            <c name="tgvattr00" title="商品类目属性" sqltype="12" width="${RES.$.D.G.CW}" hidden="true"/>
+            <c name="sgtrgrpcode" title="库存属性组" sqltype="12" width="${RES.$.D.G.CW}" hidden="true" codedata="#FT-CODE.StockGattrGrps" showname="true" disableed="true" rdonly="true"/>
+            <c name="sgattr00" title="${RES.C}" sqltype="12" width="${RES.$.D.G.CW.sgattr}" hidden="true"/>
+            <c name="sgattr01" title="${RES.C}" sqltype="12" width="${RES.$.D.G.CW.sgattr}" hidden="true"/>
+            <c name="sgattr02" title="${RES.C}" sqltype="12" width="${RES.$.D.G.CW.sgattr}" hidden="true"/>
+            <c name="sgattr03" title="${RES.C}" sqltype="12" width="${RES.$.D.G.CW.sgattr}" hidden="true"/>
+            <c name="sgattr04" title="${RES.C}" sqltype="12" width="${RES.$.D.G.CW.sgattr}" hidden="true"/>
+            <c name="sgattr05" title="${RES.C}" sqltype="12" width="${RES.$.D.G.CW.sgattr}" hidden="true"/>
+            <c name="sgattr06" title="${RES.C}" sqltype="12" width="${RES.$.D.G.CW.sgattr}" hidden="true"/>
+            <c name="sgattr07" title="${RES.C}" sqltype="12" width="${RES.$.D.G.CW.sgattr}" hidden="true"/>
+            <c name="sgattr08" title="${RES.C}" sqltype="12" width="${RES.$.D.G.CW.sgattr}" hidden="true"/>
+            <c name="sgattr09" title="${RES.C}" sqltype="12" width="${RES.$.D.G.CW.sgattr}" hidden="true"/>
+            <c name="sgattr10" title="${RES.C}" sqltype="12" width="${RES.$.D.G.CW.sgattr}" hidden="true"/>
+            <c name="sgattr11" title="${RES.C}" sqltype="12" width="${RES.$.D.G.CW.sgattr}" hidden="true"/>
+            <c name="sgattr12" title="${RES.C}" sqltype="12" width="${RES.$.D.G.CW.sgattr}" hidden="true"/>
+            <c name="sgattr13" title="${RES.C}" sqltype="12" width="${RES.$.D.G.CW.sgattr}" hidden="true"/>
+            <c name="sgattr14" title="${RES.C}" sqltype="12" width="${RES.$.D.G.CW.sgattr}" hidden="true"/>
+            <c name="sgattr15" title="${RES.C}" sqltype="12" width="${RES.$.D.G.CW.sgattr}" hidden="true"/>
+            <c name="sgattr16" title="${RES.C}" sqltype="12" width="${RES.$.D.G.CW.sgattr}" hidden="true"/>
+            <c name="sgattr17" title="${RES.C}" sqltype="12" width="${RES.$.D.G.CW.sgattr}" hidden="true"/>
+            <c name="sgattr18" title="${RES.C}" sqltype="12" width="${RES.$.D.G.CW.sgattr}" hidden="true"/>
+            <c name="sgattr19" title="${RES.C}" sqltype="12" width="${RES.$.D.G.CW.sgattr}" hidden="true"/>
+            <c name="qtc" title="${RES.C}" sqltype="2" width="${RES.$.D.G.CW.qty}" bottomval="*" noblankOnSubmit="true"/>
+            <c name="qtcunit" title="${RES.C}" disableDelIfAI="true" sqltype="12" aidInputerBtn="true" showname="true" disableed="true" codedata="#FT-CODE.SysUnit" width="${RES.$.D.G.CW.unit}" noblankOnSubmit="true"/>
+            <c name="qcyrate" title="${RES.C}" sqltype="2" width="${RES.$.D.G.CW.rate}" noblankOnSubmit="true"/>
+            <c name="qty" title="${RES.C}" sqltype="2" width="${RES.$.D.G.CW.qty}" bottomval="*" noblankOnSubmit="true"/>
+            <c name="qtyunit" title="${RES.C}" sqltype="12" aidInputerBtn="true" rdonly="true" showname="true" disableed="true" codedata="#FT-CODE.SysUnit" width="${RES.$.D.G.CW.unit}" disableDelIfAI="true" noblankOnSubmit="true"/>
+            <c name="upric" title="${RES.C}" sqltype="2" width="${RES.$.D.G.CW.upric}" noblankOnSubmit="true"/>
+            <c name="fcy" title="${RES.C}" sqltype="2" mindeci="2" width="${RES.$.D.G.CW.fcy}" bottomval="*" noblankOnSubmit="true"/>
+            <c name="scy" title="${RES.C}" sqltype="2" mindeci="2" width="${RES.$.D.G.CW.fcy}" bottomval="*" rdonly="true" hidden="true"/>
+            <c name="zusd" title="${RES.C}" sqltype="2" mindeci="2" width="${RES.$.D.G.CW.fcy}" bottomval="*" rdonly="true" noblankOnSubmit="true"/>
+            <c name="zcny" title="${RES.C}" sqltype="2" mindeci="2" width="${RES.$.D.G.CW.fcy}" bottomval="*" rdonly="true" noblankOnSubmit="true"/>
+            <c name="customrate" title="${RES.C}" sqltype="2" width="${RES.$.D.G.CW.rate}" percent="true"/>
+            <c name="consumerate" title="${RES.C}" sqltype="2" width="${RES.$.D.G.CW.rate}" percent="true"/>
+            <c name="addtaxrate" title="${RES.C}" sqltype="2" width="${RES.$.D.G.CW.rate}" percent="true"/>
+            <c name="hisflag" title="${RES.C}" sqltype="4" rdonly="true" showname="true" disableed="true" align="center" codedata="#DT_90.YESNO" width="80" hidden="true"/>
+            <c name="has_me" title="启用申报要素属性标识" sqltype="12" width="${RES.$.D.G.CW.YN}" hidden="true"/>
+            <c name="virtualflag" title="虚拟商品标识" sqltype="4" width="120" hidden="true"/>
+        </m:GridTable>
+    </m:P>
+    <!--  <m:B title="${RES.$.title.F.tab.protterm}">
+                <include src="FT-TRD.Comm.SheetTerm#btn" mainui="ft_trd_prot" />
+                <include src="FT-TRD.Comm.SheetTerm#ft_trd_termdetail"    mainui="ft_trd_prot" />
+                <include src="FT-TRD.Comm.SheetTerm#ft_trd_termfill"   mainui="ft_trd_prot" />
+            </m:B>  -->
+    <m:T title="${RES.$.title.F.tab.print}" uiprops.cellClassName="ui-tabpane-level2">
+        <H name="sheetPrt" title="打印" uiprops.leftSize="430" height="450">
+            <GroupPane name="torder_dylx" title="文档类型" align="left">
+                <include src="SN-PLAT.Doc.SheetDocResPub#printToolbar"/>
+                <include src="SN-PLAT.Doc.SheetDocResPub#prtdoctype" mainui="ft_trd_prot"/>
+            </GroupPane>
+            <GroupPane name="torder_dyfj" title="存档附件" align="left">
+                <include src="SN-PLAT.Doc.SheetDocResPub#prtplat_sheetdoc" mainui="ft_trd_prot"/>
+            </GroupPane>
+        </H>
+        <H title="${RES.$.title.F.tab.docup}" uiprops.leftSize="355" height="450">
+            <GroupPane name="torder_fjlx" title="文档类型" align="left">
+                <include src="SN-PLAT.Doc.SheetDocResPub#atdoctype" mainui="ft_trd_prot"/>
+            </GroupPane>
+            <GroupPane name="torder_fjfj" title="存档附件" align="left">
+                <include src="SN-PLAT.Doc.SheetDocResPub#atplat_sheetdoc" mainui="ft_trd_prot"/>
+            </GroupPane>
+        </H>
+        <P title="${RES.$.title.F.tab.template}">
+            <GroupPane name="torder_fblx" title="文档类型" align="left">
+                <include src="SN-PLAT.Doc.SheetDocResPub#moldoctype" mainui="ft_trd_prot"/>
+            </GroupPane>
+        </P>
+    </m:T>
+    <m:P title="${RES.$.title.F.tab.appr}">
+        <m:DialogPane hidden="true" layoutm="grid" name="taskParam" region="north" title="审批结果">
+            <c name="taskid" noblank="true" sqltype="12"/>
+        </m:DialogPane>
+        <m:T region="center" name="taskTbl" uiprops.cellClassName="ui-tabpane-level2">
+            <include src="SN-APPR.PlatTasklist#apprdata" mainui="taskParam"/>
+            <m:P title="${RES.$.title.F.tab.taskflow}" name="taskflow"/>
+            <m:P title="${RES.$.title.F.tab.taskroute}" name="taskroute"/>
+        </m:T>
+    </m:P>
+    <m:B title="${RES.$.title.F.tab.vbhistory}">
+        <include src="SN-PLAT.VBVersion.VBHistoryEmbed#vbhistory" mainui="ft_trd_prot"/>
+    </m:B>
+</m:T>
+</m:PageBody>

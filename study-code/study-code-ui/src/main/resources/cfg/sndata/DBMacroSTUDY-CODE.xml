@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--DBMacroLP_DEMO-->
+<db id="STUDY-CODE" title="基础数据宏" xmlns="http://www.snsoft.com.cn/schema/CreateDatabase"
+    xsi:schemaLocation="http://www.snsoft.com.cn/schema/CreateDatabase http://www.snsoft.com.cn/schema/CreateDatabase.xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <include src="sndata/DBMacroFT-CODE.xml"/>
+    <macro name="SZISBILL" title="是否押汇" value="1"/>
+    <macro name="SZPAYMODE" title="收汇方式" value="2"/>
+    <macro name="SZSTCODE" title="SZSTCODE" value="16"/>
+    <macro name="SZAGENTFEEMODE" title="服务费收取方式宏" value="2"/>
+    <macro name="SZAGENTFEEBASE" title="服务费计算基准" value="2"/>
+    <macro name="SZCUSRATETYPE" title="报关币种折人民币汇率取宏" value="2"/>
+    <macro name="SZBEARCOSTYPE" title="承担费用类型宏" value="2"/>
+    <macro name="SZTRUSTYPE" title="下单方式宏" value="2"/>
+    <macro name="SZCARGOSERVTYPE" title="物流服务类型宏" value="2"/>
+    <macro name="SZTRANSPORTTYPE" title="运输类型宏" value="2"/>
+
+    <macro name="SZCUSBROKERTYPE" title="报关行类别宏" value="2"/>
+    <macro name="SZSHIPMODE" title="运输方式宏" value="1"/>
+    <macro name="SZPAYMODE" title="收汇方式宏" value="2"/>
+    <macro name="SZPRICETERM" title="成交方式宏" value="3"/>
+    <macro name="SZPACKTYPE" title="包装种类宏" value="2"/>
+    <macro name="SZBOXNO" title="箱号宏" value="16"/>
+    <macro name="SZBATCHNO" title="批次号宏" value="16"/>
+    <macro name="SZTRADEMODE" title="贸易方式宏" value="2"/>
+    <macro name="SZTERMTITLE" title="合约条款标题宏" value="2048"/>
+    <macro name="SZTERMTEMPLATECODE" title="合约条款模板编号宏" value="5"/>
+    <macro name="SZTERMTYPE" title="合约条款类型宏" value="2"/>
+    <macro name="SZTERMMACROCODE" title="合约条款公式编号宏" value="5"/>
+    <macro name="SZTERMTEXT" title="合约条款内容宏" value="2048"/>
+
+    <macro name="SZTERMTBLNAME" title="合约条款表名宏" value="128"/>
+    <macro name="SZTERMSTFVALUE" title="合约条款填空值宏" value="256"/>
+
+    <macro name="SZPFTCODE" title="盈亏测算编号宏" value="5"/>
+    <macro name="SZLISTENFIELDS" title="盈亏测算监听字段" value="512"/>
+    <macro name="SZDEFREMARK" title="盈亏测算配置说明" value="512"/>
+
+    <macro name="SZERAYM" title="退运申请单商品明细所属期" value="6"/>
+    <macro name="SZERAGIIDX" title="退运申请单商品明细序号" value="4"/>
+
+    <macro name="SZBUSIELEM" title="业务要素编码宏" value="3"/>
+    <macro name="STDEFCODE" title="结算中心配置编码" value="32"/>
+    <macro name="SZCOSTTYPE" title="成本类型" value="16"/>
+    <macro name="SZCOSTKIND" title="成本细类" value="16"/>
+    <macro name="SZTRUETYPE" title="真实类型" value="2"/>
+    <macro name="SZINVTYPE" title="发票类型" value="8"/>
+    <macro name="SZEXEMPTIONTYPE" title="征免" value="1"/>
+    <macro name="SZRPTYPES" title="结算项目" value="32"/>
+    <macro name="SZBEARCOSTYPES" title="承担费用类型" value="32"/>
+    <macro name="SZSIGNSITE" title="签约地点" value="256"/>
+    <macro name="SZSCMCODE" title="创建方式编号" value="5"/>
+    <macro name="SZBCFCODE" title="流程编码" value="5"/>
+    <macro name="SZBCFCODELIST" title="流程编码List" value="64"/>
+    <macro name="SZBUSIELEMCODELIST" title="业务要素List" value="32"/>
+
+    <macro name="SZACCOUNTEE" title="开证申请人" value="256"/>
+    <macro name="SZCUSTOMHANDNO" title="海关手册号" value="12"/>
+
+    <macro name="SZDOCFFILTERCODE" title="文档辅助过滤字段" value="128"/>
+
+
+    <macro name="SZINVCODEP" title="发票代码" value="12"/>
+    <macro name="SZINVCODES" title="发票号码" value="20"/>
+    <macro name="SZINVCODE" title="发票号" value="32"/>
+    <macro name="SZCOSTGROUPID" title="成本组" value="128"/>
+    <macro name="SZSCMPATH" title="单据创建方式路径" value="128"/>
+    <macro name="SZINTRCODE" title="内部交易配置编码" value="9"/>
+
+</db>

@@ -1,0 +1,84 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>cn.snsoft.hd</groupId>
+        <artifactId>study-parents-xjs</artifactId>
+        <version>4.0.0-SNAPSHOT</version>
+        <relativePath>../../study-parents/study-parents-xjs/pom.xml</relativePath>
+    </parent>
+
+    <artifactId>study-run-java2js</artifactId>
+    <packaging>jar</packaging>
+    <name>${project.artifactId}-${project.version}.jar</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>cn.snsoft.snadk</groupId>
+            <artifactId>snadk-java2js</artifactId>
+            <version>${snadk.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.snsoft.plat</groupId>
+            <artifactId>plat-bas-xjs</artifactId>
+            <version>${snadk.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.snsoft.snadk</groupId>
+            <artifactId>snadk-appr-xjs</artifactId>
+            <version>${snadk.version}</version>
+        </dependency>
+
+        <!-- FT-XJS -->
+        <dependency>
+            <groupId>cn.snsoft.ft</groupId>
+            <artifactId>ft-trd-xjs</artifactId>
+            <version>${ft.trd.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.snsoft.ft</groupId>
+            <artifactId>ft-code-xjs</artifactId>
+            <version>${ft.code.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.snsoft.ft</groupId>
+            <artifactId>ft-sna-xjs</artifactId>
+            <version>${ft.sna.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.snsoft.ft</groupId>
+            <artifactId>ft-settle-xjs</artifactId>
+            <version>${ft.settle.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.snsoft.ft</groupId>
+            <artifactId>ft-plat-xjs</artifactId>
+            <version>${ft.plat.version}</version>
+        </dependency>
+
+        <!-- 学习专用-XJS -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>study-code-xjs</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- 编译器版本 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java-version}</source>
+                    <target>${java-version}</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

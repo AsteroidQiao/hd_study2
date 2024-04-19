@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<UIOptCtrl xmlns="http://www.snsoft.com.cn/schema/OptsCtrl"
+           xsi:schemaLocation="http://www.snsoft.com.cn/schema/OptsCtrl http://www.snsoft.com.cn/schema/OptsCtrl.xsd"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <UIOpts>
+        <uiname>st_xy_prot_bas</uiname>
+        <colname>agcyrule</colname>
+        <ctrlFields>nonBlankOnSubmit</ctrlFields>
+        <setValue>true</setValue>
+        <UIVals>
+            <colname>agcyconstraint</colname>
+            <matchValue>20</matchValue>
+        </UIVals>
+    </UIOpts>
+</UIOptCtrl>

@@ -1,0 +1,1761 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewDetails xmlns="http://www.snsoft.com.cn/schema/tool-viewdetail" xsi:schemaLocation="http://www.snsoft.com.cn/schema/tool-viewdetail http://www.snsoft.com.cn/schema/tool-viewdetail.xsd"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Details>
+        <Colname>ptcode</Colname>
+        <TACBlock><![CDATA[
+        pticode = dataSet.get("pticode")
+        if pticode == null
+            return null
+        end if
+        assertExists("st_xy_prot",pticode)
+        sheetCode = dataSet.get("sheetcode")
+        sheetEntry = dataSet.get("sheetEntry")
+        if sheetCode==null || (sheetEntry!=true && pticode!="<NULL>")
+            flag=(!pticode.contains(",")) && pticode.contains("<") && pticode.contains(">")
+                tableName="st_xy_prot"
+            if flag
+                tableName="st_xy_prot_vb"
+            end if
+    		sheetCode = getSheetCode(tableName,pticode)
+		end if
+		if sheetCode=="ST-CODE.TX.Prot.XYAgcyImpProt"
+        info.funcid = "STUDY-CODE.StudyAgencyDetailed"
+
+        elif  sheetCode=="FT-TRD.TX.Prot.AgcyExpProt"
+        info.funcid = "FT-TRD.TX.Prot.AgcyExpProtDetail"
+        elif  sheetCode=="FT-TRD.TX.Prot.AgcyImpProt"
+        info.funcid = "FT-TRD.TX.Prot.AgcyImpProtDetail"
+         elif  sheetCode=="FT-TRD.TX.Prot.CoopExpProt"
+        info.funcid = "FT-TRD.TX.Prot.CoopExpProtDetail"
+        elif  sheetCode=="FT-TRD.TX.Prot.SalFwProt"
+        info.funcid = "FT-TRD.TX.Prot.SalFwProtDetail"
+        elif  sheetCode=="FT-TRD.TX.Prot.PurFwProt"
+        info.funcid = "FT-TRD.TX.Prot.PurFwProtDetail"
+        elif  sheetCode=="FT-TRD.TX.Prot.SOtherProt"
+        info.funcid = "FT-TRD.TX.Prot.SOtherProtDetail"
+        elif  sheetCode=="FT-TRD.TX.Prot.CoopDomPurProt"
+        info.funcid = "FT-TRD.TX.Prot.CoopDomPurProtDetail"
+        end if
+         prottype = dataSet.get("prottype")
+        if prottype!=null
+            info.pm.put("InitValue.st_xy_prot.prottype",prottype)
+        end if
+        info.pm.put("AutoRefresh",1)
+        info.pm.put("InitValue.pticode",pticode)
+        return info
+        ]]></TACBlock>
+        <Remark><![CDATA[
+		协议
+        ]]></Remark>
+    </Details>
+
+
+    <Details>
+        <Colname>fwptcode</Colname>
+        <TACBlock><![CDATA[
+        fwpticode = dataSet.get("fwpticode")
+        if fwpticode == null
+            return null
+        end if
+        assertExists("st_xy_prot",fwpticode)
+        sheetCode = getSheetCode("st_xy_prot",fwpticode)
+        bean = getBean("SN-PLAT.ViewDetailService")
+        dataSet.put("pticode",fwpticode)
+        dataSet.put("sheetcode",sheetCode)
+        dataSet.put("sheetEntry",true)
+        return bean.loadDetailInfo("ptcode",dataSet)
+        return info
+        ]]></TACBlock>
+        <Remark><![CDATA[
+        框架协议
+        ]]></Remark>
+    </Details>
+
+    <Details>
+        <Colname>ptcodelist</Colname>
+        <TACBlock><![CDATA[
+        pticodelist = dataSet.get("pticodelist")
+        if pticodelist == null
+            return null
+        end if
+        assertExists("st_xy_prot",pticodelist)
+        commService = getBean(snsoft.ft.trd.tx.prot.bas.service.ProtCommService.BeanName)
+        datas = commService.queryProtByPticodes(pticodelist.split(","))
+        //单据类型（sheetcode）-内码集合（icodes）
+        infoMap=newHashMap()
+        for data in datas
+            value=infoMap.get(data.getSheetcode())
+            if value==null
+                infoMap.put(data.getSheetcode(),data.getPticode())
+            else
+                infoMap.put(data.getSheetcode(),value+","+data.getPticode())
+            end if
+        end for
+        //组装信息
+        infos = new snsoft.plat.bas.viewdetail.service.ViewDetailService$DetailInfo[infoMap.size()]
+        i=0
+        bean = getBean("SN-PLAT.ViewDetailService")
+        for infoKey in infoMap.keySet().toArray()
+       	 	dataSet.put("pticode",infoMap.get(infoKey))
+            dataSet.put("sheetcode",infoKey)
+            dataSet.put("sheetEntry",true)
+            theInfos = bean.loadDetailInfo("ptcode",dataSet)
+            if theInfos!= null
+	            for viewinfo in theInfos
+		            if viewinfo!=null
+			            infos[i]=viewinfo
+			            i=i+1
+		            end if
+	            end for
+            end if
+        end for
+        return infos
+        ]]></TACBlock>
+        <Remark><![CDATA[
+        协议List
+        ]]></Remark>
+    </Details>
+    <!-- <Details>
+        <Colname>ptcode</Colname>
+        <JSBlock><![CDATA[
+        info.title = Xjs.ResBundle.getRes("FT-TRD-PROT").get("UIAttrExpPort35Title")
+        info.funcid = "FT-TRD.35.Prot.ExpProtDetail"
+        info.pm.AutoRefresh = 1
+        info.pm["InitValue.pticode"] = data.get("pticode")
+        return info
+        ]]></JSBlock>
+        <TACBlock><![CDATA[
+		pticode = dataSet.get("pticode")
+        if pticode == null
+            return null
+        end if
+      	assertExists("ft_trd_prot",pticode)
+		 sheetCode = dataSet.get("sheetcode")
+        if sheetCode==null
+		sheetCode = getSheetCode("ft_trd_prot",pticode)
+		end if
+		if sheetCode=="FT-TRD.35.Prot.ExpProt"
+        info.funcid = "FT-TRD.35.Prot.ExpProtDetail"
+        elif  sheetCode=="FT-TRD.TX.Prot.AgcyExpProt"
+        info.funcid = "FT-TRD.TX.Prot.AgcyExpProtDetail"
+        end if
+        info.pm.put("AutoRefresh",1)
+        info.pm.put("InitValue.pticode",pticode)
+        return info
+        ]]></TACBlock>
+        <Remark><![CDATA[
+		外综协议
+        ]]></Remark>
+    </Details>-->
+    <Details>
+        <Colname>trratcode</Colname>
+        <TACBlock><![CDATA[
+             trraicode = dataSet.get("trraicode")
+            if trraicode == null
+                return null
+            end if
+            //确保记录存在
+            assertExists("ft_35_trra",trraicode)
+            //打开界面
+            info.funcid = "FT-TRD.35.TaxRbt.RecApplyDetail"
+            info.pm.put("AutoRefresh",1)
+            info.pm.put("InitValue.trraicode",trraicode)
+            return info
+        ]]></TACBlock>
+        <Remark><![CDATA[
+            代办退税备案单
+        ]]></Remark>
+    </Details>
+    <Details>
+        <Colname>trrgcode</Colname>
+        <TACBlock><![CDATA[
+            trrgicode = dataSet.get("trrgicode")
+            if trrgicode == null
+                return null
+            end if
+            //确保记录存在
+            assertExists("ft_35_trrg",trrgicode)
+            //打开界面
+            info.funcid = "FT-TRD.35.TaxRbt.RecGatherDetail"
+            info.pm.put("AutoRefresh",1)
+            info.pm.put("InitValue.trrgicode",trrgicode)
+            return info
+        ]]></TACBlock>
+        <Remark><![CDATA[
+            代办退税汇总单
+        ]]></Remark>
+    </Details>
+    <Details>
+        <Colname>expclcode</Colname>
+        <TACBlock><![CDATA[
+            expclicode = dataSet.get("expclicode")
+            if expclicode == null
+                return null
+            end if
+            //确保记录存在
+            assertExists("ft_trd_cdd",expclicode)
+            //打开界面
+            sheetcode = dataSet.get("sheetcode")
+        	sheetEntry = dataSet.get("sheetEntry")
+        	if sheetcode==null || (sheetEntry!=true && expclicode!="<NULL>")
+                sheetcode = getSheetCode("ft_trd_cdd",expclicode)
+            end if
+            if  sheetcode == "FT-TRD.35.CusDecl.Draft"
+                info.funcid = "FT-TRD.35.CusDecl.DraftDetail"
+            elif sheetcode == "FT-TRD.Doc.CeCusDecl.Draft"
+                info.funcid = "FT-TRD.Doc.CeCusDecl.DraftDetail"
+            elif sheetcode == "FT-TRD.Doc.SeCusDecl.Draft"
+                info.funcid = "FT-TRD.Doc.SeCusDecl.DraftDetail"
+            elif sheetcode == "FT-TRD.Doc.SiCusDecl.Draft"
+                info.funcid = "FT-TRD.Doc.SiCusDecl.DraftDetail"
+            end if
+            info.pm.put("AutoRefresh",1)
+            info.pm.put("InitValue.expclicode",expclicode)
+            return info
+        ]]></TACBlock>
+        <Remark><![CDATA[
+            报关草单
+        ]]></Remark>
+    </Details>
+
+    <Details>
+        <Colname>eclcode</Colname>
+        <TACBlock><![CDATA[
+            eclicode = dataSet.get("eclicode")
+            if eclicode == null
+                return null
+            end if
+            //确保记录存在
+            assertExists("ft_trd_ecdd",eclicode)
+            //打开界面
+            sheetcode = dataSet.get("sheetcode")
+        	sheetEntry = dataSet.get("sheetEntry")
+        	if sheetcode==null || (sheetEntry!=true && eclicode!="<NULL>")
+                sheetcode = getSheetCode("ft_trd_ecdd",eclicode)
+            end if
+            if  sheetcode == "FT-TRD.Doc.ECusDecl.SelfExp"
+                info.funcid = "FT-TRD.Doc.ECusDecl.SelfExpDetail"
+            elif sheetcode == "FT-TRD.Doc.ECusDecl.SelfImp"
+                info.funcid = "FT-TRD.Doc.ECusDecl.SelfImpDetail"
+            end if
+            info.pm.put("AutoRefresh",1)
+            info.pm.put("InitValue.eclicode",eclicode)
+            return info
+        ]]></TACBlock>
+        <Remark><![CDATA[
+            电子报关单
+        ]]></Remark>
+    </Details>
+
+
+    <Details>
+        <Colname>trueexpclcode</Colname>
+        <TACBlock><![CDATA[
+             cusdatasrctype = dataSet.get("cusdatasrctype")
+            //不为空证明是销售发票过来的
+              if cusdatasrctype == null
+                return null
+            end if
+            eclicode = dataSet.get("eclicode")
+            if eclicode == null || cusdatasrctype!="30"
+                return null
+            end if
+            //确保记录存在
+            assertExists("ft_trd_ecdd",eclicode)
+            //打开界面
+            dataSet.put("eclicode",eclicode)
+            dataSet.put("sheetcode",null)
+            bean = getBean("SN-PLAT.ViewDetailService")
+            return bean.loadDetailInfo("eclcode",dataSet)
+        ]]></TACBlock>
+        <Remark><![CDATA[
+            销售发票报关单号穿透
+        ]]></Remark>
+    </Details>
+
+    <Details>
+        <Colname>sedcode</Colname>
+        <TACBlock><![CDATA[
+            sedicode = dataSet.get("sedicode")
+            if sedicode == null
+                return null
+            end if
+            //确保记录存在
+            assertExists("ft_trd_sed",sedicode)
+            //打开界面
+            sheetcode = dataSet.get("sheetcode")
+        	sheetEntry = dataSet.get("sheetEntry")
+        	if sheetcode==null || (sheetEntry!=true && sedicode!="<NULL>")
+                sheetcode = getSheetCode("ft_trd_sed",sedicode)
+            end if
+            if  sheetcode == "FT-TRD.Doc.SeSettExc.Document"
+                info.funcid = "FT-TRD.Doc.SeSettExc.DocumentDetail"
+            end if
+            info.pm.put("AutoRefresh",1)
+            info.pm.put("InitValue.sedicode",sedicode)
+            return info
+        ]]></TACBlock>
+        <Remark><![CDATA[
+            结汇单证
+        ]]></Remark>
+    </Details>
+    <Details>
+        <Colname>clcode</Colname>
+        <TACBlock><![CDATA[
+            clicode = dataSet.get("clicode")
+            if clicode == null
+                return null
+            end if
+            //确保记录存在
+            assertExists("ft_trd_cdd",clicode)
+            //打开界面
+            info.funcid = "FT-TRD.35.CusDecl.DraftDetail"
+            info.pm.put("AutoRefresh",1)
+            info.pm.put("InitValue.expclicode",clicode)
+            return info
+        ]]></TACBlock>
+        <Remark><![CDATA[
+            报关草单【关务异常】
+        ]]></Remark>
+    </Details>
+
+
+    <Details>
+        <Colname>trrdcode</Colname>
+        <TACBlock><![CDATA[
+            trrdicode = dataSet.get("trrdicode")
+            if trrdicode == null
+                return null
+            end if
+            //确保记录存在
+            assertExists("ft_trd_trrd",trrdicode)
+            //打开界面
+            info.funcid = "FT-TRD.35.TaxRbt.RecDisDetail"
+            info.pm.put("AutoRefresh",1)
+            info.pm.put("InitValue.trrdicode",trrdicode)
+            return info
+        ]]></TACBlock>
+        <Remark><![CDATA[
+            退税备案不符处理单
+        ]]></Remark>
+    </Details>
+
+    <Details>
+        <Colname>trrpcode</Colname>
+        <TACBlock><![CDATA[
+           trrpicode = dataSet.get("trrpicode")
+            if trrpicode == null
+                return null
+            end if
+            //确保记录存在
+            assertExists("ft_trd_trrp",trrpicode)
+            //打开界面
+            info.funcid = "FT-TRD.35.TaxRbt.ReportDetail"
+            info.pm.put("AutoRefresh",1)
+            info.pm.put("InitValue.trrpicode",trrpicode)
+            return info
+        ]]></TACBlock>
+        <Remark><![CDATA[
+            退税上报单
+        ]]></Remark>
+    </Details>
+    <Details>
+        <Colname>pycode</Colname>
+        <JSBlock><![CDATA[
+		]]></JSBlock>
+        <TACBlock><![CDATA[
+		pyicode = dataSet.get("pyicode")
+		if pyicode == null
+			return null
+		end if
+		assertExists("ft_trd_bl_py",pyicode)
+		billService = getBean("FT-TRD.TrdPayBillCommUIService")
+        isside = billService.isInnerSideUserUI()
+        if isside
+			outside = 0
+		else
+		    outside = 1
+		end if
+
+		sheetCode = dataSet.get("sheetcode")
+        sheetEntry = dataSet.get("sheetEntry")
+        if sheetCode==null || (sheetEntry!=true && pyicode!="<NULL>")
+			sheetCode = getSheetCode("ft_trd_bl_py",pyicode)
+		end if
+
+		if sheetCode == null
+			return null
+		end if
+		if "FT-TRD.Bill.CargoPay" == sheetCode
+			if outside == 1
+			    info.funcid = "FT-TRD.Bill.PayCargoDetail"
+			else
+			    info.funcid = "FT-TRD.Bill.PayCargoInsideDetail"
+			end if
+		elif "FT-TRD.Bill.DecPay" == sheetCode
+			if outside == 1
+			    info.funcid = "FT-TRD.Bill.PayDecDetail"
+			else
+			    info.funcid = "FT-TRD.Bill.PayDecInsideDetail"
+			end if
+		elif "FT-TRD.Bill.OthPay" == sheetCode
+	        if outside == 1
+			    info.funcid = "FT-TRD.Bill.PayOthInsideDetail"
+			else
+			    info.funcid = "FT-TRD.Bill.PayOthInsideDetail"
+			end if
+	    else
+	    	return null
+		end if
+		info.pm.put("AutoRefresh",1)
+		info.pm.put("InitValue.pyicode",pyicode)
+		return info
+		]]></TACBlock>
+        <Remark><![CDATA[
+		负责人：陈泰林；
+		说明：应付账单外码穿透；
+		如果当前用户为外部用户，穿透到外部界面
+		]]></Remark>
+    </Details>
+    <Details>
+        <Colname>rccode</Colname>
+        <JSBlock><![CDATA[
+		]]></JSBlock>
+        <TACBlock><![CDATA[
+		rcicode = dataSet.get("rcicode")
+		if rcicode == null
+			return null
+		end if
+		assertExists("ft_trd_bl_rc",rcicode)
+		sheetCode = dataSet.get("sheetcode")
+        sheetEntry = dataSet.get("sheetEntry")
+        if sheetCode==null || (sheetEntry!=true && rcicode!="<NULL>")
+			sheetCode = getSheetCode("ft_trd_bl_rc",rcicode)
+		end if
+
+		if sheetCode == null
+			return null
+		end if
+
+		if "FT-TRD.Bill.CargoRec" == sheetCode
+	        info.funcid = "FT-TRD.Bill.RecCargoDetail"
+		elif "FT-TRD.Bill.DecRec" == sheetCode
+	        info.funcid = "FT-TRD.Bill.RecDecDetail"
+		elif "FT-TRD.Bill.OthRec" == sheetCode
+	        info.funcid = "FT-TRD.Bill.RecOthDetail"
+	    else
+	    	return null
+		end if
+		info.pm.put("AutoRefresh",1)
+		info.pm.put("InitValue.rcicode",rcicode)
+		return info
+		]]></TACBlock>
+        <Remark><![CDATA[
+		负责人：陈泰林；
+		说明：应收账单外码穿透
+		]]></Remark>
+    </Details>
+    <Details>
+        <Colname>tordcode</Colname>
+        <TACBlock><![CDATA[
+         tordicode = dataSet.get("tordicode")
+        if tordicode == null
+            return null
+        end if
+        cuicode = dataSet.get("cuicode")
+        flag=(!tordicode.contains(",")) && tordicode.contains("<") && tordicode.contains(">")
+        tableName="ft_35_torder"
+        if flag
+         tableName="ft_35_torder_vb"
+        end if
+
+        curcuicode=snsoft.context.AppContext.getUserSession(true).getUserCuicode()
+        ftComuserService=snsoft.commons.spring.SpringBeanUtils.getSpringBean("FT-CODE.FTComuserService")
+        trustype=ftComuserService.getCMTypes(curcuicode)
+
+        if "10"==trustype
+            sheetCode ="FT-TRD.35.Tord.TrustExpTord"
+            assertExists("ft_35_torder",tordicode,sheetCode,snsoft.plat.bas.service.LimitConst.A_RC)
+        elif "10"!=trustype
+        	assertExists("ft_35_torder",tordicode)
+            sheetCode ="FT-TRD.35.Tord.ExpTord"
+            db = getDatabaseByTable(tableName)
+		  sql = "select count(1) from "+tableName+" where pfstatus>='30' and  "
+		  innerFilte2r = snsoft.sql.SqlExpr.columnInValues("tordicode", tordicode.split(","))
+		  sql=sql +innerFilte2r
+          num=snsoft.commons.util.StrUtils.obj2int(db.query1(sql))
+		  eqflag = num == arrayLength(tordicode.split(","))
+            if !eqflag
+                throw new snsoft.commons.util.BaseException("00.0500",snsoft.commons.util.ExceptionUtils.getErrTextByModuleCode("00", "0500"))
+            end if
+        end if
+		 if sheetCode == null
+            return null
+        end if
+        if "FT-TRD.35.Tord.TrustExpTord" == sheetCode
+            info.funcid = "FT-TRD.35.Tord.TrustExpTordDetail"
+        elif "FT-TRD.35.Tord.ExpTord" == sheetCode
+            info.funcid = "FT-TRD.35.Tord.ExpTordDetail"
+        end if
+        info.pm.put("AutoRefresh",1)
+        info.pm.put("InitValue.tordicode",tordicode)
+        if cuicode!=null
+            info.pm.put("InitValue.ft_35_torder.cuicode",cuicode)
+        end if
+        return info
+         ]]></TACBlock>
+        <Remark><![CDATA[
+        外综出口委托单号穿透
+        双击列名：tordcode
+        获取界面数据内码(tordicode)
+        获取当前商户类型
+        if 单据号 = FT-TRD.35.Tord.ExpTord 且 商户类型=委托方
+            标题=外综委托单
+            界面定义号=FT-TRD.35.Tord.TrustExpTordDetail
+        else if 单据号 = FT-TRD.35.Tord.ExpTord 且 商户类型！=委托方
+            标题=外综委托单
+            界面定义号=FT-TRD.35.Tord.ExpTordDetail
+        end if
+        其他处理
+        ]]></Remark>
+    </Details>
+    <Details>
+        <Colname>colordcode</Colname>
+        <TACBlock><![CDATA[
+        	db = getDatabaseByTable("ft_trd_cord")
+       		colordicode = dataSet.get("colordicode")
+       		if colordicode == null
+       			return null
+       		end if
+            sheetcode = dataSet.get("sheetcode")
+            if sheetcode!=null  && (sheetcode=="FT-TRD.LStock.CordWinIn" || sheetcode=="FT-TRD.LStock.Cord")
+                if(sheetcode=="FT-TRD.LStock.CordWinIn")
+                    info.funcid = "FT-TRD.LStock.ColOrderWinInDetail"
+                else
+                    info.funcid = "FT-TRD.LStock.CordDetail"
+                end if
+            else
+                sql = "select colordicode,svmode from ft_trd_cord where colordicode=?"
+                stcui = startCuicode()
+                sqValues=toArray(colordicode)
+                if stcui
+                    us=getUserSession(true)
+                    if us == null
+                        return null
+                    else
+                        cui = us.getUserCuicode()
+                        sql = sql+" and cuicode=?"
+                        sqValues = toArray(colordicode,cui)
+                    end if
+                end if
+                queryData = db.query2(sql,snsoft.sql.SqlValue.toSqlValues(sqValues))
+                if queryData == null
+                    return null
+                end if
+                svmode = queryData[1]
+                colordicode = queryData[0]
+                sheetcode = "FT-TRD.LStock.Cord"
+                if svmode=="4"
+                    info.funcid = "FT-TRD.LStock.ColOrderWinInDetail"
+                    sheetcode = "FT-TRD.LStock.CordWinIn"
+                else
+                    info.funcid = "FT-TRD.LStock.CordDetail"
+                end if
+            end if
+	        assertExists("ft_trd_cord",colordicode,sheetcode,snsoft.plat.bas.service.LimitConst.A_RC)
+            info.pm.put("AutoRefresh",1)
+            info.pm.put("InitValue.colordicode",colordicode)
+	        return info
+        ]]></TACBlock>
+        <Remark><![CDATA[
+        	综合订单下游单据跳转综合订单,根据综合订单号查询单据数据，根据单据数据的svmode跳转不同页面
+        ]]></Remark>
+    </Details>
+
+    <Details>
+        <Colname>trustgcode</Colname>
+        <TACBlock><![CDATA[
+		trustgcode = dataSet.get("trustgcode")
+		cuicode = dataSet.get("cuicode")
+		if trustgcode == null
+			return null
+		end if
+		//assertExists("ft_35_tgc",trustgcode)
+		flag=(!trustgcode.contains(",")) && trustgcode.contains("<") && trustgcode.contains(">")
+        tableName="ft_35_tgc"
+        if flag
+         tableName="ft_35_tgc_vb"
+        end if
+		limID = null
+		//通过界面号取
+		curcuicode=snsoft.context.AppContext.getUserSession(true).getUserCuicode()
+		ftComuserService=snsoft.commons.spring.SpringBeanUtils.getSpringBean("FT-CODE.FTComuserService")
+		trustype=ftComuserService.getCMTypes(curcuicode)
+
+		if "10"==trustype
+            sheetCode ="FT-TRD.35.Gcode.TrustTGcode"
+            assertExists("ft_35_tgc",trustgcode,sheetCode,snsoft.plat.bas.service.LimitConst.A_RC)
+        elif "10"!=trustype
+        	assertExists("ft_35_tgc",trustgcode)
+            sheetCode ="FT-TRD.35.Gcode.TGcode"
+            db = getDatabaseByTable(tableName)
+		  sql = "select count(1) from "+tableName+" where pfstatus>='30' and  "
+		  innerFilte2r = snsoft.sql.SqlExpr.columnInValues("trustgcode", trustgcode.split(","))
+		  sql=sql +innerFilte2r
+          num=snsoft.commons.util.StrUtils.obj2int(db.query1(sql))
+		  eqflag = num == arrayLength(trustgcode.split(","))
+            if !eqflag
+                throw new snsoft.commons.util.BaseException("00.0500",snsoft.commons.util.ExceptionUtils.getErrTextByModuleCode("00", "0500"))
+            end if
+        end if
+		 if sheetCode == null
+            return null
+        end if
+		if "FT-TRD.35.Gcode.TrustTGcode" == sheetCode
+			info.funcid = "FT-TRD.35.Gcode.TrustTGcodeDetail"
+			//默认值
+			if !isNull(cuicode)
+				info.pm.put("InitValue.gcode.cuicode",cuicode)
+			end if
+		else
+			info.funcid = "FT-TRD.35.Gcode.TGcodeDetail"
+		end if
+		info.pm.put("AutoRefresh",1)
+		info.pm.put("InitValue.trustgcode",trustgcode)
+		return info
+		]]></TACBlock>
+        <Remark><![CDATA[
+		说明：委托企业出口产品；
+		]]></Remark>
+    </Details>
+    <Details>
+        <Colname>tabncode</Colname>
+        <TACBlock><![CDATA[
+       tabnicode =  dataSet.get("tabnicode")
+        if tabnicode == null
+            return null
+        end if
+        assertExists("ft_trd_tabn",tabnicode)
+        info.funcid = "FT-TRD.Doc.Tax.TaxABNormalDetail"
+        info.pm.put("AutoRefresh",1)
+        info.pm.put("InitValue.tabnicode",tabnicode)
+        return info
+        ]]></TACBlock>
+
+        <Remark><![CDATA[
+        	税务异常详情页面穿透
+        ]]></Remark>
+    </Details>
+    <Details>
+        <Colname>cabncode</Colname>
+        <TACBlock><![CDATA[
+       cabnicode =  dataSet.get("cabnicode")
+        if cabnicode == null
+            return null
+        end if
+        assertExists("ft_trd_cabn",cabnicode)
+        info.funcid = "FT-TRD.Doc.Customs.CusabnDetail"
+        info.pm.put("AutoRefresh",1)
+        info.pm.put("InitValue.cabnicode",cabnicode)
+        return info
+        ]]></TACBlock>
+        <Remark><![CDATA[
+        	关务异常详情页面穿透
+        ]]></Remark>
+    </Details>
+
+    <Details>
+        <Colname>eacode</Colname>
+        <TACBlock><![CDATA[
+			eaicode = dataSet.get("eaicode")
+			if eaicode == null
+				return null
+			end if
+			//确保记录存在
+			assertExists("ft_trd_ea",eaicode)
+			info.funcid = "FT-TRD.Doc.ElCusDecl.ApplyDetail"
+			info.pm.put("AutoRefresh",1)
+			info.pm.put("InitValue.eaicode",eaicode)
+			return info
+		]]></TACBlock>
+        <Remark><![CDATA[
+		空白报关委托书领用申请新建详情页面穿透
+		]]></Remark>
+    </Details>
+
+    <Details>
+        <Colname>certcode</Colname>
+        <TACBlock><![CDATA[
+			certicode = dataSet.get("certicode")
+			if certicode == null
+				return null
+			end if
+			//确保记录存在
+			assertExists("ft_trd_cert",certicode)
+			info.funcid = "FT-TRD.Doc.Cert.CertificateApplyDetail"
+			info.pm.put("AutoRefresh",1)
+			info.pm.put("InitValue.certicode",certicode)
+			return info
+		]]></TACBlock>
+        <Remark><![CDATA[
+		办证申请新建详情页面穿透
+		]]></Remark>
+    </Details>
+
+    <Details>
+        <Colname>certfeecode</Colname>
+        <TACBlock><![CDATA[
+			certfeeicode = dataSet.get("certfeeicode")
+			if certfeeicode == null
+				return null
+			end if
+			//确保记录存在
+			assertExists("ft_trd_certfee",certfeeicode)
+			info.funcid = "FT-TRD.Doc.Cert.CertificateFeeDetail"
+			info.pm.put("AutoRefresh",1)
+			info.pm.put("InitValue.certfeeicode",certfeeicode)
+			urldefvalues = dataSet.get("urldefvalues")
+        	if urldefvalues != null
+	        	for jskey in urldefvalues.keySet()
+	        		info.pm.put("InitValue."+jskey,urldefvalues.get(jskey))
+	        	end for
+        	end if
+			return info
+		]]></TACBlock>
+        <Remark><![CDATA[
+		办证费用详情页面穿透
+		]]></Remark>
+    </Details>
+
+    <Details>
+        <Colname>ltscode</Colname>
+        <TACBlock><![CDATA[
+			ltsicode = dataSet.get("ltsicode")
+			if ltsicode == null
+				return null
+			end if
+			//确保记录存在
+			assertExists("ft_trd_lts",ltsicode)
+			sheetcode = dataSet.get("sheetcode")
+			if sheetcode == null
+			    sheetcode = getSheetCode("ft_trd_lstock",lsicode)
+			end if
+			if sheetcode == "FT-TRD.Doc.Letters.Letters"
+			    info.funcid = "FT-TRD.Doc.Letters.LettersDetail"
+			elif sheetcode == "CEC-TRD.Doc.TaxLetters"
+			    info.funcid = "CEC-TRD.Doc.TaxLettersDetail"
+			else
+			    return null
+			end if
+			info.pm.put("AutoRefresh",1)
+			info.pm.put("InitValue.ltsicode",ltsicode)
+			return info
+		]]></TACBlock>
+        <Remark><![CDATA[
+		函件信息详情页面穿透
+		]]></Remark>
+    </Details>
+
+    <Details>
+        <Colname>lscode</Colname>
+        <TACBlock><![CDATA[
+        lsicode= dataSet.get("lsicode")
+        if lsicode == null
+            return null
+        end if
+        assertExists("ft_trd_lstock",lsicode)
+        sheetcode = dataSet.get("sheetcode")
+        sheetEntry = dataSet.get("sheetEntry")
+        if sheetcode==null || (sheetEntry!=true && lsicode!="<NULL>")
+        	sheetcode = getSheetCode("ft_trd_lstock",lsicode)
+        end if
+        if sheetcode == "FT-TRD.LStock.In"
+            info.funcid = "FT-TRD.LStock.Stock.InDetail"
+        elif sheetcode == "FT-TRD.LStock.Out"
+            info.funcid = "FT-TRD.LStock.Stock.OutDetail"
+        elif  sheetcode == "FT-TRD.LStock.OtherIn"
+            info.funcid = "FT-TRD.LStock.Stock.OtherInDetail"
+        elif sheetcode == "FT-TRD.LStock.OtherOut"
+            info.funcid = "FT-TRD.LStock.Stock.OtherOutDetail"
+        else
+            return null
+        end if
+        info.pm.put("AutoRefresh",1)
+        if dataSet.get("corpbcode")!=null
+            info.pm.put("InitValue.ft_trd_lstock.corpbcode",dataSet.get("corpbcode"))
+        end if
+        if dataSet.get("scode")!=null
+            info.pm.put("InitValue.ft_trd_lstock_bas.scode",dataSet.get("scode"))
+        end if
+        info.pm.put("InitValue.lsicode",lsicode)
+        return info
+        ]]></TACBlock>
+        <Remark><![CDATA[
+        	物流库存入出仓
+        ]]></Remark>
+    </Details>
+    <Details>
+        <Colname>sacode</Colname>
+        <TACBlock><![CDATA[
+        saicode = dataSet.get("saicode")
+        if saicode == null
+            return null
+        end if
+
+        //确保记录存在
+        assertExists("ft_trd_sa",saicode)
+
+		//if dataSet.get("sheetEntry") && saicode.indexOf(",") > 0
+            info.funcid = "FT-TRD.Doc.Seal.SealApplyDetail"
+            info.pm.put("AutoRefresh",1)
+            info.pm.put("InitValue.saicode",saicode)
+            return info
+		//end if
+        ]]></TACBlock>
+        <Remark><![CDATA[
+
+        ]]></Remark>
+    </Details>
+    <Details>
+        <Colname>eracode</Colname>
+        <TACBlock><![CDATA[
+        eraicode = dataSet.get("eraicode")
+        if eraicode == null
+            return null
+        end if
+
+        //确保记录存在
+        assertExists("ft_trd_era",eraicode)
+		info.funcid = "FT-TRD.Doc.CusDecl.ExpRtnAppDetail"
+		info.pm.put("AutoRefresh",1)
+		info.pm.put("InitValue.eraicode",eraicode)
+		return info
+        ]]></TACBlock>
+        <Remark><![CDATA[
+
+        ]]></Remark>
+    </Details>
+
+    <Details>
+        <Colname>prjcode</Colname>
+        <TACBlock><![CDATA[
+        prjicode = dataSet.get("prjicode")
+        if prjicode == null
+            return null
+        end if
+        tableName="ft_trd_prj"
+        assertExists(tableName,prjicode)
+        sheetCode = dataSet.get("sheetcode")
+        sheetEntry = dataSet.get("sheetEntry")
+        if sheetCode==null || (sheetEntry!=true && prjicode!="<NULL>")
+       		flag=(!prjicode.contains(",")) && prjicode.contains("<") && prjicode.contains(">")
+            if flag
+                tableName=tableName+"_vb"
+            end if
+    		sheetCode = getSheetCode(tableName,prjicode)
+		end if
+		if sheetCode=="FT-TRD.TX.Prj.AgcyExpProject"
+        info.funcid = "FT-TRD.TX.Prj.AgcyExpProjectDetail"
+        elif  sheetCode=="FT-TRD.TX.Prj.CscdExpProject"
+        info.funcid = "FT-TRD.TX.Prj.CscdExpProjectDetail"
+         elif  sheetCode=="FT-TRD.TX.Prj.ConsExpProject"
+        info.funcid = "FT-TRD.TX.Prj.ConsExpProjectDetail"
+        elif  sheetCode=="FT-TRD.TX.Prj.SeSPExpProject"
+        info.funcid = "FT-TRD.TX.Prj.SeSPExpProjectDetail"
+        elif  sheetCode=="FT-TRD.TX.Prj.SeSSExpProject"
+        info.funcid = "FT-TRD.TX.Prj.SeSSExpProjectDetail"
+         elif  sheetCode=="FT-TRD.TX.Prj.SeSOExpProject"
+        info.funcid = "FT-TRD.TX.Prj.SeSOExpProjectDetail"
+         elif  sheetCode=="FT-TRD.TX.Prj.SePOExpProject"
+        info.funcid = "FT-TRD.TX.Prj.SePOExpProjectDetail"
+         elif  sheetCode=="FT-TRD.TX.Prj.SeSPDomProject"
+        info.funcid = "FT-TRD.TX.Prj.SeSPDomProjectDetail"
+         elif  sheetCode=="FT-TRD.TX.Prj.SeSSDomProject"
+        info.funcid = "FT-TRD.TX.Prj.SeSSDomProjectDetail"
+        elif  sheetCode=="FT-TRD.TX.Prj.SeSODomProject"
+        info.funcid = "FT-TRD.TX.Prj.SeSODomProjectDetail"
+        elif  sheetCode=="FT-TRD.TX.Prj.SePODomProject"
+        info.funcid = "FT-TRD.TX.Prj.SePODomProjectDetail"
+         elif  sheetCode=="FT-TRD.TX.Prj.SePSDomProject"
+        info.funcid = "FT-TRD.TX.Prj.SePSDomProjectDetail"
+        elif  sheetCode=="FT-TRD.TX.Prj.SeSPOvsProject"
+        info.funcid = "FT-TRD.TX.Prj.SeSPOvsProjectDetail"
+        elif  sheetCode=="FT-TRD.TX.Prj.SeSOOvsProject"
+        info.funcid = "FT-TRD.TX.Prj.SeSOOvsProjectDetail"
+        elif  sheetCode=="FT-TRD.TX.Prj.SePOOvsProject"
+        info.funcid = "FT-TRD.TX.Prj.SePOOvsProjectDetail"
+         elif  sheetCode=="FT-TRD.TX.Prj.AcPPImpProject"
+        info.funcid = "FT-TRD.TX.Prj.AcPPImpProjectDetail"
+        elif  sheetCode=="FT-TRD.TX.Prj.SePSImpProject"
+        info.funcid = "FT-TRD.TX.Prj.SePSImpProjectDetail"
+        elif  sheetCode=="FT-TRD.TX.Prj.SePOImpProject"
+        info.funcid = "FT-TRD.TX.Prj.SePOImpProjectDetail"
+         elif  sheetCode=="FT-TRD.TX.Prj.SeSOImpProject"
+        info.funcid = "FT-TRD.TX.Prj.SeSOImpProjectDetail"
+         elif  sheetCode=="FT-TRD.TX.Prj.AgenExpProject"
+        info.funcid = "FT-TRD.TX.Prj.AgenExpProjectDetail"
+         elif  sheetCode=="FT-TRD.TX.Prj.CoSSExpProject"
+        info.funcid = "FT-TRD.TX.Prj.CoSSExpProjectDetail"
+          elif  sheetCode=="FT-TRD.TX.Prj.CoSPExpProject"
+        info.funcid = "FT-TRD.TX.Prj.CoSPExpProjectDetail"
+        elif  sheetCode=="FT-TRD.TX.Prj.SePPDomProject"
+        info.funcid = "FT-TRD.TX.Prj.SePPDomProjectDetail"
+        elif  sheetCode=="FT-TRD.TX.Prj.SePSEtpProject"
+        info.funcid = "FT-TRD.TX.Prj.SePSEtpProjectDetail"
+         elif  sheetCode=="FT-TRD.TX.Prj.SePOEtpProject"
+        info.funcid = "FT-TRD.TX.Prj.SePOEtpProjectDetail"
+        elif  sheetCode=="FT-TRD.TX.Prj.SeSOEtpProject"
+        info.funcid = "FT-TRD.TX.Prj.SeSOEtpProjectDetail"
+        elif  sheetCode=="FT-TRD.TX.Prj.SeSPEtpProject"
+        info.funcid = "FT-TRD.TX.Prj.SeSPEtpProjectDetail"
+         elif  sheetCode=="FT-TRD.TX.Prj.SePPEtpProject"
+        info.funcid = "FT-TRD.TX.Prj.SePPEtpProjectDetail"
+        elif  sheetCode=="FT-TRD.TX.Prj.SePPImpProject"
+        info.funcid = "FT-TRD.TX.Prj.SePPImpProjectDetail"
+        elif  sheetCode=="FT-TRD.TX.Prj.CoSOExpProject"
+        info.funcid = "FT-TRD.TX.Prj.CoSOExpProjectDetail"
+         elif  sheetCode=="FT-TRD.TX.Prj.CoPOExpProject"
+        info.funcid = "FT-TRD.TX.Prj.CoPOExpProjectDetail"
+        end if
+        urldefvalues = dataSet.get("urldefvalues")
+        if  urldefvalues!=null
+        for jskey in urldefvalues.keySet()
+        info.pm.put("InitValue.ft_trd_prj."+jskey,urldefvalues.get(jskey))
+        end for
+        end if
+        info.pm.put("AutoRefresh",1)
+        info.pm.put("InitValue.prjicode",prjicode)
+        return info
+        ]]></TACBlock>
+        <Remark><![CDATA[
+		合同审批单穿透定义
+        ]]></Remark>
+    </Details>
+
+    <Details>
+        <Colname>outprjcode</Colname>
+        <TACBlock><![CDATA[
+        outprjicode = dataSet.get("outprjicode")
+        if outprjicode == null
+            return null
+        end if
+        dataSet.put("prjicode",outprjicode)
+        dataSet.put("sheetcode",null)
+        bean = getBean("SN-PLAT.ViewDetailService")
+        return bean.loadDetailInfo("prjcode",dataSet)
+        ]]></TACBlock>
+        <Remark><![CDATA[
+            说明：1、合同审批单穿透
+        ]]></Remark>
+    </Details>
+
+    <Details>
+        <Colname>salprjcode</Colname>
+        <TACBlock><![CDATA[
+        salprjicode = dataSet.get("salprjicode")
+        if salprjicode == null
+            return null
+        end if
+        dataSet.put("prjicode",salprjicode)
+        dataSet.put("sheetcode",null)
+        bean = getBean("SN-PLAT.ViewDetailService")
+        return bean.loadDetailInfo("prjcode",dataSet)
+        ]]></TACBlock>
+        <Remark><![CDATA[
+            说明：1、合同审批单穿透
+        ]]></Remark>
+    </Details>
+    <Details>
+        <Colname>pickprjcode</Colname>
+        <TACBlock><![CDATA[
+        pickprjicode = dataSet.get("pickprjicode")
+        if pickprjicode == null
+            return null
+        end if
+        dataSet.put("prjicode",pickprjicode)
+        dataSet.put("sheetcode",null)
+        bean = getBean("SN-PLAT.ViewDetailService")
+        return bean.loadDetailInfo("prjcode",dataSet)
+        ]]></TACBlock>
+        <Remark><![CDATA[
+            说明：1、合同审批单穿透
+        ]]></Remark>
+    </Details>
+
+    <Details>
+        <Colname>prjcodelist</Colname>
+        <TACBlock><![CDATA[
+         prjicodelist= dataSet.get("prjicodelist")
+        if prjicodelist == null
+            return null
+        end if
+        assertExists("ft_trd_prj",prjicodelist)
+       //根据list查询审批单
+       commService = getBean(snsoft.ft.trd.tx.prj.bas.service.ProjectCommService.BeanID)
+       params=new snsoft.ft.trd.tx.prj.bas.service.ProjectCommParams()
+       params.setPrjicodes(prjicodelist.split(","))
+       datas = commService.queryCommProject(params).getData()
+       if datas == null
+            return null
+        end if
+        //单据类型（sheetcode）-内码集合（icodes）
+        infoMap=newHashMap()
+        for data in datas
+            value=infoMap.get(data.getSheetcode())
+            if value==null
+                infoMap.put(data.getSheetcode(),data.getPrjicode())
+            else
+                infoMap.put(data.getSheetcode(),value+","+data.getPrjicode())
+            end if
+        end for
+        bean = getBean("SN-PLAT.ViewDetailService")
+        //组装信息
+        infos = new snsoft.plat.bas.viewdetail.service.ViewDetailService$DetailInfo[infoMap.size()]
+        i=0
+        for infoKey in infoMap.keySet().toArray()
+			dataSet.put("prjicode",infoMap.get(infoKey))
+            dataSet.put("sheetcode",infoKey)
+            dataSet.put("sheetEntry",true)
+            theInfos = bean.loadDetailInfo("prjcode",dataSet)
+            if theInfos!= null
+	            for viewinfo in theInfos
+		            if viewinfo!=null
+			            infos[i]=viewinfo
+			            i=i+1
+		            end if
+	            end for
+            end if
+        end for
+        return infos
+        ]]></TACBlock>
+        <Remark><![CDATA[
+		合同审批单list穿透定义
+        ]]></Remark>
+    </Details>
+
+    <Details>
+        <Colname>salordcode</Colname>
+        <TACBlock><![CDATA[
+        salordicode = dataSet.get("salordicode")
+        if salordicode == null
+            return null
+        end if
+        tableName="ft_trd_sod"
+        assertExists(tableName,salordicode)
+        sheetCode = dataSet.get("sheetcode")
+        sheetEntry = dataSet.get("sheetEntry")
+        if sheetCode==null || (sheetEntry!=true && salordicode!="<NULL>")
+        	flag=(!salordicode.contains(",")) && salordicode.contains("<") && salordicode.contains(">")
+            if flag
+                tableName=tableName+"_vb"
+            end if
+    		sheetCode = getSheetCode(tableName,salordicode)
+		end if
+		if sheetCode=="FT-TRD.TX.Ord.AgcyExpSalOrd"
+        info.funcid = "FT-TRD.TX.Ord.AgcyExpSalOrdDetail"
+		elif sheetCode=="FT-TRD.TX.Ord.CscdExpSalOrd"
+        info.funcid = "FT-TRD.TX.Ord.CscdExpSalOrdDetail"
+		elif sheetCode=="FT-TRD.TX.Ord.ConsExpSalOrd"
+        info.funcid = "FT-TRD.TX.Ord.ConsExpSalOrdDetail"
+        elif sheetCode=="FT-TRD.TX.Ord.SeSPExpSalOrd"
+        info.funcid = "FT-TRD.TX.Ord.SeSPExpSalOrdDetail"
+        elif sheetCode=="FT-TRD.TX.Ord.SeSSExpSalOrd"
+        info.funcid = "FT-TRD.TX.Ord.SeSSExpSalOrdDetail"
+        elif sheetCode=="FT-TRD.TX.Ord.SeSOExpSalOrd"
+        info.funcid = "FT-TRD.TX.Ord.SeSOExpSalOrdDetail"
+        elif sheetCode=="FT-TRD.TX.Ord.SeSPDomSalOrd"
+        info.funcid = "FT-TRD.TX.Ord.SeSPDomSalOrdDetail"
+        elif sheetCode=="FT-TRD.TX.Ord.SeSSDomSalOrd"
+        info.funcid = "FT-TRD.TX.Ord.SeSSDomSalOrdDetail"
+         elif sheetCode=="FT-TRD.TX.Ord.SeSODomSalOrd"
+        info.funcid = "FT-TRD.TX.Ord.SeSODomSalOrdDetail"
+        elif sheetCode=="FT-TRD.TX.Ord.SePSDomSalOrd"
+        info.funcid = "FT-TRD.TX.Ord.SePSDomSalOrdDetail"
+        elif sheetCode=="FT-TRD.TX.Ord.SeSPOvsSalOrd"
+        info.funcid = "FT-TRD.TX.Ord.SeSPOvsSalOrdDetail"
+        elif sheetCode=="FT-TRD.TX.Ord.SeSOOvsSalOrd"
+        info.funcid = "FT-TRD.TX.Ord.SeSOOvsSalOrdDetail"
+         elif sheetCode=="FT-TRD.TX.Ord.AcPPImpDomSalOrd"
+        info.funcid = "FT-TRD.TX.Ord.AcPPImpDomSalOrdDetail"
+         elif sheetCode=="FT-TRD.TX.Ord.SeSOImpDomSalOrd"
+        info.funcid = "FT-TRD.TX.Ord.SeSOImpDomSalOrdDetail"
+         elif sheetCode=="FT-TRD.TX.Ord.SePSImpDomSalOrd"
+        info.funcid = "FT-TRD.TX.Ord.SePSImpDomSalOrdDetail"
+        elif sheetCode=="FT-TRD.TX.Ord.SeMMDomSalOrd"
+        info.funcid = "FT-TRD.TX.Ord.SeMMDomSalOrdDetail"
+         elif sheetCode=="FT-TRD.TX.Ord.AgenExpSalOrd"
+        info.funcid = "FT-TRD.TX.Ord.AgenExpSalOrdDetail"
+        elif sheetCode=="FT-TRD.TX.Ord.CoSPExpSalOrd"
+        info.funcid = "FT-TRD.TX.Ord.CoSPExpSalOrdDetail"
+        elif sheetCode=="FT-TRD.TX.Ord.CoSSExpSalOrd"
+        info.funcid = "FT-TRD.TX.Ord.CoSSExpSalOrdDetail"
+        elif sheetCode=="FT-TRD.TX.Ord.SePPDomSalOrd"
+        info.funcid = "FT-TRD.TX.Ord.SePPDomSalOrdDetail"
+        elif sheetCode=="FT-TRD.TX.Ord.SeSPEtpSalOrd"
+        info.funcid = "FT-TRD.TX.Ord.SeSPEtpSalOrdDetail"
+         elif sheetCode=="FT-TRD.TX.Ord.SeSOEtpSalOrd"
+        info.funcid = "FT-TRD.TX.Ord.SeSOEtpSalOrdDetail"
+         elif sheetCode=="FT-TRD.TX.Ord.SePSEtpSalOrd"
+        info.funcid = "FT-TRD.TX.Ord.SePSEtpSalOrdDetail"
+         elif sheetCode=="FT-TRD.TX.Ord.SePPEtpSalOrd"
+        info.funcid = "FT-TRD.TX.Ord.SePPEtpSalOrdDetail"
+         elif sheetCode=="FT-TRD.TX.Ord.SePPImpDomSalOrd"
+        info.funcid = "FT-TRD.TX.Ord.SePPImpDomSalOrdDetail"
+        elif sheetCode=="FT-TRD.TX.Ord.CoSOExpSalOrd"
+        info.funcid = "FT-TRD.TX.Ord.CoSOExpSalOrdDetail"
+        end if
+
+         urldefvalues = dataSet.get("urldefvalues")
+        if  urldefvalues!=null
+        for jskey in urldefvalues.keySet()
+        info.pm.put("InitValue.ft_trd_sod."+jskey,urldefvalues.get(jskey))
+        end for
+        end if
+
+        info.pm.put("AutoRefresh",1)
+        info.pm.put("InitValue.salordicode",salordicode)
+        return info
+        ]]></TACBlock>
+        <Remark><![CDATA[
+		销售合同穿透定义
+        ]]></Remark>
+    </Details>
+
+    <Details>
+        <Colname>outsalordcode</Colname>
+        <TACBlock><![CDATA[
+        outsalordicode = dataSet.get("outsalordicode")
+        if outsalordicode == null
+            return null
+        end if
+        dataSet.put("salordicode",outsalordicode)
+        dataSet.put("sheetcode",null)
+        bean = getBean("SN-PLAT.ViewDetailService")
+        return bean.loadDetailInfo("salordcode",dataSet)
+        ]]></TACBlock>
+        <Remark><![CDATA[
+            说明：1、销售合同穿透
+        ]]></Remark>
+    </Details>
+
+    <Details>
+        <Colname>intrsalordcode</Colname>
+        <TACBlock><![CDATA[
+        intrsalordicode = dataSet.get("intrsalordicode")
+        if intrsalordicode == null
+            return null
+        end if
+        dataSet.put("salordicode",intrsalordicode)
+        dataSet.put("sheetcode",null)
+        bean = getBean("SN-PLAT.ViewDetailService")
+        return bean.loadDetailInfo("salordcode",dataSet)
+        ]]></TACBlock>
+        <Remark><![CDATA[
+            说明：1、内部交易销售合同穿透
+        ]]></Remark>
+    </Details>
+
+    <Details>
+        <Colname>purordcode</Colname>
+        <TACBlock><![CDATA[
+        purordicode = dataSet.get("purordicode")
+        if purordicode == null
+            return null
+        end if
+        tableName="ft_trd_pod"
+        assertExists(tableName,purordicode)
+        sheetCode = dataSet.get("sheetcode")
+        sheetEntry = dataSet.get("sheetEntry")
+        if sheetCode==null || (sheetEntry!=true && purordicode!="<NULL>")
+            flag=(!purordicode.contains(",")) && purordicode.contains("<") && purordicode.contains(">")
+            if flag
+                tableName=tableName+"_vb"
+            end if
+    		sheetCode = getSheetCode(tableName,purordicode)
+		end if
+		if sheetCode=="FT-TRD.TX.Ord.AgcyExpDomPurOrd"
+        info.funcid = "FT-TRD.TX.Ord.AgcyExpDomPurOrdDetail"
+        end if
+		if sheetCode=="FT-TRD.TX.Ord.ConsExpDomPurOrd"
+        info.funcid = "FT-TRD.TX.Ord.ConsExpDomPurOrdDetail"
+        end if
+		if sheetCode=="FT-TRD.TX.Ord.CscdExpDomPurOrd"
+        info.funcid = "FT-TRD.TX.Ord.CscdExpDomPurOrdDetail"
+        end if
+        if sheetCode=="FT-TRD.TX.Ord.SeSPExpDomFPurOrd"
+        info.funcid = "FT-TRD.TX.Ord.SeSPExpDomFPurOrdDetail"
+        end if
+        if sheetCode=="FT-TRD.TX.Ord.SeSSExpDomFPurOrd"
+        info.funcid = "FT-TRD.TX.Ord.SeSSExpDomFPurOrdDetail"
+        end if
+        if sheetCode=="FT-TRD.TX.Ord.SePOExpDomFPurOrd"
+        info.funcid = "FT-TRD.TX.Ord.SePOExpDomFPurOrdDetail"
+        end if
+        if sheetCode=="FT-TRD.TX.Ord.SeSPDomFPurOrd"
+        info.funcid = "FT-TRD.TX.Ord.SeSPDomFPurOrdDetail"
+        end if
+         if sheetCode=="FT-TRD.TX.Ord.SeSSDomFPurOrd"
+        info.funcid = "FT-TRD.TX.Ord.SeSSDomFPurOrdDetail"
+        end if
+        if sheetCode=="FT-TRD.TX.Ord.SePODomFPurOrd"
+        info.funcid = "FT-TRD.TX.Ord.SePODomFPurOrdDetail"
+        end if
+        if sheetCode=="FT-TRD.TX.Ord.SePSDomFPurOrd"
+        info.funcid = "FT-TRD.TX.Ord.SePSDomFPurOrdDetail"
+        end if
+        if sheetCode=="FT-TRD.TX.Ord.SeSPOvsFPurOrd"
+        info.funcid = "FT-TRD.TX.Ord.SeSPOvsFPurOrdDetail"
+        end if
+        if sheetCode=="FT-TRD.TX.Ord.SePOOvsFPurOrd"
+        info.funcid = "FT-TRD.TX.Ord.SePOOvsFPurOrdDetail"
+        end if
+         if sheetCode=="FT-TRD.TX.Ord.AcPPImpPurOrd"
+        info.funcid = "FT-TRD.TX.Ord.AcPPImpPurOrdDetail"
+        end if
+         if sheetCode=="FT-TRD.TX.Ord.SePOImpFPurOrd"
+        info.funcid = "FT-TRD.TX.Ord.SePOImpFPurOrdDetail"
+        end if
+         if sheetCode=="FT-TRD.TX.Ord.SePSImpFPurOrd"
+        info.funcid = "FT-TRD.TX.Ord.SePSImpFPurOrdDetail"
+        end if
+         if sheetCode=="FT-TRD.TX.Ord.SeMIImpPurOrd"
+        info.funcid = "FT-TRD.TX.Ord.SeMIImpPurOrdDetail"
+        end if
+        if sheetCode=="FT-TRD.TX.Ord.SeMPImpPurOrd"
+        info.funcid = "FT-TRD.TX.Ord.SeMPImpPurOrdDetail"
+        end if
+         if sheetCode=="FT-TRD.TX.Ord.SeMPDomPurOrd"
+        info.funcid = "FT-TRD.TX.Ord.SeMPDomPurOrdDetail"
+        end if
+        if sheetCode=="FT-TRD.TX.Ord.CoSPExpDomFPurOrd"
+        info.funcid = "FT-TRD.TX.Ord.CoSPExpDomFPurOrdDetail"
+        end if
+         if sheetCode=="FT-TRD.TX.Ord.CoSSExpDomFPurOrd"
+        info.funcid = "FT-TRD.TX.Ord.CoSSExpDomFPurOrdDetail"
+        end if
+         if sheetCode=="FT-TRD.TX.Ord.SePPDomFPurOrd"
+        info.funcid = "FT-TRD.TX.Ord.SePPDomFPurOrdDetail"
+        end if
+
+         if sheetCode=="FT-TRD.TX.Ord.SeSPEtpFPurOrd"
+        info.funcid = "FT-TRD.TX.Ord.SeSPEtpFPurOrdDetail"
+        end if
+          if sheetCode=="FT-TRD.TX.Ord.SePOEtpFPurOrd"
+        info.funcid = "FT-TRD.TX.Ord.SePOEtpFPurOrdDetail"
+        end if
+         if sheetCode=="FT-TRD.TX.Ord.SePSEtpFPurOrd"
+        info.funcid = "FT-TRD.TX.Ord.SePSEtpFPurOrdDetail"
+        end if
+        if sheetCode=="FT-TRD.TX.Ord.SePPEtpFPurOrd"
+        info.funcid = "FT-TRD.TX.Ord.SePPEtpFPurOrdDetail"
+        end if
+
+         if sheetCode=="FT-TRD.TX.Ord.SePPImpFPurOrd"
+        info.funcid = "FT-TRD.TX.Ord.SePPImpFPurOrdDetail"
+        end if
+
+         if sheetCode=="FT-TRD.TX.Ord.CoPOExpDomFPurOrd"
+        info.funcid = "FT-TRD.TX.Ord.CoPOExpDomFPurOrdDetail"
+        end if
+
+        urldefvalues = dataSet.get("urldefvalues")
+        if  urldefvalues!=null
+        for jskey in urldefvalues.keySet()
+        info.pm.put("InitValue.ft_trd_pod."+jskey,urldefvalues.get(jskey))
+        end for
+        end if
+        info.pm.put("AutoRefresh",1)
+        info.pm.put("InitValue.purordicode",purordicode)
+        return info
+        ]]></TACBlock>
+        <Remark><![CDATA[
+		采购合同穿透定义
+        ]]></Remark>
+    </Details>
+
+    <Details>
+        <Colname>purordcodelist</Colname>
+        <TACBlock><![CDATA[
+        purordicodelist= dataSet.get("purordicodelist")
+        if purordicodelist == null
+            return null
+        end if
+        assertExists("ft_trd_pod",purordicodelist)
+        tableName="ft_trd_pod"
+        db = getDatabaseByTable(tableName)
+		sql = "select sheetcode,purordicode from "+tableName+" where  "
+		innerFilte2r = snsoft.sql.SqlExpr.columnInValues("purordicode", purordicodelist.split(","))
+		sql=sql +innerFilte2r
+		datas=db.query3(sql)
+		//单据类型（sheetcode）-内码集合（icodes）
+		infoMap=newHashMap()
+		for data in datas
+			value=infoMap.get(data[0])
+			if value==null
+				infoMap.put(data[0],data[1])
+			else
+				infoMap.put(data[0],value+","+data[1])
+			end if
+		end for
+		bean = getBean("SN-PLAT.ViewDetailService")
+		//组装信息
+		infos = new snsoft.plat.bas.viewdetail.service.ViewDetailService$DetailInfo[infoMap.size()]
+		i=0
+		for infoKey in infoMap.keySet().toArray()
+			dataSet.put("purordicode",infoMap.get(infoKey))
+            dataSet.put("sheetcode",infoKey)
+            dataSet.put("sheetEntry",true)
+            theInfos = bean.loadDetailInfo("purordcode",dataSet)
+            if theInfos!= null
+	            for viewinfo in theInfos
+		            if viewinfo!=null
+			            infos[i]=viewinfo
+			            i=i+1
+		            end if
+	            end for
+            end if
+		end for
+		return infos
+        ]]></TACBlock>
+        <Remark><![CDATA[
+            采购合同list字段穿透
+        ]]></Remark>
+    </Details>
+
+    <Details>
+        <Colname>intrpurordcode</Colname>
+        <TACBlock><![CDATA[
+        intrpurordicode = dataSet.get("intrpurordicode")
+        if intrpurordicode == null
+            return null
+        end if
+        dataSet.put("purordicode",intrpurordicode)
+        dataSet.put("sheetcode",null)
+        bean = getBean("SN-PLAT.ViewDetailService")
+        return bean.loadDetailInfo("purordcode",dataSet)
+        ]]></TACBlock>
+        <Remark><![CDATA[
+            说明：1、内部交易采购合同穿透
+        ]]></Remark>
+    </Details>
+
+    <Details>
+        <Colname>pntprjcode</Colname>
+        <TACBlock><![CDATA[
+			pntprjicode = dataSet.get("pntprjicode")
+			if pntprjicode == null
+				return null
+			end if
+			//确保记录存在
+			assertExists("ft_trd_pntprj",pntprjicode)
+			info.funcid = "FT-TRD.TX.Prj.PntProjectDetail"
+			info.pm.put("AutoRefresh",1)
+			info.pm.put("InitValue.pntprjicode",pntprjicode)
+			return info
+		]]></TACBlock>
+        <Remark><![CDATA[
+		父项目详情页面穿透
+		]]></Remark>
+    </Details>
+
+
+    <Details>
+        <Colname>quotacode</Colname>
+        <TACBlock><![CDATA[
+        quotaicode = dataSet.get("quotaicode")
+        if quotaicode == null
+            return null
+        end if
+        //确保记录存在
+        assertExists("ft_trd_bquota",quotaicode)
+        info.funcid = "FT-TRD.Quota.BcodeReplyDetail"
+        info.pm.put("AutoRefresh",1)
+        info.pm.put("InitValue.quotaicode",quotaicode)
+        return info
+        ]]></TACBlock>
+        <Remark><![CDATA[
+			部门额度授予单
+        ]]></Remark>
+    </Details>
+    <Details>
+        <Colname>quotaappcode</Colname>
+        <TACBlock><![CDATA[
+        quotaappicode = dataSet.get("quotaappicode")
+        if quotaappicode == null
+            return null
+        end if
+        //确保记录存在
+        assertExists("ft_trd_qa",quotaappicode)
+        info.funcid = "FT-TRD.Quota.QuotaAppDetail"
+        info.pm.put("AutoRefresh",1)
+        info.pm.put("InitValue.quotaappicode",quotaappicode)
+        return info
+        ]]></TACBlock>
+        <Remark><![CDATA[
+			额度申请单
+        ]]></Remark>
+    </Details>
+
+    <Details>
+        <Colname>scmcode</Colname>
+        <TACBlock><![CDATA[
+        scmcode = dataSet.get("scmcode")
+        if scmcode == null
+            return null
+        end if
+        //确保记录存在
+        info.funcid = "FT-TRD.Def.SheetCreateModeDef"
+        info.pm.put("AutoRefresh",1)
+        info.pm.put("InitValue.scmcode",scmcode)
+        return info
+        ]]></TACBlock>
+        <Remark><![CDATA[
+			单据创建方式
+        ]]></Remark>
+    </Details>
+
+    <Details>
+        <Colname>extscmcodes</Colname>
+        <TACBlock><![CDATA[
+        scmcode = dataSet.get("extscmcodes")
+        if scmcode == null
+            return null
+        end if
+       bean = getBean("SN-PLAT.ViewDetailService")
+        //组装信息
+        infos = new snsoft.plat.bas.viewdetail.service.ViewDetailService$DetailInfo[1]
+        dataSet.put("scmcode",scmcode)
+        dataSet.put("sheetEntry",true)
+        return bean.loadDetailInfo("scmcode",dataSet)
+        ]]></TACBlock>
+        <Remark><![CDATA[
+            辅助单据创建方式
+        ]]></Remark>
+    </Details>
+
+    <Details>
+        <Colname>recintrscmcode</Colname>
+        <TACBlock><![CDATA[
+        scmcode = dataSet.get("recintrscmcode")
+        if scmcode == null
+            return null
+        end if
+       bean = getBean("SN-PLAT.ViewDetailService")
+        //组装信息
+        infos = new snsoft.plat.bas.viewdetail.service.ViewDetailService$DetailInfo[1]
+        dataSet.put("scmcode",scmcode)
+        dataSet.put("sheetEntry",true)
+        return bean.loadDetailInfo("scmcode",dataSet)
+        ]]></TACBlock>
+        <Remark><![CDATA[
+            接收合同审批单|单据创建方式
+        ]]></Remark>
+    </Details>
+
+    <Details>
+        <Colname>settcode</Colname>
+        <TACBlock><![CDATA[
+        setticode = dataSet.get("setticode")
+        if setticode == null
+            return null
+        end if
+        assertExists("ft_trd_sett",setticode)
+        sheetcode = dataSet.get("sheetcode")
+        sheetEntry = dataSet.get("sheetEntry")
+        if sheetcode==null || (sheetEntry!=true && setticode!="<NULL>")
+            sheetcode = getSheetCode("ft_trd_sett",setticode)
+        end if
+
+        if sheetcode == "FT-TRD.Sett.ConsExpSettA"
+            info.funcid = "FT-TRD.Sett.ConsExpSettADetail"
+        elif  sheetcode=="FT-TRD.Sett.ConsExpSettB"
+            info.funcid = "FT-TRD.Sett.ConsExpSettBDetail"
+        elif  sheetcode=="FT-TRD.Sett.ConsExpSettC"
+            info.funcid = "FT-TRD.Sett.ConsExpSettCDetail"
+        elif  sheetcode=="FT-TRD.Sett.CscdExpSettB"
+            info.funcid = "FT-TRD.Sett.CscdExpSettBDetail"
+        elif  sheetcode=="FT-TRD.Sett.CscdExpSettC"
+            info.funcid = "FT-TRD.Sett.CscdExpSettCDetail"
+        else
+            return null
+        end if
+        info.pm.put("AutoRefresh",1)
+        info.pm.put("InitValue.setticode",setticode)
+        return info
+        ]]></TACBlock>
+        <Remark><![CDATA[
+           结算单穿透
+        ]]></Remark>
+    </Details>
+
+    <Details>
+        <Colname>transcode</Colname>
+        <TACBlock><![CDATA[
+        transicode = dataSet.get("transicode")
+        if transicode == null
+            return null
+        end if
+        assertExists("ft_busi_trans",transicode)
+
+        info.funcid = "FT-TRD.Busi.TransDetail"
+        info.pm.put("AutoRefresh",1)
+        info.pm.put("InitValue.transicode",transicode)
+        if transicode == "<NULL>"
+        	info.pm.put("InitValue.trans.bcode",dataSet.get("bcode"))
+        	info.pm.put("InitValue.trans.wcode",dataSet.get("wcode"))
+        	info.pm.put("InitValue.trans.tobcode",dataSet.get("tobcode"))
+        	info.pm.put("InitValue.trans.towcode",dataSet.get("towcode"))
+        end if
+        return info
+        ]]></TACBlock>
+        <Remark><![CDATA[
+           客商及协议结转单穿透
+        ]]></Remark>
+    </Details>
+
+    <Details>
+        <Colname>mptcode</Colname>
+        <TACBlock><![CDATA[
+        mpticode = dataSet.get("mpticode")
+        if mpticode == null
+            return null
+        end if
+        assertExists("st_xy_prot",mpticode)
+        sheetCode = dataSet.get("sheetcode")
+		if sheetCode=="FT-TRD.TX.Prot.SuppProt"
+            info.funcid = "FT-TRD.TX.Prot.AgcyExpProtDetail"
+        end if
+        info.pm.put("AutoRefresh",1)
+        info.pm.put("InitValue.pticode",mpticode)
+        return info
+        ]]></TACBlock>
+        <Remark><![CDATA[
+        主协议号穿透
+        ]]></Remark>
+    </Details>
+
+    <Details>
+        <Colname>srcsettcode</Colname>
+        <TACBlock><![CDATA[
+        srcsetticode = dataSet.get("srcsetticode")
+        if srcsetticode == null
+            return null
+        end if
+        //如果来源是本计算单则不穿透
+        theSetticode=dataSet.get("setticode")
+        if( srcsetticode.equals(theSetticode))
+        	return null
+        end if
+        dataSet.put("setticode",srcsetticode)
+		dataSet.put("sheetcode",null)
+		bean = getBean("SN-PLAT.ViewDetailService")
+		return bean.loadDetailInfo("settcode",dataSet)
+        ]]></TACBlock>
+        <Remark><![CDATA[
+        	说明：1、来源结算单穿透，增值服务费计算过程明细界面使用
+        	      2、如果来源是本计算单则不穿透
+        ]]></Remark>
+    </Details>
+    <Details>
+        <Colname>salordcodelist</Colname>
+        <TACBlock><![CDATA[
+        salordicodelist= dataSet.get("salordicodelist")
+        if salordicodelist == null
+            return null
+        end if
+        tableName="ft_trd_sod"
+        assertExists(tableName,salordicodelist)
+        db = getDatabaseByTable(tableName)
+		sql = "select sheetcode,salordicode from "+tableName+" where  "
+		innerFilte2r = snsoft.sql.SqlExpr.columnInValues("salordicode", salordicodelist.split(","))
+		sql=sql +innerFilte2r
+		datas=db.query3(sql)
+		//单据类型（sheetcode）-内码集合（icodes）
+		infoMap=newHashMap()
+		for data in datas
+			value=infoMap.get(data[0])
+			if value==null
+				infoMap.put(data[0],data[1])
+			else
+				infoMap.put(data[0],value+","+data[1])
+			end if
+		end for
+		bean = getBean("SN-PLAT.ViewDetailService")
+		i=0
+		//组装信息
+		infos = new snsoft.plat.bas.viewdetail.service.ViewDetailService$DetailInfo[infoMap.size()]
+		for infoKey in infoMap.keySet().toArray()
+       		dataSet.put("salordicode",infoMap.get(infoKey))
+            dataSet.put("sheetcode",infoKey)
+            dataSet.put("sheetEntry",true)
+            theInfos = bean.loadDetailInfo("salordcode",dataSet)
+            if theInfos!= null
+	            for viewinfo in theInfos
+		            if viewinfo!=null
+			            infos[i]=viewinfo
+			            i=i+1
+		            end if
+	            end for
+            end if
+		end for
+		return infos
+        ]]></TACBlock>
+        <Remark><![CDATA[
+            销售合同list字段穿透
+        ]]></Remark>
+    </Details>
+
+    <Details>
+        <Colname>ibrcode</Colname>
+        <TACBlock><![CDATA[
+        ibricode = dataSet.get("ibricode")
+        if ibricode == null
+            return null
+        end if
+        //确保记录存在
+        assertExists("ft_doc_ibr",ibricode)
+        info.funcid = "FT-TRD.Doc.Ship.ImpInwardBillsDetail"
+        info.pm.put("AutoRefresh",1)
+        info.pm.put("InitValue.ibricode",ibricode)
+        if ibricode == "<NULL>"
+            info.pm.put("InitValue.ft_doc_ibr.bcode",dataSet.get("bcode"))
+            info.pm.put("InitValue.ft_doc_ibr.wcode",dataSet.get("wcode"))
+            info.pm.put("InitValue.ft_doc_ibr.corpbcode",dataSet.get("corpbcode"))
+            info.pm.put("InitValue.ft_doc_ibr.fcode",dataSet.get("fcode"))
+        end if
+        urldefvalues = dataSet.get("urldefvalues")
+        if  urldefvalues!=null
+        for jskey in urldefvalues.keySet()
+        info.pm.put("InitValue.ft_doc_ibr."+jskey,urldefvalues.get(jskey))
+        end for
+        end if
+        return info
+        ]]>
+        </TACBlock>
+        <Remark></Remark>
+    </Details>
+
+    <Details>
+        <Colname>iaccode</Colname>
+        <TACBlock><![CDATA[
+        iacicode = dataSet.get("iacicode")
+        if iacicode == null
+            return null
+        end if
+        //确保记录存在
+        assertExists("ft_doc_iac",iacicode)
+        info.funcid = "FT-TRD.Doc.Accept.ImpAcceptDetail"
+        info.pm.put("AutoRefresh",1)
+        info.pm.put("InitValue.iacicode",iacicode)
+        return info
+        ]]>
+        </TACBlock>
+        <Remark></Remark>
+    </Details>
+
+    <Details>
+        <Colname>ordgcode</Colname>
+        <TACBlock><![CDATA[
+        ordgcode = dataSet.get("ordgcode")
+        if ordgcode == null
+            return null
+        end if
+        dataSet.put("gcode",ordgcode)
+        dataSet.put("sheetcode",null)
+        dataSet.put("sheetEntry",true)
+        bean = getBean("SN-PLAT.ViewDetailService")
+        return bean.loadDetailInfo("gcode",dataSet)
+        ]]></TACBlock>
+        <Remark><![CDATA[
+          合同商品编码穿透
+        ]]></Remark>
+    </Details>
+
+    <Details>
+        <Colname>intrcode</Colname>
+        <TACBlock><![CDATA[
+        intrcode = dataSet.get("intrcode")
+        if intrcode == null
+            return null
+        end if
+        //其他单据不穿透
+        if dataSet.keySet().size()>1
+            return null
+        end if
+        assertExists("ft_trd_def_intr",intrcode)
+        info.funcid = "FT-TRD.Def.InternalTransDef"
+        info.pm.put("AutoRefresh",1)
+        info.pm.put("InitValue.intrcode",intrcode)
+        return info
+        ]]></TACBlock>
+        <Remark><![CDATA[
+        内部交易配置
+        ]]></Remark>
+    </Details>
+
+    <Details>
+        <Colname>intrsrccode</Colname>
+        <TACBlock><![CDATA[
+        intrsrcicode = dataSet.get("intrsrcicode")
+        intrsrcsheetcode = dataSet.get("intrsrcsheetcode")
+        if intrsrcicode == null || intrsrcsheetcode== null
+            return null
+        end if
+        dataSet.put("upicode",intrsrcicode)
+        dataSet.put("upsheetcode",intrsrcsheetcode)
+        dataSet.put("sheetEntry",true)
+        bean = getBean("SN-PLAT.ViewDetailService")
+        return bean.loadDetailInfo("upcode",dataSet)
+        ]]></TACBlock>
+        <Remark><![CDATA[
+          内部交易来源单据外码穿透
+        ]]></Remark>
+    </Details>
+
+    <Details>
+        <Colname>trdeccode</Colname>
+        <TACBlock><![CDATA[
+        trdecicode = dataSet.get("trdecicode")
+        if trdecicode == null
+            return null
+        end if
+        //确保记录存在
+        assertExists("ft_trd_trdec",trdecicode)
+
+        sheetcode = dataSet.get("sheetcode")
+        sheetEntry = dataSet.get("sheetEntry")
+        if sheetcode==null || (sheetEntry!=true && trdecicode!="<NULL>")
+            sheetcode = getSheetCode("ft_trd_trdec",trdecicode)
+        end if
+
+        if sheetcode == "FT-TRD.Doc.Tr.Trdec"
+            info.funcid = "FT-TRD.Doc.Tr.TaxReimbDeclareDetail"
+        elif sheetcode == "FT-TRD.Doc.Tr.Trreg"
+            info.funcid = "FT-TRD.Doc.Tr.TaxReimbRegisterDetail"
+        end if
+
+
+        info.pm.put("AutoRefresh",1)
+
+         for key in dataSet.keySet()
+            if key.indexOf("InitValue.")==0
+                info.pm.put(key,dataSet.get(key))
+            end if
+        end for
+
+        urldefvalues = dataSet.get("urldefvalues")
+        if  urldefvalues!=null
+            for jskey in urldefvalues.keySet()
+                info.pm.put("InitValue.ft_trd_trdec."+jskey,urldefvalues.get(jskey))
+            end for
+        end if
+        info.pm.put("InitValue.trdecicode",trdecicode)
+        return info
+        ]]>
+        </TACBlock>
+        <Remark>退税申报登记单穿透</Remark>
+    </Details>
+
+
+</ViewDetails>

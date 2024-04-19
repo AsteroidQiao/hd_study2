@@ -1,0 +1,19 @@
+#
+#  使用相对路径： ${BASEDIR}  为当前文件所在目录
+#
+
+#define SNADKSRC_ROOT ${BASEDIR}/../../../..
+
+
+#-classpath ${SNADKSRC_ROOT}/snsoft_adk/snadk-cli/snadk-xjs/target/classes
+#-classpath ${SNADKSRC_ROOT}/snsoft_adk/snadk-cli/snadk-xjs/target/test-classes
+
+-classpath ${BASEDIR}/../target/classes
+
+-path  ${BASEDIR}/../src/main/java=>${BASEDIR}/../../study-code-ui/web/xjslib
+
+
+
+-langs=
+-buildfiles js+java+css
+-copyfiles html+gif+png+jpg

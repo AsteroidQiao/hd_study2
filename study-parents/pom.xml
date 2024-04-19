@@ -1,0 +1,22 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 这只是描述项目组件的文件，只有导入工程时有用，不要添加其他，也不要运行它 -->
+    <groupId>cn.snsoft.hd</groupId>
+    <artifactId>hd-study</artifactId>
+    <version>4.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>${project.artifactId}-${project.version}.pom</name>
+
+    <modules>
+        <module>study-parents-java</module>
+        <module>study-parents-xjs</module>
+        <module>../study-config</module>
+        <module>../study-run/study-run-service</module>
+        <module>../study-run/study-run-java2js</module>
+    </modules>
+
+</project>
+
+

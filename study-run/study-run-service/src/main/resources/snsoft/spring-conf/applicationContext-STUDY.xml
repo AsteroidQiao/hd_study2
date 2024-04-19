@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+	xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:snsoft="http://www.snsoft.com.cn/schema/spring-config"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.snsoft.com.cn/schema/spring-config
+	  	http://www.snsoft.com.cn/schema/spring-config.xsd
+		"
+	default-lazy-init="true">
+
+	<!-- 开发环境首页帮助文档 -->
+	<snsoft:option name="MainPage.*.HomePageSrc">help.html?helpFile=help/FT-CODE/FTDevRuleForce.md</snsoft:option>
+</beans>

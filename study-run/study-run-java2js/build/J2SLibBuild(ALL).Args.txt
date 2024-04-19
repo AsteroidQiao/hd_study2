@@ -1,0 +1,20 @@
+#
+#  使用相对路径： ${BASEDIR}  为当前文件所在目录
+#
+#define SNADKSRC_ROOT ${BASEDIR}/../../../..
+#宏替换定义-----------STSRT
+#define HD_WORK_ROOT ${BASEDIR}/../../../..
+#define HD_BASE_ROOT ${HD_WORK_ROOT}/hd_base
+#define HD_STUDY_ROOT ${HD_WORK_ROOT}/hd_study
+#宏替换定义-----------END
+
+#转js配置文件路径
+#公共组件模块---------------START
+#华东公共-公共模块
+@${HD_BASE_ROOT}/hd-run/hd-run-java2js/build/J2SLibBuild(ALL).Args.txt
+#公共组件模块---------------END
+
+#9B学习模块---------------START
+#华东公共-学习专用项目
+@${HD_STUDY_ROOT}/study-code/study-code-xjs/build/J2SLibBuild(study-code).Args.txt
+#9B学习模块---------------END

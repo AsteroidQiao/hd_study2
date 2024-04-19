@@ -1,0 +1,86 @@
+# system ignore
+.DS_Store
+Thumbs.db
+
+# maven/gradle ignore
+target/
+**/target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+*.jar
+*.war
+*.ear
+
+# svn ignore
+*.svn
+
+# eclipse ignore
+.settings/
+.project
+.classpath
+.myeclipse/
+.mymetadata
+
+# idea ignore
+.idea/
+.idea_modules/
+/out/
+*.ipr
+*.iml
+*.iws
+
+# test ignore
+test-output
+**/Tomcat/work/**
+*.class
+*.pyc
+
+# virtual machine crash logs
+hs_err_pid*
+
+# temp ignore
+*.log
+*.cache
+*.diff
+*.patch
+*.tmp
+*.java~
+*.properties~
+*.xml~
+
+# bin ignore
+*.avi
+*.mov
+*.rmvb
+*.mkv
+*.exe
+*.rar
+*.tgz
+*.tar
+*.7z
+
+# apt_generated ignore
+.apt_generated/
+.apt_generated_tests/
+
+#JRebel ignore
+rebel.xml
+
+#sn package build ignore
+overlays/
+**/overlays/
+
+#隐藏掉重写的一个类
+DataColumn.java
+ResourceUtils.java
+LoginLimit.java
+
+#隐藏秘钥
+snverify.pem
+snverify-pub.pem

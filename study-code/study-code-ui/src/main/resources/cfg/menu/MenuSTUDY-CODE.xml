@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menumodel id="STUDY-CODE" title="学习专用开发" xmlns="http://www.snsoft.com.cn/schema/Menu" xsi:schemaLocation="http://www.snsoft.com.cn/schema/Menu http://www.snsoft.com.cn/schema/Menu.xsd"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <!--学习专用-->
+    <!--<include sysid="HD-STUDY"/>-->
+    <menu title="代理进口协议(项园版)">
+        <menu title="代理协议入口">
+            <!--            <menu cmd="ui:FT-SET.Def.SysRptypeDefList" cmdid="FT-SET.Def.SysRptypeDefList" title="@UI?系统往来费用类型" author="杜福勇" flags="0x080"/>-->
+            <!--            <menu title="用户维护" cmd="@90.Users1" cmdid="90.Users" />-->
+            
+            <menu title="代理进口" cmd="ui:STUDY-CODE.StudyAgencyEntrance" cmdid="ui:STUDY-CODE.StudyAgencyEntrance"/>
+            <menu title="代理进口详情" cmd="ui:STUDY-CODE.StudyAgencyDetailed" cmdid="ui:STUDY-CODE.StudyAgencyDetailed"/>
+            <menu title="价格库管理" cmd="ui:STUDY-CODE.pricelib.StudyPriceliblibrary" cmdid="ui:STUDY-CODE.pricelib.StudyPriceliblibrary"/>
+        </menu>
+    </menu>
+
+</menumodel>

@@ -1,0 +1,8 @@
+#配置版本(默认值1.0.0)
+#cfg.ver=1.0.0
+
+#配置读取的模式
+#cfg.priority=file
+
+#本地配置文件基目录
+#cfg.file.root=/snsoft90/hdsnsoft/work/hd_base;/snsoft90/hdsnsoft/work/hd_study

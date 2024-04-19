@@ -1,0 +1,148 @@
+<B xmlns="http://www.snsoft.com.cn/schema/UI" xmlns:m="http://www.snsoft.com.cn/schema/UI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" title="${RES.FT-TRD.title_FT-TRD.TX.Prot.AgcyImpProtEntry?代理进口协议-入口}" fullPage="true"
+   xsi:schemaLocation="http://www.snsoft.com.cn/schema/UI http://www.snsoft.com.cn/schema/UI.xsd">
+    <!--对话框窗格 uiprops.backInitValues重置按钮，-->
+    <m:DialogPane name="query" title="查询面板" region="north" uiprops.backInitValues="true" xprops.showRefreshPane="true" xprops.showFoldPaneBtn="true" xprops.showAdvancedQueryBtn="true" xprops.btnsLayoutMode="3" uiprops.fixhByContent="1">
+        <!--ui监听（不明白的点）-->
+        <uilisteners>
+            <![CDATA[ snsoft.ft.code.bcode.bcode.FTUcodeWcodeInitValueListener.new; //snsoft.ft.comm.busi.FTBusiFilterDateDefaultUIListener.new?dateColumns=predatefm ]]>
+        </uilisteners>
+        <!--不清楚 uiprops.className，clayoutwids，uiprops.cellClassName，nmpre，aiprops ,aidInputerBtn，cmparams-->
+        <!--查询form  layoutm布局方式, cellcols 布局列数, uiprops.className 样式名称（不知道什么意思）, clayoutwids 布局宽度(？？)-->
+        <P name="p1" layoutm="grid" cellcols="4" uiprops.className="basic-query-con" clayoutwids="${RES.$.E.Q.4CW}" uiprops.subCompOpts="2">
+            <!--协议号 name="" ,title=""展示在前面 , sqltype="12" 是文本, uiprops.bgLabel 背景提示（即占位符）,uiprops.cellClassName 样式名称（不知道什么意思）,suffixMatch="true"后缀匹配 ，prefixMatch="true" 前缀匹配，他两加一块就是模糊匹配，nmpre  查询条件类别：filter-->
+            <c name="outptcode" title="" sqltype="12" uiprops.bgLabel="${RES.$.query_outptcode}" uiprops.cellClassName="td-input-align" suffixMatch="true" prefixMatch="true" nmpre="filter"/>
+            <!--委托方 disableed="true"禁止编辑， codedeta 码表对应，aiprops 辅助输入属性,aidInputerBtn辅助帮助按钮-->
+            <c name="ccodetrust" title="${RES.$.ccodetrust}" sqltype="12" disableed="true" codedata="#FT-CODE.CcodeLMExt" aiprops="initParasVales:{ccodetypes:'10',status:''}" showname="true" aidInputerBtn="true"
+               nmpre="filter"/>
+            <!--协议类型，cmparams码表查询参数,codedata对应码表-->
+            <c name="prottype" title="${RES.$.prottype}" sqltype="12" disableed="true" cmparams="JSONFILTER_FIX:null" codedata="#DT_FT-TRD.AgcyProtType" showname="true" aidInputerBtn="true" nmpre="filter"/>
+            <!--服务收取方式-->
+            <c name="agentfeemode" title="${RES.$.agentfeemode}" sqltype="12" showname="true" cmparams="JSONFILTER_FIX:null" codedata="#DT_FT-TRD.AgcyImpAgentFeeMode" disableed="true" nmpre="filter"/>
+            <!--约束规则-->
+            <c name="agcyconstraint" title="${RES.$.agcyconstraint}" sqltype="12" showname="true" cmparams="JSONFILTER_FIX:null" codedata="#DT_STUDY-CODE.agcyconstraint" disableed="true" nmpre="filter"/>
+            <!--业务员部门，cmparams.sheetcode码表参数：单据号，cmparams.opids码表参数：权限操作码 逗号分割，showfname显示全名，tipIfOverflow漂浮显示，uiprops.textDir="rtl"描述 : 文本方向; rtl:从右向左的文本方向 ltr:从左向右的文本方向,默认ltr,,selectMiddle-->
+            <c name="bcode" title="${RES.$.bcode}" sqltype="12" codedata="#FT-CODE.BWcode" cmparams="status:'~10'" cmparams.sheetcode="ST-CODE.TX.Prot.XYAgcyImpProt" cmparams.opids="R,C" disableed="true" showfname="true"
+               tipIfOverflow="true" uiprops.textDir="rtl" selectMiddle="true" aidInputerBtn="true" nmpre="filter"/>
+            <!--业务员-->
+            <c name="wcode" title="${RES.$.wcode}" sqltype="12" codedata="#FT-CODE.Wcode" cmparams="status:'~10'" disableed="true" showname="true" aidInputerBtn="true" cmparams.sheetcode="ST-CODE.TX.Prot.XYAgcyImpProt" cmparams.opids="R,C"
+               nmpre="filter"/>
+            <!--创建日期从-->
+            <c name="signdatefrom" title="${RES.$.query_signdatefrom}" sqltype="91" aidInputerBtn="true" nmpre="filter"/>
+            <!--签订日期从-->
+            <c name="predatefm" title="${RES.$.predatefm}" sqltype="91" aidInputerBtn="true" nmpre="filter"/>
+            <!--商户编码-->
+            <c name="cuicode" title="${RES.$.cuicode}" sqltype="12" hidden="true" nmpre="filter"/>
+            
+            <!--状态,droplistWithSearchPane 下拉含搜索框，listSBoxOnTop 搜索框在上-->
+            <c name="status" hidden="false" title="${RES.$.status}：" sqltype="12" codedata="#90.status" cmparams="sheetcode:'FT-TRD.TX.Prot.AgcyImpProt'" droplist="true" aidInputerBtn="true" disableed="true"
+               aiprops="promptInfo:'',cellTextFmt:['${code}-${name}']" nmpre="filter"/>
+            <!--状态2,隐藏横向展示-->
+            <!--<c hidden="true" name="status2" title="${RES.$.status}：" sqltype="12"  codedata="#90.status" cmparams="sheetcode:'ST-CODE.TX.Prot.XYAgcyImpProt'"  sqlexpr="status" cliInitAllCodes="true"  nmpre="filter"/>-->
+            <c hidden="true" name="status2" sqlexpr="status" title="${RES.$.status}：" sqltype="12" codedata="#90.status" cmparams="sheetcode:'ST-CODE.TX.Prot.XYAgcyImpProt'" cliInitAllCodes="true" nmpre="filter"/>
+        </P>
+        
+        <!--更多参数  table-->
+        <P name="p2" uiprops.className="advanced-query-con">
+            <!--第一行-->
+            <P name="more0" layoutm="grid" cellcols="4" clayoutwids="${RES.$.E.Q.4CW}" uiprops.subCompOpts="2">
+                <!--公司-->
+                <c name="corpbcode" title="${RES.$.corpbcode}" sqltype="12" codedata="#FT-CODE.CorpBcode" cmparams="status:'~10'" cmparams.sheetcode="ST-CODE.TX.Prot.XYAgcyImpProt" cmparams.opids="R,C" disableed="true" showname="true"
+                   selectMiddle="true" aidInputerBtn="true" nmpre="filter"/>
+                <!--创建人-->
+                <c name="vprepare" title="${RES.$.vprepare}" sqltype="12" codedata="#FT-CODE.Users" cmparams="status:'~10'" aidInputerBtn="true" disableed="true" cmparams.sheetcode="ST-CODE.TX.Prot.XYAgcyImpProt" cmparams.opids="R,C"
+                   showname="true" nmpre="filter"/>
+            </P>
+            <!--比较列，默认四列-->
+            <QParamsEditor1 name="more1" title="高级查询" titleHidden="true" uiprops.cellColCount="4" uiprops.fixVisFldCount="4" uiprops.cellWidths="${RES.$.E.Q.3CW.M}" uiprops.subCompOpts="2" uiprops.hideDelIcon="true"
+                            uiprops.layoutInCopyFm="more0">
+                <!--每列参数-->
+                <!--1包含协议号-->
+                <c name="ptcode" title="${RES.$.ptcode}" sqltype="12" toUpper="true" nmpre="filter"/>
+                <!--2包含外部协议号-->
+                <c name="outptcode_ex" title="${RES.$.ft_trd_prot.outptcode}" sqlexpr="outptcode" sqltype="12" nmpre="filter"/>
+                <!--3，排除outptcode外部协议号,signdatefrom创建日期从,predatefm签订日期从,agcyconstraint约束规则-->
+                <invoke method="snsoft.plat.bas.tools.ui.XMLUICompLoaderTools.addQParamEditorExComps" cpfrom="p1,more0" exclude="outptcode,signdatefrom,predatefm,agcyconstraint"/>
+                <!--倒数第2 包含签约日期-->
+                <c name="signdate_ex" title="${RES.$.ft_trd_prot.signdate}" sqltype="91" sqlexpr="signdate" aidInputerBtn="true" nmpre="filter"/>
+                <!--最后 包含创建日期-->
+                <c name="predate_ex" title="${RES.$.preday}" sqltype="91" sqlexpr="predate" aidInputerBtn="true" nmpre="filter" opComp="true" dateDelayToNextDay="true"/>
+            </QParamsEditor1>
+        </P>
+    </m:DialogPane>
+    <!--工具栏-->
+    <m:Toolbar name="proToolbar" region="north" uiprops.cellClassName="toolbar-panel">
+        <!--新建-->
+        <ToolbarBtn name="st_xy_prot_btn_newSheet" title="${RES.$.title.F.btn.newsheet}" noClientComponent="true"/>
+        <!--打开-->
+        <ToolbarBtn name="st_xy_prot_btn_openSheet" title="${RES.$.title.F.btn.opensheet}" noClientComponent="true"/>
+        <!--复制-->
+        <ToolbarBtn name="st_xy_prot_btn_sheetCopy" title="${RES.$.title.F.btn.sheetcopy}" noClientComponent="true"/>
+        <!--审批-->
+        <ToolbarBtn name="st_xy_prot_btn_queryappr" title="${RES.$.title.F.btn.queryappr}" noClientComponent="true"/>
+    </m:Toolbar>
+    
+    <!--展示表格 ainui="query" 主表  mutiple="true"允许多选 sqlexpr="st_xy_prot" 绑定表名 disableSave="true" 限制存盘，noCollapseQPaneAfterRefresh="true" 刷新不自动隐藏参数面板，分页参数dsprops.pageRows="10"-->
+    <m:GridTable mainui="query" name="st_xy_prot" title="代理进口协议" mutiple="true" region="center" nmpre="filter" sqlexpr="st_xy_prot" rdonly="true" disableSave="true" noCollapseQPaneAfterRefresh="true" dsprops.pageRows="10"
+                 autoRefresh="true" xprops.LoadDataService="STUDY-CODE.StudyCodeUIService#queryEntryUI">
+        <!--加载方法  和UI有关，调用ui方法——》 StudyCodeUIService.queryEntryUI-->
+        <!--                 xprops.LoadDataService="STUDY-CODE.study.StudyCodeService#queryEntryUI">-->
+        <!--             xprops.LoadDataService="FT-TRD.TX.AgcyImpProtUIService#queryEntryUI">-->
+        <uilisteners>snsoft.plat.bas.busi.PlatFunctionListener.new?funccode=ST-CODE.TX.Prot.XYAgcyImpProt.Entry.UI</uilisteners>
+        <jslistener>#new snsoft.plat.bas.busi.PlatFunctionListener({})</jslistener>
+        <!--监听按钮-->
+        <attrs>
+            <attr type="203" name="newSheet" title="${RES.$.title.F.btn.newsheet}" _rlog="true"/>
+            <attr type="203" name="openSheet" title="${RES.$.title.F.btn.opensheet}" _rlog="true"/>
+            <attr type="203" name="sheetCopy" title="${RES.$.title.F.btn.sheetcopy}" _rlog="true"/>
+            <attr type="203" name="queryappr" title="${RES.$.title.F.btn.queryappr}" _rlog="true"/>
+        </attrs>
+        <!--协议号-->
+        <c name="ptcode" title="${RES.$.ptcode}" sqltype="12" width="100"/>
+        <!--单据号-->
+        <c name="sheetcode" title="${RES.$.sheetcode}" sqltype="12" hidden="false" width="100"/>
+        <!--状态，tipIfOverflow="true" 漂浮显示， fixedLeft="true" 冻结列-->
+        <c name="status" title="${RES.status?状态}" sqltype="12" tipIfOverflow="false" fixedLeft="true" codedata="#90.status" cmparams="sheetcode:'FT-TRD.TX.Prot.AgcyImpProt'" showname="true" width="100"
+           uiprops.renderer="new snsoft.plat.bas.comm.render.StatusCellRender({})"/>
+        <!--委托方-->
+        <c name="ccodetrust" sqltype="12" tipIfOverflow="true" title="${RES.$.ccodetrust}" aiprops="initParasVales:{ccodetypes:'10'}" disableed="true" codedata="#FT-CODE.CcodeLMExt" showname="true" aidInputerBtn="true" width="100"/>
+        <!--协议类型-->
+        <c name="prottype" sqltype="12" title="${RES.$.ft_trd_prot.prottype}" disableed="true" codedata="#DT_FT-TRD.AgcyProtType" showname="true" width="80" align="center"/>
+        <!--&lt;!&ndash;约束规则&ndash;&gt;-->
+        <c name="agcyconstraint" sqltype="12" title="${RES.$.agcyconstraint}" disableed="true" codedata="#DT_STUDY-CODE.agcyconstraint" showname="true" width="80" align="center"/>
+        
+        <!--hidden-->
+        <!--审批编码-->
+        <c name="wfcode" title="${RES.$.wfcode}" sqltype="12" width="80" hidden="true"/>
+        <!--审批节点-->
+        <c name="wfuid" title="${RES.$.wfuid}" sqltype="12" hidden="true" width="80" codedata="#SN-APPR.wfunit" showname="true" tipIfOverflow="true" xprops.CodeData.KeyNames="wfcode"/>
+        <!--签订日期-->
+        <c name="signdate" sqltype="91" title="${RES.C}" disableed="true" width="${RES.$.E.G.CW.date}" align="center"/>
+        <!--协议开始日期-->
+        <c name="startdate" sqltype="91" title="${RES.C}" aidInputerBtn="true" width="${RES.$.E.G.CW.date}" align="center"/>
+        <!--协议截止日期-->
+        <c name="duedate" sqltype="91" title="${RES.C}" aidInputerBtn="true" width="${RES.$.E.G.CW.date}" align="center"/>
+        <!--服务费收取方式-->
+        <c name="agentfeemode" sqltype="12" tipIfOverflow="true" showname="true" codedata="#DT_FT-TRD.AgcyImpAgentFeeMode" title="${RES.C}" width="100"/>
+        <!--内码-->
+        <c name="pticode" sqltype="12" title="协议内码" width="60" hidden="true" descOrd="true"/>
+        <!--商户-->
+        <c name="cuicode" title="${RES.$.cuicode}" sqltype="12" hidden="true"/>
+        <!--修改人-->
+        <c name="modifier" title="${RES.$.modifier?修改人}" sqltype="12" width="${RES.$.G.CW.ucode}" codedata="#FT-CODE.Users" showname="true" hidden="true"/>
+        <!--修改时间-->
+        <c name="modifydate" title="${RES.$.modifydate?修改时间}" sqltype="93" width="${RES.$.E.G.CW.time}" hidden="true"/>
+        <!--核算组-->
+        <!--  <c name="costbcode" title="${RES.$.costbcode}" width="${RES.$.E.G.CW.costbcode}" disableed="true" aidInputerBtn="true" codedata="#FT-CODE.CostBcode" showname="true" sqltype="12" hidden="true" tipIfOverflow="true"/>  -->
+        <!--业务员-->
+        <c name="wcode" sqltype="12" title="${RES.$.wcode}" codedata="#FT-CODE.Wcode" showname="true" width="${RES.$.G.CW.wcode}"/>
+        <!--部门 业务员部门-->
+        <c name="bcode" sqltype="12" title="${RES.$.bcode}" codedata="#FT-CODE.Bcode" showfname="true" tipIfOverflow="true" uiprops.textDir="rtl" width="${RES.$.E.G.CW.bcode}"/>
+        <!--公司-->
+        <c name="corpbcode" title="${RES.$.corpbcode}" sqltype="12" width="${RES.$.E.G.CW.bcode}" aidInputerBtn="true" codedata="#FT-CODE.CorpBcode" cmparams.sheetcode="ST-CODE.TX.Prot.XYAgcyImpProt" cmparams.fromBtype="01"
+           cmparams.opids="R,C" showname="true"/>
+        <!--创建人-->
+        <c name="vprepare" title="${RES.$.vprepare}" sqltype="12" width="${RES.$.G.CW.ucode}" codedata="#FT-CODE.Users" showname="true"/>
+        <!--创建时间-->
+        <c name="predate" title="${RES.$.predate}" sqltype="93" width="${RES.$.E.G.CW.time}" descOrd="true"/>
+    </m:GridTable>
+</B>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menumodel id="HD-STUDY-RUN" title="学习专用" xmlns="http://www.snsoft.com.cn/schema/Menu" xsi:schemaLocation="http://www.snsoft.com.cn/schema/Menu http://www.snsoft.com.cn/schema/Menu.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <include sysid="STUDY-CODE" />
+</menumodel>

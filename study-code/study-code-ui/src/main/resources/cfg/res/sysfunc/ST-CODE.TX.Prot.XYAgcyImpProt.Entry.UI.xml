@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SystemFunctions xmlns="http://www.snsoft.com.cn/schema/plat-sysfunc" xsi:schemaLocation="http://www.snsoft.com.cn/schema/plat-sysfunc http://www.snsoft.com.cn/schema/plat-sysfunc.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Name>代理进口协议入口UI</Name>
+    <Remark><![CDATA[
+	]]></Remark>
+    <!--<Groups id="入口监听">-->
+    <Functions>
+        <Functype>SN-PLAT.UI</Functype>
+        <Subtype>1</Subtype>
+        <Funcimpl>SN-PLAT.PlatEntryListener?[{sheetCode:'ST-CODE.TX.Prot.XYAgcyImpProt'}]</Funcimpl>
+        <Remark>入口</Remark>
+    </Functions>
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>#new snsoft.plat.bas.busi.PlatEntryListener({})</Funcimpl>
+        <Remark>入口</Remark>
+    </Functions>
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl><![CDATA[
+    #new snsoft.plat.bas.opt.ClsOptPopupMenuJSListener({sheetcode:"ST-CODE.TX.Prot.XYAgcyImpProt",tgtUINames:["st_xy_prot"]})
+    ]]></Funcimpl>
+        <Remark>选项配置右键菜单监听</Remark>
+    </Functions>
+
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl><![CDATA[
+			#new snsoft.ft.trd.comm.busi.TrdBusiUnionSheetEntryCopyListener({sheetCode:"ST-CODE.TX.Prot.XYAgcyImpProt"})
+			]]></Funcimpl>
+        <Remark>入口JS监听：单据复制</Remark>
+    </Functions>
+    <!--</Groups>-->
+
+    <!--<Groups id="参数面板刷新按钮">-->
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>#new snsoft.plat.bas.busi.ShowRefreshPanelListener({itemName:'status2'})</Funcimpl>
+        <Remark></Remark>
+    </Functions>
+    <!--</Groups>-->
+    <!--<Groups id="审批">-->
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>#new snsoft.ft.code.wf.FTApprSubmitJSListener({"tgtUINames":["st_xy_prot"]})</Funcimpl>
+        <Remark>审批链-打开审批详情</Remark>
+    </Functions>
+    <!--</Groups>-->
+    <!--<Groups id="Grid表格竖线显示控制">-->
+    <Functions>
+        <Functype>SN-PLAT.UI</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl><![CDATA[
+            snsoft.bas.ui.SysOptionUIListener.new?type=2&time=1&optids=UserCustom.EntryTableYLine
+            ]]></Funcimpl>
+        <Remark>获取用户定制Grid表格竖线选项</Remark>
+    </Functions>
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>#new snsoft.plat.bas.comm.UserCustomGridLineJSListener({})</Funcimpl>
+        <Remark>用户定制Grid表格竖线控制</Remark>
+    </Functions>
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>#new snsoft.plat.bas.comm.PlatEntryAutoPageJSListener({"tgtUINames":["st_xy_prot"]})</Funcimpl>
+        <Remark>用户定制Grid表页面设置</Remark>
+    </Functions>
+    <!--</Groups>-->
+    <!--<Groups id="界面属性">-->
+    <Functions>
+        <Functype>SN-PLAT.UI</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>snsoft.ui.optctrl.UIOptCtrlListener.new</Funcimpl>
+        <Remark>界面属性控制</Remark>
+    </Functions>
+    <!--       <Functions>
+              <Functype>SN-PLAT.UI</Functype>
+              <Subtype>1</Subtype>
+              <Funcimpl><![CDATA[
+              SN-UI.SysOptionUIListener?[{type:'1',time:'1',optids:'FT-CODE.Bcode.UseCostBcode'}]
+              ]]></Funcimpl>
+              <Remark>是否启用核算组 系统选项</Remark>
+          </Functions>
+           <Functions>
+              <Functype>SN-PLAT.JS</Functype>
+              <Subtype>2</Subtype>
+              <Funcimpl>
+              <![CDATA[
+              #new snsoft.ft.trd.comm.query.TrdCostBcodeColQueryCtrlListener({})
+               ]]>
+              </Funcimpl>
+              <Remark>核算组控制</Remark>
+          </Functions> -->
+    <!--</Groups>-->
+</SystemFunctions>

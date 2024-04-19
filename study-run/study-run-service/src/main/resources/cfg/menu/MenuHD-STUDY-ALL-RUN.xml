@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menumodel id="HD-STUDY-DEV-RUN" title="学习专用全部" xmlns="http://www.snsoft.com.cn/schema/Menu" xsi:schemaLocation="http://www.snsoft.com.cn/schema/Menu http://www.snsoft.com.cn/schema/Menu.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <include sysid="STUDY-CODE" />
+    <!--系统配置-->
+    <include sysid="FT-CFG"/>
+    <!--贸易管控中心-->
+    <include sysid="FT-CMC"/>
+    <!--ERP-->
+    <include sysid="FT-ERP"/>
+    <!--固定资产系统-->
+    <include sysid="FT-FA"/>
+    <!--总账1-->
+    <include sysid="FT-IRT"/>
+    <!--总账2-->
+    <include sysid="FT-RPT"/>
+    <!--工资系统-->
+    <include sysid="FT-SNG"/>
+    <!--主数据-->
+    <!--<include sysid="SN.MDM"/>-->
+    <!--业务平台SN-->
+    <include sysid="SN-PLAT"/>
+    <!--用户消息-->
+    <include sysid="SN-UMC"/>
+    <!--南北软件-->
+    <include sysid="00"/>
+    <!--    <include sysid="SN-EM"/>-->
+    <!--系统维护-->
+    <!--<menu id="01" title="系统维护">
+        <menu id="0101" title="系统维护">
+            <menu sysid="01"/>
+        </menu>
+    </menu>-->
+</menumodel>

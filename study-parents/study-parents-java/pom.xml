@@ -1,0 +1,51 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- FT 父级 pom (发布地址：https://n.esnsoft.cn/ft/help.html?helpFile=help/FTReleaseLog.md)-->
+    <parent>
+        <groupId>cn.snsoft.ft</groupId>
+        <artifactId>parents-ft-java</artifactId>
+        <version>4.7.0.RELEASE</version>
+        <!--设置一个空值，不从本地获取，始终从远程仓库获取-->
+        <relativePath/>
+    </parent>
+    
+    <groupId>cn.snsoft.hd</groupId>
+    <artifactId>study-parents-java</artifactId>
+    <version>4.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>${project.artifactId}-${project.version}.pom</name>
+    
+    <modules>
+        <module>../../study-code</module>
+    </modules>
+    
+    <properties>
+        <java-version>1.8</java-version>
+        <lombok-version>1.18.22</lombok-version>
+        <hd.study.version>4.0.0-SNAPSHOT</hd.study.version>
+    </properties>
+    
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.snsoft.ft</groupId>
+                <artifactId>ft-comm</artifactId>
+                <version>${ft.comm.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.snsoft.ft</groupId>
+                <artifactId>ft-cfg</artifactId>
+                <version>${ft.code.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>

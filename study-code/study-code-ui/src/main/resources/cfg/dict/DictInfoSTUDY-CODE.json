@@ -1,0 +1,20 @@
+[
+  {
+    "dicticode": "agcyconstraint",
+    "name": "约束规则",
+    "remark": "约束规则",
+    "isCuicode":"true",
+    "infos": [
+      {
+        "code": "10",
+        "name": "中国法律",
+        "remark": "字典项说明"
+      },
+      {
+        "code": "20",
+        "name": "外国法律",
+        "remark": "字典项说明"
+      }
+    ]
+  }
+]

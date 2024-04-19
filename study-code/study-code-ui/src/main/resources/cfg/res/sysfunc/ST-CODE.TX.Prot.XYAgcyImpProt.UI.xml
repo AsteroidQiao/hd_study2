@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SystemFunctions xmlns="http://www.snsoft.com.cn/schema/plat-sysfunc" xsi:schemaLocation="http://www.snsoft.com.cn/schema/plat-sysfunc http://www.snsoft.com.cn/schema/plat-sysfunc.xsd"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Name>代理进口协议详情UI</Name>
+    <Remark><![CDATA[
+	]]></Remark>
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>#new snsoft.ft.code.comm.SheetCuiDefaultValueJSListener({tgtUINames:["*"]})</Funcimpl>
+        <Remark>商户默认值</Remark>
+    </Functions>
+    <!--<Groups id="版本比较">-->
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl><![CDATA[
+		#new snsoft.plat.bas.sheet.vnbk.CompareVersionJSListener({mUiName:'st_xy_prot',ignoCmpTbls:'st_xy_prottermdetail,st_xy_prottermfill,apprdata',ignoCmpCell:{st_xy_prot_good:'gattr00,gattr01,gattr02,gattr03,gattr04,gattr05,gattr06,gattr07,gattr08,gattr09,gattr10,gattr11,gattr12,gattr13,gattr14,gattr15,gattr16,gattr17,gattr18,gattr19'},hasVsnFlagCell:{}})
+		]]></Funcimpl>
+        <Remark>版本比较客户端监听</Remark>
+    </Functions>
+    <Functions>
+        <Functype>SN-PLAT.UI</Functype>
+        <Subtype>1</Subtype>
+        <Funcimpl><![CDATA[
+		SN-PLAT.CompareVersionUIListener?[{}]
+		]]></Funcimpl>
+        <Remark>版本比较UI监听</Remark>
+    </Functions>
+    <!--</Groups>-->
+    <!--<Groups id="版本备份">-->
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>#new snsoft.ft.comm.vnbk.FTVersionBackupListener({sheetCode:'ST-CODE.TX.Prot.XYAgcyImpProt'})</Funcimpl>
+        <Remark>版本备份</Remark>
+    </Functions>
+    <!--</Groups>-->
+    <!--<Groups id="界面相关">-->
+    <Functions>
+        <Functype>SN-PLAT.UI</Functype>
+        <Subtype>1</Subtype>
+        <Funcimpl>SN-UI.VOListener?[{'sheetCode':'ST-CODE.TX.Prot.XYAgcyImpProt'}]</Funcimpl>
+        <Remark>默认值</Remark>
+    </Functions>
+    <Functions>
+        <Functype>SN-PLAT.UI</Functype>
+        <Subtype>1</Subtype>
+        <Funcimpl><![CDATA[
+            SN-UI.SheetListener?[{'sheetCode':'ST-CODE.TX.Prot.XYAgcyImpProt'}]
+            ]]></Funcimpl>
+        <Remark>单据监听：界面控制</Remark>
+    </Functions>
+    <Functions>
+        <Functype>SN-PLAT.UI</Functype>
+        <Subtype>1</Subtype>
+        <Funcimpl><![CDATA[
+            SN-UI.UIOptCtrlListener?[{'sheetCode':'ST-CODE.TX.Prot.XYAgcyImpProt','stdUICtrl':true}]
+            ]]></Funcimpl>
+        <Remark>界面属性控制</Remark>
+    </Functions>
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>#new snsoft.plat.sheet.chk.ApprCheckErrListener({})</Funcimpl>
+        <Remark>错误件查监听</Remark>
+    </Functions>
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>#new snsoft.plat.bas.busi.PageTitleBarJSListener({})</Funcimpl>
+        <Remark>页面标题条JS监听</Remark>
+    </Functions>
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl><![CDATA[
+    #new snsoft.plat.bas.opt.ClsOptPopupMenuJSListener({sheetcode:"ST-CODE.TX.Prot.XYAgcyImpProt",tgtUINames:["st_xy_prot","st_xy_prot_bas"]})
+    ]]></Funcimpl>
+        <Remark>选项配置右键菜单监听</Remark>
+    </Functions>
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl><![CDATA[
+                      #new snsoft.plat.bas.busi.PageNavPaneJSListener({sheetcode:"ST-CODE.TX.Prot.XYAgcyImpProt",tgtUINames:["st_xy_prot"]})
+                     ]]></Funcimpl>
+        <Remark>多选界面处理监听</Remark>
+    </Functions>
+
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>#new snsoft.sheet.comm.OperateJSListener({tgtUINames:["st_xy_prot_si"],'cmds':['delete']})
+        </Funcimpl>
+        <Remark><![CDATA[
+            		界面操作列监听JS
+            ]]></Remark>
+    </Functions>
+    <!-- <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>#new snsoft.plat.bas.comm.CleanValueJSListener({tgtUINames:["st_fjd_prot"],cleanIfNull:false,postInfos:[{uiname:"st_fjd_prot",colnames:["margintype"],infos:[{colnames:["marginrate","marginfcy"]}]},{uiname:"st_fjd_prot",colnames:["agentfeemode"],infos:[{colnames:["agentfeevalue"]}]},{uiname:"st_fjd_prot",colnames:["isgood"],infos:[{uiname:'st_fjd_prot_good'},{colnames:["fcode","fcy","scy","zcny","zusd","fserate","fcerate","fuerate"]}]},{uiname:"st_fjd_prot",colnames:["isfmtprot"],infos:[{uiname:'ft_trd_termdetail'}]},{uiname:"st_fjd_prot",colnames:["isfmtprot"],infos:[{uiname:'ft_trd_termfill'}]}]})
+        </Funcimpl>
+        <Remark>
+            属性控制值改变清空值
+        </Remark>
+    </Functions> -->
+
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>#new snsoft.plat.bas.comm.CleanValueJSListener({tgtUINames:["st_xy_prot"],cleanIfNull:false,postInfos:[{uiname:"st_xy_prot",colnames:["margintype"],infos:[{colnames:["marginrate","marginfcy"]}]},{uiname:"st_xy_prot",colnames:["agentfeemode"],infos:[{colnames:["agentfeevalue"]}]},{uiname:"st_xy_prot",colnames:["isgood"],infos:[{uiname:'st_xy_prot_good'},{colnames:["fcode","fcy","scy","zcny","zusd","fserate","fcerate","fuerate"]}]}]})
+        </Funcimpl>
+        <Remark>
+            属性控制值改变清空值
+        </Remark>
+    </Functions>
+
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>#new snsoft.ft.comm.listener.FTAidConverterListener({tgtUINames:["st_xy_prot"],aidCols:'bcode'})</Funcimpl>
+        <Remark>
+            属性控制值改变清空值
+        </Remark>
+    </Functions>
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>#new snsoft.ft.comm.listener.CcodeCleanValueJSListener({tgtUINames:["st_xy_prot"],postInfo:{uiname:"st_xy_prot",ccodeInfos:[{uiname:'st_xy_prot_bas',ccodeColname:"ccodetrust",cleanColnames:["ccodetrust","pa_ctname","pa_ctmobile"]}]}})</Funcimpl>
+        <Remark>
+            属性控制值改变清空值
+        </Remark>
+    </Functions>
+
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl><![CDATA[
+			#new snsoft.ft.comm.datacopy.FTSheetCopyListener({tgtUINames:["st_xy_prot"],sheetCode:"ST-CODE.TX.Prot.XYAgcyImpProt"})
+			]]></Funcimpl>
+        <Remark>入口JS监听：单据复制</Remark>
+    </Functions>
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>#new snsoft.ft.trd.comm.busi.TrdBusiSelectGcodeBtnListener({tgtUINames:["st_xy_prot_good"]})</Funcimpl>
+        <Remark><![CDATA[
+           		 增加选择商品按钮
+            ]]></Remark>
+    </Functions>
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>#new snsoft.plat.bas.comm.BatchModifyJSListener({tgtUINames:["st_xy_prot_good"],cellNames:"cnamedesc,enamedesc,brand,specifidesc,goodsdesc,qtc,qtcunit,upric"})</Funcimpl>
+        <Remark><![CDATA[
+            ]]></Remark>
+    </Functions>
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>#new snsoft.plat.bas.comm.BatchModifyJSListener({tgtUINames:["st_xy_prot_si"],cellNames:"feeproperty,setteratetype,remark"})</Funcimpl>
+        <Remark><![CDATA[
+            ]]></Remark>
+    </Functions>
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>#new snsoft.ft.trd.comm.operate.TrdCommServCopyOperateJSListener({"tgtUINames":["st_xy_prot_good"],"cmds":['add','edit','copy','delete'],"cellCols":4,"copymode":"10","nummode":"10",addVirtual:false,"cellWidth":120,"labelAlign":"right","opt":2,"unCopyCols":"hisflag","tableCtrlListeners":["snsoft.ft.code.gcode.comm.FTXGattrBuildJSListener({srcTblName:'st_xy_prot_good',buildTblname:'edit_st_xy_prot_good_sharedialog'}).new","snsoft.ft.trd.comm.unit.UnitRateConvertCliListener({'flags':6}).new"]})
+        </Funcimpl>
+        <Remark>共享对话框监听</Remark>
+    </Functions>
+    <!--</Groups>-->
+    <!--<Groups id="客户端计算公式">-->
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>#new snsoft.ft.trd.comm.formula.TrdUpricQtcListener({tgtUINames:["st_xy_prot_good"]})</Funcimpl>
+        <Remark><![CDATA[
+            计算金额
+            ]]></Remark>
+    </Functions>
+<!--<Functions>-->
+<!--        <Functype>SN-PLAT.JS</Functype>-->
+<!--        <Subtype>2</Subtype>-->
+<!--        <Funcimpl>#new snsoft.study.code.service.impl.StudyDisupricQty({tgtUINames:["st_xy_prot_good"]})</Funcimpl>-->
+<!--&lt;!&ndash;        <Funcimpl>#new snsoft.ft.trd.comm.formula.TrdUpricQtcListener({tgtUINames:["st_fjd_prot_good"]})</Funcimpl>&ndash;&gt;-->
+<!--        <Remark>计算优惠原币金额</Remark>-->
+<!--    </Functions>-->
+    
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>#new snsoft.ft.trd.comm.formula.TrdQtcQtyUnitListener({tgtUINames:["st_xy_prot_good"]})</Funcimpl>
+        <Remark><![CDATA[
+            计算比率
+            ]]></Remark>
+    </Functions>
+    <!--</Groups>-->
+    <!--<Groups id="审批">-->
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>#new snsoft.ft.code.wf.FTApprSubmitJSListener({tgtUINames:["st_xy_prot"],"taskTblName":"apprdata"})</Funcimpl>
+        <Remark>审批链-提交既然</Remark>
+    </Functions>
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>#new snsoft.wf.TaskPerformListener({tgtUINames:["st_xy_prot"]})</Funcimpl>
+        <Remark>审批链-提交</Remark>
+    </Functions>
+    <Functions>
+        <Functype>SN-PLAT.UI</Functype>
+        <Subtype>1</Subtype>
+        <Funcimpl>
+            SN-APPR.UITaskPerformListener?[{}]
+        </Funcimpl>
+        <Remark>审批链-审批</Remark>
+    </Functions>
+    <!--</Groups>-->
+
+    <!--<Groups id="条款">-->
+    <!--      <Functions>
+             <Functype>SN-PLAT.UI</Functype>
+             <Subtype>2</Subtype>
+             <Funcimpl><![CDATA[
+             snsoft.ft.trd.comm.term.ui.SheetTermUIListener.new?sheetCode=ST-CODE.TX.Prot.FJDAgcyImpProt&tgtUINames=st_fjd_prot&termCfg=st_fjd_prot:ft_trd_termdetail,ft_trd_termfill
+              ]]></Funcimpl>
+             <Remark><![CDATA[
+             ]]></Remark>
+         </Functions>
+         <Functions>
+             <Functype>SN-PLAT.JS</Functype>
+             <Subtype>2</Subtype>
+             <Funcimpl><![CDATA[
+             #new snsoft.ft.trd.comm.term.SheetTermJSListener({sheetHistoryTermUI:"ST-CODE.TX.Prot.FJDAgcyImpProtSheetTermDialog",ccodeColname:"ccodetrust",termTableName:"st_fjd_prot", termTableUIName:"st_fjd_prot"})
+             ]]></Funcimpl>
+             <Remark><![CDATA[
+             ]]></Remark>
+         </Functions> -->
+    <!--</Groups>-->
+    <!--<Groups id="业务相关">-->
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>#new snsoft.ft.trd.comm.busi.TrdBusiCheckAidsNotNullListener({"tgtUINames":["st_xy_prot_bas"],"aidCaseCols":"ccodetrust,pa_ctname",checkAids:[{tgtMuiName:'st_xy_prot_bas',aidCol:'ccodetrust',checkCol:'st_xy_prot.wcode'},{tgtMuiName:'st_xy_prot_bas',aidCol:'pa_ctname',checkCol:'st_xy_prot.ccodetrust'}]})
+        </Funcimpl>
+        <Remark><![CDATA[
+            	界面辅助录入限制
+            ]]></Remark>
+    </Functions>
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>#new snsoft.ft.trd.tx.prot.agcyimp.AgcyImpProtListener({"tgtUINames":["st_xy_prot_bas"]})</Funcimpl>
+        <Remark><![CDATA[
+                基本信息界面JS
+            ]]></Remark>
+    </Functions>
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>#new snsoft.ft.trd.tx.prot.agcyimp.AgcyImpProtSiListener({"tgtUINames":["st_xy_prot_si"]})</Funcimpl>
+        <Remark><![CDATA[
+                基本信息结算项目界面JS
+            ]]></Remark>
+    </Functions>
+    <!--</Groups>-->
+    <!--<Groups id="单据文档">-->
+    <!--  UI监听sheetCodes：配置单据号，统一界面多个单据附件时对应配置多个单据号，','分割 -->
+    <Functions>
+        <Functype>SN-PLAT.UI</Functype>
+        <Subtype>1</Subtype>
+        <Funcimpl>
+            <![CDATA[
+     SN-PLAT.SheetDocSaveUIListener?[{'tgtUINames':'st_xy_prot','sheetCodes':'ST-CODE.TX.Prot.XYAgcyImpProt'}]
+     ]]>
+        </Funcimpl>
+        <Remark>单据文档存盘监听</Remark>
+    </Functions>
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>#new snsoft.plat.bas.sheet.doc.DocTypeResBtnJSListener({tgtUINames:["prtdoctype"],sheetCode:'ST-CODE.TX.Prot.XYAgcyImpProt'})</Funcimpl>
+        <Remark>单据文档类型JS监听</Remark>
+    </Functions>
+
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>#new snsoft.plat.bas.sheet.doc.SheetDocBtnJSListener({tgtUINames:["prtplat_sheetdoc"],sheetCode:'ST-CODE.TX.Prot.XYAgcyImpProt',aidColumn:'docpath',isOlViewImg:false,autoSave:false})
+        </Funcimpl>
+        <Remark>单据文档附件JS监听</Remark>
+    </Functions>
+    <!--</Groups>-->
+
+    <!--<Groups id="组织默认值处理">-->
+    <Functions>
+        <Functype>SN-PLAT.UI</Functype>
+        <Subtype>1</Subtype>
+        <Funcimpl>
+            <![CDATA[
+        FT-CODE.FTCorpInfoDefalutUIListener?[{'tgtUINames':'st_xy_prot','sheetcode':'ST-CODE.TX.Prot.XYAgcyImpProt','hasCostCol':false,'defaultCols':'sfcode:sfcode'}]
+        ]]>
+        </Funcimpl>
+        <Remark>部门、人员、公司、核算组默认值处理</Remark>
+    </Functions>
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>
+            <![CDATA[
+        #new snsoft.ft.code.comm.SheetCorpBcodeJSListener({"tgtUINames":["st_xy_prot"]})
+        ]]>
+        </Funcimpl>
+        <Remark>部门值改变公司值处理</Remark>
+    </Functions>
+    <!--   <Functions>
+          <Functype>SN-PLAT.JS</Functype>
+          <Subtype>2</Subtype>
+          <Funcimpl>
+              <![CDATA[
+      #new snsoft.ft.code.comm.SheetCostBcodeJSListener({"tgtUINames":["st_fjd_prot"]})
+      ]]>
+          </Funcimpl>
+          <Remark>部门值改变核算组值处理</Remark>
+      </Functions> -->
+    <!--</Groups>-->
+    <!--<Groups id="单据编码规则相关">-->
+    <Functions>
+        <Functype>SN-PLAT.UI</Functype>
+        <Subtype>1</Subtype>
+        <Funcimpl><![CDATA[
+        SN-PLAT.SheetAccodeUIListener?[{'tgtUINames':'st_xy_prot','sheetCode':'ST-CODE.TX.Prot.XYAgcyImpProt','colname':'ptcode'}]
+    ]]></Funcimpl>
+        <Remark>单据编码规则初始化</Remark>
+    </Functions>
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>#new snsoft.ft.comm.busi.FTSheetAccodeJSListener({"tgtUINames":["st_xy_prot"],colname:'ptcode'})</Funcimpl>
+        <Remark>单据编码规则逻辑处理</Remark>
+    </Functions>
+    <!--</Groups>-->
+
+    <!--<Groups id="级联查询">-->
+    <Functions>
+        <Functype>SN-PLAT.UI</Functype>
+        <Subtype>1</Subtype>
+        <Funcimpl>
+            SN-PLAT.CasLoadUIListener?[{'loadUINames':'st_xy_prot_si'}]
+        </Funcimpl>
+        <Remark>UI监听</Remark>
+    </Functions>
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>#new snsoft.plat.bas.calc.CasLoadJSListener({})</Funcimpl>
+        <Remark>JS监听</Remark>
+    </Functions>
+    <!--</Groups>-->
+
+    <!--<Groups id="单位换算比例">-->
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>#new snsoft.ft.trd.comm.unit.UnitRateConvertCliListener({"tgtUINames":["st_xy_prot_good"],"busimode":"10","flags":7})</Funcimpl>
+        <Remark>单位换算比例</Remark>
+    </Functions>
+    <Functions>
+        <Functype>SN-PLAT.UI</Functype>
+        <Subtype>1</Subtype>
+        <Funcimpl><![CDATA[
+                FT-TRD.COMM.UnitRateConvertUIListener?[{'tgtUINames':'st_xy_prot_good'}]
+            ]]></Funcimpl>
+        <Remark>单位换算比例UI监听</Remark>
+    </Functions>
+    <!--</Groups>-->
+
+    <!--<Groups id="作废相关">-->
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>#new snsoft.ft.comm.listener.FTSheetStatusJSListener({"tgtUINames":["st_xy_prot"]})</Funcimpl>
+        <Remark>作废数据处理</Remark>
+    </Functions>
+    <!--</Groups>-->
+
+    <!--<Groups id="穿透监听">-->
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>#new snsoft.plat.bas.viewdetail.ViewDetailListener({"tgtUINames":["st_xy_prot_good","st_xy_prot_bas"]})</Funcimpl>
+        <Remark>穿透处理</Remark>
+    </Functions>
+    <!--</Groups>-->
+    <!--<Groups id="Excel导入">-->
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>#new snsoft.bastool.excel.ExcelStrategyImportListener({tgtUINames:["st_xy_prot_good"],xlscode:'FT-TRD.st_xy_prot_aimp_g',strategyEnables:'7',runParam:{"pticode":"T#st_xy_prot#pticode","Cuicode":"T#st_xy_prot#cuicode","cuicode":"T#st_xy_prot#cuicode"}})
+        </Funcimpl>
+        <Remark>Excel导入[配置]：根据Gcode进行匹配</Remark>
+    </Functions>
+    <!--</Groups>-->
+
+    <!--<Groups id="商品属性动态控制">-->
+    <Functions>
+        <Functype>SN-PLAT.UI</Functype>
+        <Subtype>1</Subtype>
+        <Funcimpl><![CDATA[
+	         SN-PLAT.QueryToolUIListener?[{'tgtUINames':'st_xy_prot_good','qrycode':'FT-TRD.Gcode.GcodeColumnQR'}]
+	        ]]></Funcimpl>
+        <Remark>商品属性补数(货号属性组、货号属性、启用库存辅助单位标识)</Remark>
+    </Functions>
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl><![CDATA[
+        #new snsoft.ft.code.gcode.comm.FTXGattrBuildJSListener({tgtUINames:["st_xy_prot_good"],buildTblname:'st_xy_prot_good'})
+        ]]></Funcimpl>
+        <Remark>商品申报要素控制</Remark>
+    </Functions>
+    <Functions>
+        <Functype>SN-PLAT.UI</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl><![CDATA[
+         snsoft.ft.code.gcode.comm.FTXGattrBuildUIListener.new?tgtUINames=st_xy_prot_good&mainUIName=st_xy_prot&sheetCode=ST-CODE.TX.Prot.XYAgcyImpProt&sgSheetcode=ST-CODE.TX.Prot.XYAgcyImpProt&activeCols=sgtrgrpcode,gtrgrpcode&loadOnDataLoaded=true&sgtrgrpFld=sgtrgrpcode
+        ]]></Funcimpl>
+        <Remark>商品申报要素控制</Remark>
+    </Functions>
+    <!--</Groups>-->
+    <!--<Groups id="商户默认值（放最后）">-->
+    <Functions>
+        <Functype>SN-PLAT.UI</Functype>
+        <Subtype>1</Subtype>
+        <Funcimpl>FT-CODE.SheetCuiDefaultValueUIListener?[{'sheetCode':'ST-CODE.TX.Prot.XYAgcyImpProt',tgtUINames:'*'}]</Funcimpl>
+        <Remark>商户默认值</Remark>
+    </Functions>
+    <!--</Groups>-->
+</SystemFunctions>
