@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SystemFunctions xmlns="http://www.snsoft.com.cn/schema/plat-sysfunc" xsi:schemaLocation="http://www.snsoft.com.cn/schema/plat-sysfunc http://www.snsoft.com.cn/schema/plat-sysfunc.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Name>代理进口协议存盘功能</Name>
+    <Remark><![CDATA[
+	]]></Remark>
+    <!--<Groups id="单据存盘值替换">-->
+    <Functions>
+        <Functype>SN-PLAT.SV</Functype>
+        <Subtype>1</Subtype>
+        <Funcimpl><![CDATA[
+            SN-PLAT.PlatRVSVListener
+            ]]></Funcimpl>
+        <Remark>单据存盘值替换SV监听</Remark>
+    </Functions>
+    <!--</Groups>-->
+    <!--<Groups id="单据相关">-->
+    <Functions>
+        <Functype>SN-PLAT.SV</Functype>
+        <Subtype>1</Subtype>
+        <Funcimpl><![CDATA[
+        SN-PLAT.SubmitCheckSVListener
+        ]]></Funcimpl>
+        <Remark>提交检查</Remark>
+    </Functions>
+    <Functions>
+        <Functype>SN-PLAT.SV</Functype>
+        <Subtype>1</Subtype>
+        <Funcimpl><![CDATA[
+        FT-CODE.CcodeSheetControlSubmitSVListener
+        ]]></Funcimpl>
+        <Remark>单据启用客商权限控制</Remark>
+    </Functions>
+    
+    <Functions>
+        <Functype>SN-PLAT.SV</Functype>
+        <Subtype>1</Subtype>
+        <Funcimpl><![CDATA[
+        SN-PLAT.VersionBackupFunctionListener
+        ]]></Funcimpl>
+        <Remark>版本备份</Remark>
+    </Functions>
+    <Functions>
+        <Functype>SN-PLAT.SV</Functype>
+        <Subtype>1</Subtype>
+        <Funcimpl><![CDATA[
+       SN-PLAT.SheetDocSaveSVListener
+        ]]></Funcimpl>
+        <Remark>单据附件：附件上传</Remark>
+    </Functions>
+    <Functions>
+        <Functype>SN-PLAT.SV</Functype>
+        <Subtype>1</Subtype>
+        <Funcimpl><![CDATA[
+        SN-PLAT.SheetDocWfSVListener?[{'attachCfg':'st_xy_prot:ST-CODE.TX.Prot.XYAgcyImpProt#st_xy_prot_doc'}]
+        ]]></Funcimpl>
+        <Remark>单据文档提交检查</Remark>
+    </Functions>
+    <Functions>
+        <Functype>SN-PLAT.SV</Functype>
+        <Subtype>1</Subtype>
+        <Funcimpl><![CDATA[
+        SN-PLAT.SaveCheckSVListener?[{'incasinfo':'st_xy_prot:signbacktime,signbacker,endpticode/st_xy_prot_doc:*,+,-'}]
+        ]]></Funcimpl>
+        <Remark>存盘检查</Remark>
+    </Functions>
+    
+    <Functions>
+        <Functype>SN-PLAT.SV</Functype>
+        <Subtype>1</Subtype>
+        <Funcimpl><![CDATA[
+    SN-PLAT.SheetAccodeSVListener?[{'sheetCode':'ST-CODE.TX.Prot.XYAgcyImpProt','colname':'prjcode'}]
+    ]]></Funcimpl>
+        <Remark>单据编码规则校验</Remark>
+    </Functions>
+    <!--</Groups>-->
+    <!--<Groups id="条款相关">-->
+    <!--     <Functions>
+            <Functype>SN-PLAT.SV</Functype>
+            <Subtype>1</Subtype>
+            <Funcimpl><![CDATA[
+            FT-TRD.COMM.SheetTermSVListener
+            ]]></Funcimpl>
+            <Remark>条款</Remark>
+        </Functions> -->
+    <!--</Groups>-->
+    <!--<Groups id="生效时间">-->
+    <Functions>
+        <Functype>SN-PLAT.SV</Functype>
+        <Subtype>1</Subtype>
+        <Funcimpl>FT-COMM.FTVersionStatusTimeListener</Funcimpl>
+        <Remark>生效时间赋值</Remark>
+    </Functions>
+    <!--</Groups>-->
+    
+    <!--<Groups id="组织关系生效效验">-->
+    <Functions>
+        <Functype>SN-PLAT.SV</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>
+            <![CDATA[
+        snsoft.ft.code.comm.service.impl.SheetBcodeCheckSVListener.new?hasCostCol=true
+        ]]>
+        </Funcimpl>
+        <Remark>组织关系生效效验</Remark>
+    </Functions>
+    <!--</Groups>-->
+    
+    <!--<Groups id="计算公式">-->
+    <Functions>
+        <Functype>SN-PLAT.SV</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl><![CDATA[
+			snsoft.ft.code.bas.frate.service.impl.FrateOperationSVListener.new?odateColumn=predate.st_xy_prot&fcodeColumn=fcode.st_xy_prot&rateColumn=fserate.st_xy_prot,fcerate.st_xy_prot,fuerate.st_xy_prot&tgfcodeColumn=sfcode.st_xy_prot,@CNY,@USD&corpbcodeColumn=corpbcode.st_xy_prot
+            ]]></Funcimpl>
+        <Remark>主表汇率计算</Remark>
+    </Functions>
+    <Functions>
+        <Functype>SN-PLAT.SV</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl><![CDATA[
+            snsoft.ft.code.bas.frate.service.impl.FrateOperationSVListener.new?odateColumn=predate.st_xy_prot&fcodeColumn=fcode.st_xy_prot_good&rateColumn=fserate.st_xy_prot_good,fcerate.st_xy_prot_good,fuerate.st_xy_prot_good&tgfcodeColumn=sfcode.st_xy_prot,@CNY,@USD&corpbcodeColumn=corpbcode.st_xy_prot
+            ]]></Funcimpl>
+        <Remark>子表汇率计算</Remark>
+    </Functions>
+    <Functions>
+        <Functype>SN-PLAT.SV</Functype>
+        <Subtype>1</Subtype>
+        <Funcimpl><![CDATA[
+             ST-CODE.TX.AgcyImpProtBusiFormulaListener?[{}]
+            ]]></Funcimpl>
+        <Remark>子表计算</Remark>
+    </Functions>
+    <Functions>
+        <Functype>SN-PLAT.SV</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl><![CDATA[
+            snsoft.ft.trd.comm.formula.TrdUpricQtcCheckListener.new?tblname=st_xy_prot_good
+            ]]></Funcimpl>
+        <Remark><![CDATA[
+            贸易单价数量含税金额以含税金额为准验证监听SV
+            ]]></Remark>
+    </Functions>
+    <!--</Groups>-->
+    <!--<Groups id="单据外码提交检查">-->
+    <Functions>
+        <Functype>SN-PLAT.SV</Functype>
+        <Subtype>1</Subtype>
+        <Funcimpl><![CDATA[
+			FT-COMM.FTOutCodeCheckSVListener
+			]]></Funcimpl>
+        <Remark>单据外码提交检查</Remark>
+    </Functions>
+    <!--</Groups>-->
+    <!--<Groups id="备份数据保存检查">-->
+    <Functions>
+        <Functype>SN-PLAT.SV</Functype>
+        <Subtype>1</Subtype>
+        <Funcimpl>SN-APPR.ApprDataBackupSVListener</Funcimpl>
+        <Remark>撤单备份审批信息</Remark>
+    </Functions>
+    <!--</Groups>-->
+    
+    <!--<Groups id="商品属性检查處理">-->
+    <Functions>
+        <Functype>SN-PLAT.SV</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl><![CDATA[
+				snsoft.ft.code.gcode.comm.service.impl.FTXGattrSubmitCheckSVListener.new?checkOpt=2
+		]]></Funcimpl>
+        <Remark>商品属性检查處理</Remark>
+    </Functions>
+    <!--</Groups>-->
+    <!--<Groups id="状态改变检查">-->
+    <Functions>
+        <Functype>SN-PLAT.SV</Functype>
+        <Subtype>1</Subtype>
+        <Funcimpl><![CDATA[
+            ST-CODE.TX.AgcyImpProtStatusListener?[{'copycode':"FT-TRD.Sett.AgcyImpSettPlanByAgcyImpProt"}]
+            ]]></Funcimpl>
+        <Remark>状态改变检查</Remark>
+    </Functions>
+    <!--</Groups>-->
+
+</SystemFunctions>
