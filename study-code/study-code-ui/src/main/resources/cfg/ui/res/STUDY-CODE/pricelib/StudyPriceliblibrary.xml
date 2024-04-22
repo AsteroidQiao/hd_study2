@@ -11,11 +11,11 @@
         <!--查询面板-->
         <P name="p1" layoutm="grid" cellcols="5" uiprops.className="basic-query-con" clayoutwids="${RES.$.E.Q.4CW}" uiprops.subCompOpts="2">
             <!--料件号-->
-            <c name="item" title="" sqltype="12" uiprops.bgLabel="${RES.$.item}" uiprops.cellClassName="td-input-align" suffixMatch="true" prefixMatch="true" nmpre="filter"/>
-            <!--起始日期-->
-            <c name="stdate" title="${RES.$.stdate}" sqltype="91" aidInputerBtn="true" nmpre="filter"/>
-            <!--终止日期-->
-            <c name="ledate" title="${RES.$.ledate}" sqltype="91" aidInputerBtn="true" nmpre="filter"/>
+            <c name="item" title="" sqltype="12" codedata="FT-CODE.Gcodes" uiprops.bgLabel="${RES.$.item}" uiprops.cellClassName="td-input-align" suffixMatch="true" prefixMatch="true" nmpre="filter"/>
+            <!--起始日期从-->
+            <c name="stdatefrom" title="${RES.$.stdatefrom}" sqltype="91" aidInputerBtn="true" nmpre="filter"/>
+            <!--到-->
+            <c name="stdateto" title="${RES.$.stdateto}" sqltype="91" aidInputerBtn="true" nmpre="filter"/>
             <!--客户-->
             <c name="ccode" sqltype="12" showname="true" submitOnInput="true" cmparams="JSONFILTER_FIX:null" codedata="#FT-CODE.CcodeLMExt" title="${RES.$.ccode}" aiprops="initParasVales:{ccodetypes:'14'}" disableed="true"
                aidInputerBtn="true" nmpre="filter"/>
@@ -62,37 +62,74 @@
     <!--展示表格-->
     <m:Toolbar name="proToolbar" region="north" uiprops.cellClassName="toolbar-panel">
         <!--操作列按钮，新建-->
-        <ToolbarBtn name="taxgcode_btn_newSheet" title="${RES.FT-CODE.newSheet?新建}" noClientComponent="true"/>
-        <!--复制-->
-        <ToolbarBtn name="st_xy_price_btn_sheetCopy" title="${RES.$.title.F.btn.sheetcopy}" noClientComponent="true"/>
-        <!--查询状态-->
-        <ToolbarBtn name="st_xy_price_btn_queryappr" title="${RES.$.title.F.btn.queryappr}" noClientComponent="true"/>
-        <!--        <ToolbarBtn name="st_xy_prot_btn_queryappr" title="${RES.$.title.F.btn.queryappr}" noClientComponent="true"/>-->
+        <ToolbarBtn name="st_xy_pricelib_btn_newSheet" title="新建" noClientComponent="true" xprops.iconClassName="icons-btn-add"/>
+        <!--调整日期-->
+        <ToolbarBtn name="st_xy_pricelib_btn_adjustDate" title="调整日期" noClientComponent="true" xprops.iconClassName="icons-btn-batch_edit"/>
+        <!--导入价格-->
+        <ToolbarBtn name="st_xy_pricelib_btn_importPrice" title="导入价格" noClientComponent="true" xprops.iconClassName="icons-btn-import"/>
+    
     </m:Toolbar>
     
-    <m:GridTable title="价格库" nmpre="filter" name="st_xy_price" sqlexpr="st_xy_price" mainui="query" region="center" noCollapseQPaneAfterRefresh="true" mutiple="true" rdonly="true" uiprops="autoSaveOnPopupedit:true,closeTabOnDelete:false"
-                 dstoreprops="keyDupTip:'TipKeyColumns=hscode'" disableInsert="true" autoRefresh="true" disableAppend="true" dsprops.pageRows="10" disableed="true" uiprops.markSeledRow="1"
-                 xprops.LoadDataService="STUDY-CODE.StudyCodePricelibUIService#queryEntryUI" xprops.SaveDataService="STUDY-CODE.StudyCodePricelibUIService#saveUI">
+    <m:GridTable title="价格库" nmpre="filter" name="st_xy_pricelib" sqlexpr="st_xy_pricelib" mainui="query" region="center" noCollapseQPaneAfterRefresh="true" mutiple="true" rdonly="true"
+                 uiprops="autoSaveOnPopupedit:true,closeTabOnDelete:false" dstoreprops="keyDupTip:'TipKeyColumns=hscode'" disableInsert="true" autoRefresh="true" disableAppend="true" dsprops.pageRows="10" disableed="true"
+                 uiprops.markSeledRow="1" xprops.LoadDataService="STUDY-CODE.StudyCodePricelibUIService#queryEntryUI" xprops.SaveDataService="STUDY-CODE.StudyCodePricelibUIService#saveUI">
         
         <uilisteners>snsoft.plat.bas.busi.PlatFunctionListener.new?funccode=ST-CODE.TX.Prj.PriceLib.Entry.UI.xml</uilisteners>
         <jslistener>
             <!--            <![CDATA[ #new snsoft.plat.bas.busi.PlatFunctionListener({}); #new snsoft.plat.bas.comm.PlatEntryAutoPageJSListener({"tgtUINames":["hscode"]}) ]]>-->
             <![CDATA[ #new snsoft.plat.bas.busi.PlatFunctionListener({}) ]]>
         </jslistener>
-        
         <attrs>
-            <attr type="203" name="newSheet" title="${RES.FT-CODE.newSheet?新建}"/>
-            <attr type="203" name="importFromComplex" title="调整日期"/>
-            <attr type="203" name="importFromCusbroker" title="导入价格"/>
+            <attr type="203" name="newSheet" title="新建" _rlog="true"/>
+            <attr type="203" name="adjustDate" title="调整日期" _rlog="true"/>
+            <attr type="203" name="importPrice" title="导入价格" _rlog="true"/>
         </attrs>
-        <Operate fixedLeft="true" name="operate" title="${RES.FT-CODE.operate?操作}" width="80" sqlexpr="null" disableEnterEd="true" staticText="true" align="center"/>
-        <c name="sheetcode" sqltype="12" title="${RES.C}" hidden="true" width="${RES.$.E.G.CW}"/>
-        <c name="status" sqltype="12" tipIfOverflow="true" title="${RES.$.status}" fixedLeft="true" codedata="#90.status" cmparams="sheetcode:'ST-CODE.TX.XYPricelib'" showname="true" width="${RES.$.E.G.CW.status}"
-           uiprops.renderer="new snsoft.plat.bas.comm.render.StatusCellRender({})"/>
-        <c name="gvname2" sqlexpr="null" width="120" sqltype="12"/>
-        <c name="gvname3" sqlexpr="null" width="120" sqltype="12"/>
-        <c name="gvname4" sqlexpr="null" width="120" sqltype="12"/>
-    
+        <!--操作-->
+        <Operate fixedLeft="true" name="operate" title="${RES.FT-CODE.operate?操作}" width="80" sqlexpr="null" disableEnterEd="false" staticText="true" align="center"/>
+        <!--单据号-->
+        <c name="sheetcode" title="${RES.C}" sqltype="12" hidden="true" width="${RES.$.E.G.CW}"/>
+        <!--料件号-->
+        <c name="item"  title="料件号" sqltype="12" codedata="FT-CODE.Gcodes" fixedLeft="true" noblankOnSubmit="true"/>
+        <!--料件名称-->
+        <c name="itemname"  title="料件名称" fixedLeft="true" sqltype="12" noblankOnSubmit="true"/>
+        <!--英文名称-->
+        <c name="enamedesc" title="英文名称" sqltype="12"/>
+        <!--增值税税率-->
+        <c name="addtaxrate" title="增值税税率" sqltype="2" noblankOnSubmit="true"/>
+        <!--销售 客户-->
+        <c name="ccode" title="销售|客户" sqltype="12"/>
+        <!--销售币种类型-->
+        <c name="ct_fcode" title="销售|币种" sqltype="12"/>
+        <!--销售不含税单价-->
+        <c name="ct_exprice" title="销售|不含税单价" sqltype="2"/>
+        <!--销售含税单价-->
+        <c name="ct_natprice" title="销售|含税单价" sqltype="2"/>
+        <!--建议价不含税-->
+        <c name="natupric" title="销售|建议价不含税" sqltype="2"/>
+        <!--供应商-->
+        <c name="sccode" title="销售|供应商" sqltype="12"/>
+        <!--采购币种类型-->
+        <c name="sc_fcode" title="采购|币种" sqltype="12"/>
+        <!--采购不含税单价-->
+        <c name="sc_exprice" title="采购|不含税单价" sqltype="2"/>
+        <!--采购含税单价-->
+        <c name="sc_natupric" title="采购|含税单价" sqltype="2"/>
+        <!--适用部门-->
+        <c name="suitbcode" title="适用部门" noblankOnSubmit="true" sqltype="12"/>
+        <!--起始日期-->
+        <c name="stdate" title="起始日期" sqltype="91" aidInputerBtn="true" align="center" noblankOnSubmit="true"/>
+        <!--终止日期-->
+        <c name="ledate" title="终止日期" sqltype="91" aidInputerBtn="true" align="center" noblankOnSubmit="true"/>
+        <!--备注-->
+        <c name="remark" title="备注" noblankOnSubmit="true" sqltype="12"/>
+        <!--创建人-->
+        <c name="vprepare" title="创建人" noblankOnSubmit="true" sqltype="12"/>
+        <!--创建时间-->
+        <c name="predate" title="创建时间" sqltype="91" align="center" noblankOnSubmit="true" />
+        <!--修改人-->
+        <c name="modifier" title="修改人" noblankOnSubmit="true" sqltype="12"/>
+        <!--修改时间-->
+        <c name="modifydate" title="修改时间" sqltype="91" align="center" noblankOnSubmit="true" />
     </m:GridTable>
 
 </B>
