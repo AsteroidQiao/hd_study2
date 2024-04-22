@@ -1,8 +1,11 @@
 package snsoft.study.code.service;
 
+import snsoft.api.bas.QueryResults;
 import snsoft.api.dx.SheetInfo;
 import snsoft.api.service.SpringBean;
 import snsoft.plat.bas.busi.service.Funccode;
+import snsoft.study.code.vo.StudyAgency;
+import snsoft.study.code.vo.StudyPriceLib;
 
 /**
  * <p>标题：学习代码 pricelib 服务</p>
@@ -22,4 +25,13 @@ import snsoft.plat.bas.busi.service.Funccode;
 @SheetInfo("ST-CODE.TX.XYPricelib")
 public interface StudyCodePricelibService {
     String BEAN_NAME = "STUDY-CODE.StudyCodePricelibService";
+    
+    
+    /**
+     * 查询入口
+     *
+     * @param params
+     * @return
+     */
+    QueryResults<StudyPriceLib> queryEntry(StudyCodeParam params);
 }
