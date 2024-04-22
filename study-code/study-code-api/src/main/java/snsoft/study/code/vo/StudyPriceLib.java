@@ -26,7 +26,7 @@ import java.util.Date;
  * 查看帮助：<a href="" target="_blank"></a>
  */
 @Data
-@Table(name = "st_xy_price")
+@Table(name = "st_xy_pricelib")
 @SheetInfo("ST-CODE.TX.XYPricelib")
 @ValidResource("STUDY-CODE")
 public class StudyPriceLib extends FTSheetVO {
