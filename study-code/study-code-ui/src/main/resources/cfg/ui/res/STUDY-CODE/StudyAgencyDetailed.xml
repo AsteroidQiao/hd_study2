@@ -263,8 +263,11 @@
                          dsprops="masterColumnsOnRefresh:['cuicode','bcode','corpbcode']" uiprops.zdomid="@st_xy_prot_good_bas">
                 <!--按钮监听-->
                 <attrs>
+                    <!--选择商品-->
                     <attr type="203" name="getGoods" title="${RES.$.title.F.btn.selgoods}" _rlog="true"/>
+                    <!--导入商品-->
                     <attr type="203" name="XLSIMP_FT-TRD_st_xy_prot_aimp_g" title="${RES.$.title.F.btn.importgoods}" _rlog="true"/>
+                    <!--批量修改-->
                     <attr type="203" name="batchModify" title="${RES.$.title.F.btn.batchmodify}" _rlog="true"/>
                 </attrs>
                 <!--1操作列（四个图标）-->
