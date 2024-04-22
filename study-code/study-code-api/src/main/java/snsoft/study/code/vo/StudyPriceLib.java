@@ -30,52 +30,52 @@ import java.util.Date;
 @SheetInfo("ST-CODE.TX.XYPricelib")
 @ValidResource("STUDY-CODE")
 public class StudyPriceLib extends FTSheetVO {
-
-    private static final long    serialVersionUID    = -272422946219486538L;
-    public static final String SheetCode = "ST-CODE.TX.XYPricelib";
-
+    
+    private static final long   serialVersionUID = -272422946219486538L;
+    public static final  String SheetCode        = "ST-CODE.TX.XYPricelib";
+    
     /**
      * 料件号
      */
-    private String item;
+    @Column
+    @CodeTable(codetbl = "FT-CODE.Gcodes")
+    private String     item;
     /**
      * 料件名称
      */
-    private String itemname;
+    @Column
+    private String     itemname;
     /**
      * 英文名称
      */
-    private String enamedesc;
+    @Column
+    private String     enamedesc;
     /**
      * 增值税税率
      */
-    @Column(
-            scale = 4
-    )
-    @VOField(
-            maxdeci = "4"
-    )
+    @Column(scale = 4)
+    @VOField(maxdeci = "4")
     private BigDecimal addtaxrate;
     /**
      * 客户
      */
     @Column
     @CodeTable(codetbl = "FT-CODE.CcodeLMExt")
-    private String					ccode;
-
+    private String     ccode;
+    
     /**
      * 销售币种类型
      */
     @Column
     @CodeTable(value = "FT-CODE.Fcode")
-    private String					ct_fcode;
+    private String     ct_fcode;
     /**
      * 销售不含税单价
      */
     @Column
     @VOField(maxdeci = "${OPTS.Decimal.Money}")
     private BigDecimal ct_exprice;
-
+    
     /**
      * 销售含税单价
      */
@@ -93,22 +93,21 @@ public class StudyPriceLib extends FTSheetVO {
      */
     @Column
     @CodeTable(codetbl = "FT-CODE.CcodeLMExt")
-    private String sccode;
+    private String     sccode;
     /**
      * 采购币种类型
      */
     @Column
     @CodeTable(value = "FT-CODE.Fcode")
-    private String					sc_fcode;
-
-
+    private String     sc_fcode;
+    
     /**
      * 采购不含税单价
      */
     @Column
     @VOField(maxdeci = "${OPTS.Decimal.Money}")
     private BigDecimal sc_exprice;
-
+    
     /**
      * 采购含税单价
      */
@@ -121,33 +120,33 @@ public class StudyPriceLib extends FTSheetVO {
      */
     @Column
     @CodeTable(value = "FT-CODE.BWcode")
-    private String suitbcode;
+    private String     suitbcode;
     /**
-     *  起始日期
+     * 起始日期
      */
     @Column
-    private Date stdate;
+    private Date       stdate;
     /**
      * 终止日期
      */
     @Column
-    private Date ledate;
+    private Date       ledate;
     /**
-     *    备注
+     * 备注
      */
     @Column
-    private String remark;
-
+    private String     remark;
+    
     @Override
     public void setInnercode(String s) {
-
+    
     }
-
+    
     @Override
     public String getInnercode() {
         return null;
     }
-
+    
     @Override
     public String getOutercode() {
         return null;
