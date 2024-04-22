@@ -262,7 +262,36 @@
     </table>
     
     <table id="331111" name="st_xy_pricelib" title="价格库(项园版)" datasrcid="FT-TRD_W" rdatasrcid="FT-TRD_R"  storegrp="SNFTTRDDATA_TBS">
+        <column name="item" title="料件号" type="VARCHAR(SZNBILL)" notnull="true"/>
+        <column name="itemname" title="料件名称" type="VARCHAR(SZNBILL)" notnull="true"/>
+        <column name="enamedesc" title="英文名称" type="VARCHAR(SZNBILL)" notnull="true"/>
+    
+        <column name="addtaxrate" title="增值税税率" type="NUMERIC(TRATINT.TRATDEC)"/>
+    
+        <column name="ccode" title="客户" type="VARCHAR(SZCCODE)"/>
+        <column name="ct_fcode" title="销售币种类型" type="VARCHAR(SZTYPE)"/>
+        <column name="ct_exprice" title="销售不含税单价" type="NUMERIC(UPRINT.UPRDEC)"/>
+        <column name="ct_natprice" title="销售含税单价" type="NUMERIC(UPRINT.UPRDEC)"/>
+        <column name="natupric" title="建议价不含税" type="NUMERIC(UPRINT.UPRDEC)"/>
+    
+        <column name="sccode" title="供应商" type="VARCHAR(SZGCCODE)" />
+        <column name="sc_fcode" title="采购币种类型" type="VARCHAR(SZTYPE)"/>
+        <column name="sc_exprice" title="采购不含税单价" type="NUMERIC(UPRINT.UPRDEC)"/>
+        <column name="sc_natupric" title="采购含税单价" type="NUMERIC(UPRINT.UPRDEC)"/>
+    
         <column name="suitbcode" title="适用部门" type="VARCHAR(SZBCODE)"/>
+    
+        <column name="stdate" title="起始日期" type="DATE"/>
+        <column name="ledate" title="终止日期" type="DATE"/>
+        <column name="remark" title="备注" type="VARCHAR(SZTEXT2048)"/>
+    
+        <column name="sheetcode" title="单据号" type="VARCHAR(SZSHEET)"/>
+        <column name="status" title="状态" type="VARCHAR(SZSTATUS)"/>
+    
+        <column name="vprepare" title="创建人" type="VARCHAR(SZUCODE)"/>
+        <column name="predate" title="创建时间" type="DATE"/>
+        <column name="modifier" title="修改人" type="VARCHAR(SZUCODE)"/>
+        <column name="modifydate" title="修改时间" type="DATE"/>
     </table>
     
     
