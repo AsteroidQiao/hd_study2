@@ -1,6 +1,8 @@
 package snsoft.study.code.service;
 
 import snsoft.api.bas.QueryResults;
+import snsoft.api.bas.SaveParams;
+import snsoft.api.bas.SaveResults;
 import snsoft.api.dx.SheetInfo;
 import snsoft.api.service.SpringBean;
 import snsoft.plat.bas.busi.service.Funccode;
@@ -26,12 +28,20 @@ import snsoft.study.code.vo.StudyPriceLib;
 public interface StudyCodePricelibService {
     String BEAN_NAME = "STUDY-CODE.StudyCodePricelibService";
     
-    
     /**
      * 查询入口
      *
      * @param params
      * @return
      */
-    QueryResults<StudyPriceLib> queryEntry(StudyCodeParam params);
+    
+    QueryResults<StudyPriceLib> queryEntry(StudyCodePricelibParam params);
+    
+    /**
+     * 存盘
+     *
+     * @param params
+     * @return {@code SaveResults }
+     */
+    SaveResults save(SaveParams<StudyPriceLib> params);
 }
