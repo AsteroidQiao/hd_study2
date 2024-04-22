@@ -21,8 +21,8 @@ diszusd=优惠美元金额
 title_pricelib=价格库
 
 item=料件号/料件名称/英文名称
-stdate=起始日期从
-ledate=到
+stdatefrom=起始日期从
+stdateto=到
 ccode=客户
 sccode=供应商
 
