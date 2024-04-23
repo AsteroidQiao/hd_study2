@@ -15,20 +15,21 @@
         <ToolbarBtn name="st_xy_prot_btn_submitappr" noClientComponent="true" title="${RES.$.title.F.btn.submitappr}" uiprops.cellClassName="ui-head-btn" xprops.iconClassName="icons-btn-submit"/>
         <!--4撤销提交-->
         <ToolbarBtn name="st_xy_prot_btn_backsubmit" noClientComponent="true" title="${RES.$.title.F.btn.backsubmit}" uiprops.cellClassName="ui-head-btn" xprops.iconClassName="icons-btn-recall"/>
+        <!--5审批-->
         <ToolbarBtn name="st_xy_prot_btn_ratify" noClientComponent="true" title="${RES.$.title.F.btn.ratify}" uiprops.cellClassName="ui-head-btn" xprops.iconClassName="icons-btn-approve"/>
-        <!--5错误检查-->
+        <!--6错误检查-->
         <ToolbarBtn name="st_xy_prot_btn_checkError" noClientComponent="true" title="${RES.$.title.F.btn.checkerror}" uiprops.cellClassName="ui-head-btn" xprops.iconClassName="icons-btn-checkerror"/>
-        <!--6删除-->
+        <!--7删除-->
         <ToolbarBtn name="st_xy_prot_btn_delete" noClientComponent="true" title="${RES.$.title.F.btn.delete}" uiprops.cellClassName="ui-head-btn" xprops.iconClassName="icons-btn-delete"/>
-        <!--7版本修改-->
+        <!--8版本修改-->
         <ToolbarBtn name="st_xy_prot_btn_vbBackup" noClientComponent="true" title="${RES.$.title.F.btn.vbbackup}" uiprops.cellClassName="ui-head-btn" xprops.iconClassName="icons-btn-version"/>
-        <!--8取消版本修改-->
+        <!--9取消版本修改-->
         <ToolbarBtn name="st_xy_prot_btn_vbCancel" noClientComponent="true" title="${RES.$.title.F.btn.vbcancel}" uiprops.cellClassName="ui-head-btn" xprops.iconClassName="icons-btn-version"/>
-        <!--9复制-->
+        <!--10复制-->
         <ToolbarBtn name="st_xy_prot_btn_sheetCopy" noClientComponent="true" title="${RES.$.title.F.btn.sheetcopy}" uiprops.cellClassName="ui-head-btn" xprops.iconClassName="icons-btn-copy"/>
-        <!--10终结-->
+        <!--11终结-->
         <ToolbarBtn name="st_xy_prot_btn_statusEnd" noClientComponent="true" title="${RES.$.title.F.btn.final}" uiprops.cellClassName="ui-head-btn" xprops.iconClassName="icons-btn-stop"/>
-        <!--11取消终结-->
+        <!--12取消终结-->
         <ToolbarBtn name="st_xy_prot_btn_statusCancelEnd" noClientComponent="true" title="${RES.$.title.F.btn.cancelfinal}" uiprops.cellClassName="ui-head-btn" xprops.iconClassName="icons-btn-nstop"/>
         <!--  <ToolbarBtn name="ft_trd_prot_btn_statusStop" noClientComponent="true" title="${RES.$.title.F.btn.invalid}" uiprops.cellClassName="ui-head-btn" xprops.iconClassName="icons-btn-stop"/>
                 <ToolbarBtn name="ft_trd_prot_btn_statusCancelStop" noClientComponent="true" title="${RES.$.title.F.btn.cancelinvalid}" uiprops.cellClassName="ui-head-btn" xprops.iconClassName="icons-btn-nstop"/>  -->
@@ -44,14 +45,23 @@
             <![CDATA[ #new snsoft.plat.bas.busi.PlatFunctionListener({}); ]]>
         </jslistener>
         <attrs>
+            <!--3提交-->
             <attr type="203" name="submitappr" title="${RES.$.title.F.btn.submitappr}" _rlog="true"/>
-            <attr type="203" name="checkError" title="${RES.$.title.F.btn.checkerror}" _rlog="true"/>
-            <attr type="203" name="vbBackup" title="${RES.$.title.F.btn.vbbackup}" _rlog="true"/>
-            <attr type="203" name="vbCancel" title="${RES.$.title.F.btn.vbcancel}" _rlog="true"/>
-            <attr type="203" name="ratify" title="${RES.$.title.F.btn.ratify}" _rlog="true"/>
+            <!--4撤销提交-->
             <attr type="203" name="backsubmit" title="${RES.$.title.F.btn.backsubmit}" _rlog="true"/>
+            <!--5审批-->
+            <attr type="203" name="ratify" title="${RES.$.title.F.btn.ratify}" _rlog="true"/>
+            <!--6错误检查-->
+            <attr type="203" name="checkError" title="${RES.$.title.F.btn.checkerror}" _rlog="true"/>
+            <!--8版本修改-->
+            <attr type="203" name="vbBackup" title="${RES.$.title.F.btn.vbbackup}" _rlog="true"/>
+            <!--9取消版本修改-->
+            <attr type="203" name="vbCancel" title="${RES.$.title.F.btn.vbcancel}" _rlog="true"/>
+            <!--10复制-->
             <attr type="203" name="sheetCopy" title="${RES.$.title.F.btn.sheetcopy}" _rlog="true"/>
+            <!--11终结-->
             <attr type="203" name="statusEnd" title="${RES.$.title.F.btn.final}" _rlog="true"/>
+            <!--12取消终结-->
             <attr type="203" name="statusCancelEnd" title="${RES.$.title.F.btn.cancelfinal}" _rlog="true"/>
             <!--   <attr type="203" name="statusStop" title="${RES.$.title.F.btn.invalid}" _rlog="true"/>
                         <attr type="203" name="statusCancelStop" title="${RES.$.title.F.btn.cancelinvalid}" _rlog="true"/>  -->
@@ -142,7 +152,7 @@
                     <ToolbarBtn name="st_xy_prot_bas_btn_editisgood" notInDataSet="true" noClientComponent="true" uiprops.className="ui-btn" xprops.iconClassName="icons-btn-edit" titleHidden="true"
                                 xprops.domTitle="${RES.$.title.F.btn.modify}" followLayout="true"/>
                     <!--代理规则-->
-                    <c name="agcyrule" title="${RES.STUDY-CODE.agcyrule}" sqltype="12" aidInputerBtn="true" mutipleLine="true" aidInputableIfRdonly="true" noblankOnSubmit="false" layoutwidth="2" tipIfOverflow="true" />
+                    <c name="agcyrule" title="${RES.STUDY-CODE.agcyrule}" sqltype="12" aidInputerBtn="true" mutipleLine="true" aidInputableIfRdonly="true" noblankOnSubmit="false" layoutwidth="2" tipIfOverflow="true"/>
                     <!--备注-->
                     <c name="remark" title="${RES.$.remark}" sqltype="12" aidInputerBtn="true" mutipleLine="true" aidInputableIfRdonly="true" layoutwidth="2" tipIfOverflow="true"/>
                     <!--是否格式协议-->
@@ -251,7 +261,7 @@
         <m:P name="st_xy_prot_good_bas" title="${RES.$.title.F.tab.goods}">
             <m:P>
                 <!--选择商品-->
-                <ToolbarBtn name="st_xy_prot_good_btn_getGoods"  title="${RES.$.title.F.btn.selgoods}" xprops.iconClassName="icons-btn-add"/>
+                <ToolbarBtn name="st_xy_prot_good_btn_getGoods" title="${RES.$.title.F.btn.selgoods}" xprops.iconClassName="icons-btn-add"/>
                 <!--导入商品-->
                 <ToolbarBtn name="st_xy_prot_good_btn_XLSIMP_FT-TRD_st_xy_prot_aimp_g" noClientComponent="true" title="${RES.$.title.F.btn.importgoods}" xprops.iconClassName="icons-btn-import"/>
                 <!--批量修改-->
@@ -344,15 +354,15 @@
                 <!--18人民币金额-->
                 <c name="zcny" title="${RES.C}" sqltype="2" mindeci="2" width="${RES.$.D.G.CW.fcy}" bottomval="*" rdonly="true" noblankOnSubmit="true"/>
                 <!--19  添加1 优惠单价-->
-                <c name="disupric" title="${RES.C}" sqltype="2" mindeci="2" width="${RES.$.D.G.CW.fcy}" bottomval="*"  noblankOnSubmit="true"/>
+                <c name="disupric" title="${RES.C}" sqltype="2" mindeci="2" width="${RES.$.D.G.CW.fcy}" bottomval="*" noblankOnSubmit="true"/>
                 <!--20  添加2 优惠原币金额=优惠单价x签约数量-->
-                <c name="disfcy" title="${RES.C}" sqltype="2" mindeci="2" width="${RES.$.D.G.CW.fcy}" bottomval="*"  noblankOnSubmit="true"/>
+                <c name="disfcy" title="${RES.C}" sqltype="2" mindeci="2" width="${RES.$.D.G.CW.fcy}" bottomval="*" noblankOnSubmit="true"/>
                 <!--21 添加3 优惠本位币金额 hidden-->
-                <c name="disscy" title="${RES.C}" sqltype="2" mindeci="2" width="${RES.$.D.G.CW.fcy}" bottomval="*"  noblankOnSubmit="true" hidden="true"/>
+                <c name="disscy" title="${RES.C}" sqltype="2" mindeci="2" width="${RES.$.D.G.CW.fcy}" bottomval="*" noblankOnSubmit="true" hidden="true"/>
                 <!--22 添加4 优惠美元金额-->
-                <c name="diszusd" title="${RES.C}" sqltype="2" mindeci="2" width="${RES.$.D.G.CW.fcy}" bottomval="*"  noblankOnSubmit="true"/>
+                <c name="diszusd" title="${RES.C}" sqltype="2" mindeci="2" width="${RES.$.D.G.CW.fcy}" bottomval="*" noblankOnSubmit="true"/>
                 <!--25 添加5  优惠人民币金额-->
-                <c name="diszcny" title="${RES.C}" sqltype="2" mindeci="2" width="${RES.$.D.G.CW.fcy}" bottomval="*"  noblankOnSubmit="true"/>
+                <c name="diszcny" title="${RES.C}" sqltype="2" mindeci="2" width="${RES.$.D.G.CW.fcy}" bottomval="*" noblankOnSubmit="true"/>
                 <!--26关税税率-->
                 <c name="customrate" title="${RES.C}" sqltype="2" width="${RES.$.D.G.CW.rate}" percent="true"/>
                 <!--27消费税税率-->
