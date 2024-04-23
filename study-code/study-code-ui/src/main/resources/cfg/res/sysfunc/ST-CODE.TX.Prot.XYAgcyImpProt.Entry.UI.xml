@@ -40,7 +40,7 @@
         <Functype>SN-PLAT.JS</Functype>
         <Subtype>2</Subtype>
         <Funcimpl>#new snsoft.plat.bas.busi.ShowRefreshPanelListener({itemName:'status2'})</Funcimpl>
-        <Remark></Remark>
+        <Remark>选择状态（status2）时自动刷新表格</Remark>
     </Functions>
     <!--</Groups>-->
     <!--<Groups id="审批">-->
