@@ -95,7 +95,7 @@
         <!--英文名称-->
         <c name="enamedesc" title="英文名称" sqltype="12"/>
         <!--增值税税率-->
-        <c name="addtaxrate" title="增值税税率" sqltype="2" noblankOnSubmit="true"/>
+        <c name="addtaxrate" title="增值税税率" sqltype="2" percent="true" noblankOnSubmit="true"/>
         <!--销售 客户-->
         <c name="ccode" title="销售|客户" sqltype="12"/>
         <!--销售币种类型-->
