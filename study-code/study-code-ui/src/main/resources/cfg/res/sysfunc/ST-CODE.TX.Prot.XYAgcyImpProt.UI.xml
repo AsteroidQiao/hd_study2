@@ -63,7 +63,7 @@
         <Functype>SN-PLAT.JS</Functype>
         <Subtype>2</Subtype>
         <Funcimpl>#new snsoft.plat.sheet.chk.ApprCheckErrListener({})</Funcimpl>
-        <Remark>错误件查监听</Remark>
+        <Remark>错误检查监听</Remark>
     </Functions>
     <Functions>
         <Functype>SN-PLAT.JS</Functype>
