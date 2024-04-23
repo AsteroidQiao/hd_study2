@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SheetCopyDef xmlns="http://www.snsoft.com.cn/schema/SheetCopyDef" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.snsoft.com.cn/schema/SheetCopyDef http://www.snsoft.com.cn/schema/SheetCopyDef.xsd">
     <Title>单据号复制</Title>
-    <ExcludeListeners><![CDATA[
-    
-    ]]></ExcludeListeners>
-    <Listeners><![CDATA[
-
-    ]]></Listeners>
+    <Details>
+        <NotCopyTableName>st_xy_prot</NotCopyTableName>
+        <NotCopyColumnName>pticode</NotCopyColumnName>
+    </Details>
+    <Details>
+        <NotCopyTableName>st_xy_prot</NotCopyTableName>
+        <NotCopyColumnName>ptcode</NotCopyColumnName>
+    </Details>
 </SheetCopyDef>
