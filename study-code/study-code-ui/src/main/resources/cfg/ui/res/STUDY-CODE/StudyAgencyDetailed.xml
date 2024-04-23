@@ -142,7 +142,7 @@
                     <ToolbarBtn name="st_xy_prot_bas_btn_editisgood" notInDataSet="true" noClientComponent="true" uiprops.className="ui-btn" xprops.iconClassName="icons-btn-edit" titleHidden="true"
                                 xprops.domTitle="${RES.$.title.F.btn.modify}" followLayout="true"/>
                     <!--代理规则-->
-                    <c name="agcyrule" title="${RES.STUDY-CODE.agcyrule}" sqltype="12" aidInputerBtn="true" mutipleLine="true" aidInputableIfRdonly="true" tipIfOverflow="true"/>
+                    <c name="agcyrule" title="${RES.STUDY-CODE.agcyrule}" sqltype="12" aidInputerBtn="true" mutipleLine="true" aidInputableIfRdonly="true" noblankOnSubmit="false" layoutwidth="2" tipIfOverflow="true" />
                     <!--备注-->
                     <c name="remark" title="${RES.$.remark}" sqltype="12" aidInputerBtn="true" mutipleLine="true" aidInputableIfRdonly="true" layoutwidth="2" tipIfOverflow="true"/>
                     <!--是否格式协议-->
