@@ -22,13 +22,14 @@
     ]]></Funcimpl>
         <Remark>选项配置右键菜单监听</Remark>
     </Functions>
-
+    
     <Functions>
         <Functype>SN-PLAT.UI</Functype>
         <Subtype>1</Subtype>
         <Funcimpl><![CDATA[
             FT-TRD.COMM.BusiSheetEntryUIListener?[{sheetCodes:'ST-CODE.TX.XYPricelib'}]
-             ]]></Funcimpl><Remark>动态创建入口按钮</Remark>
+             ]]></Funcimpl>
+        <Remark>动态创建入口按钮</Remark>
     </Functions>
     <Functions>
         <Functype>SN-PLAT.JS</Functype>
@@ -38,7 +39,7 @@
 			]]></Funcimpl>
         <Remark>入口JS监听：动态创建入口按钮</Remark>
     </Functions>
-        <Functions>
+    <Functions>
         <Functype>SN-PLAT.JS</Functype>
         <Subtype>2</Subtype>
         <Funcimpl><![CDATA[
@@ -74,7 +75,8 @@
         <Subtype>1</Subtype>
         <Funcimpl>SN-UI.UIOptCtrlListener</Funcimpl>
         <Remark>界面属性控制</Remark>
-    </Functions> <Functions>
+    </Functions>
+    <Functions>
         <Functype>SN-PLAT.JS</Functype>
         <Subtype>2</Subtype>
         <Funcimpl>#new snsoft.plat.bas.comm.PlatEntryAutoPageJSListener({})</Funcimpl>
@@ -97,5 +99,11 @@
              ]]>
         </Funcimpl>
         <Remark>核算组控制</Remark>
+    </Functions>
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>#new snsoft.plat.bas.comm.BatchModifyJSListener({tgtUINames:["st_xy_pricelib"],cellNames:"stdate,ledate"})</Funcimpl>
+        <Remark>日期批量修改</Remark>
     </Functions>
 </SystemFunctions>

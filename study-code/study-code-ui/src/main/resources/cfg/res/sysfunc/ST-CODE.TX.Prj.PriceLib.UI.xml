@@ -83,11 +83,10 @@
     <Functions>
         <Functype>SN-PLAT.JS</Functype>
         <Subtype>2</Subtype>
-        <Funcimpl>#new snsoft.ft.trd.comm.operate.TrdCommServCopyOperateJSListener({"tgtUINames":["st_xy_pricelib"],"cmds":['add','edit','copy','delete'],"cellCols":4,"copymode":"10","nummode":"10",addVirtual:false,"cellWidth":120,"labelAlign":"right","opt":2,"unCopyCols":"hisflag","tableCtrlListeners":["snsoft.ft.code.gcode.comm.FTXGattrBuildJSListener({srcTblName:'st_xy_pricelib',buildTblname:'edit_st_xy_pricelib_sharedialog'}).new","snsoft.ft.trd.comm.unit.UnitRateConvertCliListener({'flags':6}).new"]})
+        <Funcimpl>#new snsoft.ft.trd.comm.operate.TrdCommServCopyOperateJSListener({"tgtUINames":["st_xy_pricelib"],"cmds":['add','edit','copy','delete'],"cellCols":4,"copymode":"10","nummode":"10",addVirtual:false,"cellWidth":120,"labelAlign":"right","opt":2,"unCopyCols":"item"})
         </Funcimpl>
         <Remark>共享对话框监听 操作列按钮</Remark>
     </Functions>
-
 
     <Functions>
         <Functype>SN-PLAT.JS</Functype>
@@ -136,7 +135,7 @@
     <Functions>
         <Functype>SN-PLAT.JS</Functype>
         <Subtype>2</Subtype>
-        <Funcimpl>#new snsoft.bastool.excel.ExcelStrategyImportListener({tgtUINames:["st_xy_pricelib"],xlscode:'FT-TRD.Ft_trd_prot_aimp_g',strategyEnables:'7',runParam:{"pticode":"T#st_xy_prot#pticode","Cuicode":"T#st_xy_prot#cuicode","cuicode":"T#st_xy_prot#cuicode"}})
+        <Funcimpl>#new snsoft.bastool.excel.ExcelStrategyImportListener({tgtUINames:["st_xy_pricelib"],xlscode:'import',strategyEnables:'7',runParam:{"pticode":"T#st_xy_prot#pticode","Cuicode":"T#st_xy_prot#cuicode","cuicode":"T#st_xy_prot#cuicode"}})
         </Funcimpl>
         <Remark>Excel导入价格</Remark>
     </Functions>

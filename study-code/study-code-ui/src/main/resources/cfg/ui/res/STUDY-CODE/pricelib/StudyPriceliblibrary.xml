@@ -26,7 +26,6 @@
             <!--            <c name="salccode" title="${RES.C}" codedata="#FT-CODE.CcodeLMExt" disableed="true" submitOnInput="true" showname="true" aidInputerBtn="true" sqlexpr="ft_trd_prj_extse.salccode" cascadeflds="salccode" sqltype="12" noblankOnSubmit="true" disableDelIfAI="true" layoutwidth="2" aiprops="initParasVales:{ccodetypes:'12',ccodearea:'20'},dlgParam:{bcode:'ft_trd_prj.bcode',wcode:'ft_trd_prj.wcode'},copyMap:{sallinkmanname:'linkmanname',sallinkmanmobile:'mobile',salncode:'ncode'}"/>-->
         </P>
         
-        
         <!---->
         <P name="p2" uiprops.className="advanced-query-con">
             <P name="more0" layoutm="grid" cellcols="4" clayoutwids="${RES.$.E.Q.4CW}" uiprops.subCompOpts="2">
@@ -64,7 +63,7 @@
         <!--操作列按钮，新建-->
         <ToolbarBtn name="st_xy_pricelib_btn_newSheet" title="新建" noClientComponent="true" xprops.iconClassName="icons-btn-add"/>
         <!--调整日期-->
-        <ToolbarBtn name="st_xy_pricelib_btn_adjustDate" title="调整日期" noClientComponent="true" xprops.iconClassName="icons-btn-batch_edit"/>
+        <ToolbarBtn name="st_xy_pricelib_btn_batchModify" title="调整日期" noClientComponent="true" xprops.iconClassName="icons-btn-batch_edit"/>
         <!--导入价格-->
         <ToolbarBtn name="st_xy_pricelib_btn_importPrice" title="导入价格" noClientComponent="true" xprops.iconClassName="icons-btn-import"/>
     
@@ -74,18 +73,17 @@
                  uiprops="autoSaveOnPopupedit:true,closeTabOnDelete:false" dstoreprops="keyDupTip:'TipKeyColumns=hscode'" disableInsert="true" autoRefresh="true" disableAppend="true" dsprops.pageRows="10" disableed="true"
                  uiprops.markSeledRow="1" xprops.LoadDataService="STUDY-CODE.StudyCodePricelibUIService#queryEntryUI" xprops.SaveDataService="STUDY-CODE.StudyCodePricelibUIService#saveUI">
         
-        <uilisteners>snsoft.plat.bas.busi.PlatFunctionListener.new?funccode=ST-CODE.TX.Prj.PriceLib.Entry.UI.xml</uilisteners>
+        <uilisteners>snsoft.plat.bas.busi.PlatFunctionListener.new?funccode=ST-CODE.TX.Prj.PriceLib.UI.xml</uilisteners>
         <jslistener>
-            <!--            <![CDATA[ #new snsoft.plat.bas.busi.PlatFunctionListener({}); #new snsoft.plat.bas.comm.PlatEntryAutoPageJSListener({"tgtUINames":["hscode"]}) ]]>-->
             <![CDATA[ #new snsoft.plat.bas.busi.PlatFunctionListener({}) ]]>
         </jslistener>
         <attrs>
             <attr type="203" name="newSheet" title="新建" _rlog="true"/>
-            <attr type="203" name="adjustDate" title="调整日期" _rlog="true"/>
+            <attr type="203" name="batchModify" title="调整日期" _rlog="true"/>
             <attr type="203" name="importPrice" title="导入价格" _rlog="true"/>
         </attrs>
         <!--操作-->
-        <Operate fixedLeft="true" name="operate" title="${RES.FT-CODE.operate?操作}" width="80" sqlexpr="null" disableEnterEd="false" staticText="true" align="center"/>
+        <Operate fixedLeft="true" name="operate" title="操作" width="80" sqlexpr="null" disableEnterEd="false" staticText="true" align="center"/>
         <!--单据号-->
         <c name="sheetcode" title="${RES.C}" sqltype="12" hidden="true" width="${RES.$.E.G.CW}"/>
         <!--料件号-->
