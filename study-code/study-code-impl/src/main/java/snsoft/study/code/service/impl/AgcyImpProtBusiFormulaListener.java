@@ -34,18 +34,37 @@ public class AgcyImpProtBusiFormulaListener extends TrdCommBusiFormulaListener<S
             this.addMarginfcyFormula(record);
         } else {
             TrdCommBusiFormulaListener.FormulaParams<StudyAgency> formulaParams = this.newFormulaParams("st_xy_prot_good", se, params, results, record);
+            // 币种
             this.addSynRateFormula(formulaParams, "st_xy_prot", "fcode");
+            //本位币种
             this.addSynRateFormula(formulaParams, "st_xy_prot", "sfcode");
+            //对本位币汇率
             this.addSynRateFormula(formulaParams, "st_xy_prot", "fserate");
+            //对人民币汇率
             this.addSynRateFormula(formulaParams, "st_xy_prot", "fcerate");
+            //对美元汇率
             this.addSynRateFormula(formulaParams, "st_xy_prot", "fuerate");
+            //内码
             this.addZFcyByFcyFormula(formulaParams, "st_xy_prot", "pticode");
             this.calcFormulas(formulaParams);
             TrdCommBusiFormulaService.TrdCommBusiFormulaParams busiParams = formulaParams.getBusiParams();
+            //原币合计·
             this.addSumFormula(formulaParams, "st_xy_prot_good", "st_xy_prot", busiParams.getFcyFieldName(), busiParams.getFcyFieldName());
+            //本位币合计
             this.addSumFormula(formulaParams, "st_xy_prot_good", "st_xy_prot", busiParams.getScyFieldName(), busiParams.getScyFieldName());
+            //人民币合计
             this.addSumFormula(formulaParams, "st_xy_prot_good", "st_xy_prot", busiParams.getZcnyFieldName(), busiParams.getZcnyFieldName());
+            //美元合计
             this.addSumFormula(formulaParams, "st_xy_prot_good", "st_xy_prot", busiParams.getZusdFieldName(), busiParams.getZusdFieldName());
+            this.calcFormulas(formulaParams);
+            //优惠原币合计
+            this.addSumFormula(formulaParams, "st_xy_prot_good", "st_xy_prot", "disfcy", "disfcy");
+            //优惠本位币合计
+            this.addSumFormula(formulaParams, "st_xy_prot_good", "st_xy_prot", "disscy", "disscy");
+            //优惠人民币合计
+            this.addSumFormula(formulaParams, "st_xy_prot_good", "st_xy_prot", "diszcny", "diszcny");
+            //优惠美元合计
+            this.addSumFormula(formulaParams, "st_xy_prot_good", "st_xy_prot", "diszusd", "diszusd");
             this.calcFormulas(formulaParams);
             TrdCommBusiFormulaListener.FormulaParams<StudyAgency> mformulaParams = this.newFormulaParams("st_xy_prot", se, params, results, record);
             this.addMarginfcyFormula(mformulaParams, "st_xy_prot");
