@@ -72,6 +72,8 @@ public class StudyDisupricQty <V extends VO> extends TrdFormulaListener<V> {
             formulaParams.setFcyFieldName(this.disupricColumn);
             formulaParams.setQtcFieldName(this.qtyColumn);
             formulaParams.setUpricFieldName(this.disfcyColumn);
+            //优惠原币金额=优惠单价x签约数量
+            //价数量货值计算公式 输入qtc时：disfcy=qtc*disupric 输入disupric时：disfcy=qtc*disupric 输入disfcy时：disupric=disfcy/qtc
             this.upricQtcFormulaService.calcUpricQtc(formulaParams);
         }
     }
