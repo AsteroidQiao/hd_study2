@@ -1,50 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<SystemFunctions xmlns="http://www.snsoft.com.cn/schema/plat-sysfunc" xsi:schemaLocation="http://www.snsoft.com.cn/schema/plat-sysfunc http://www.snsoft.com.cn/schema/plat-sysfunc.xsd"
-                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<SystemFunctions xmlns="http://www.snsoft.com.cn/schema/plat-sysfunc" xsi:schemaLocation="http://www.snsoft.com.cn/schema/plat-sysfunc http://www.snsoft.com.cn/schema/plat-sysfunc.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <Name>代理进口协议详情UI</Name>
     <Remark><![CDATA[
 	]]></Remark>
-    <Functions>
-        <Functype>SN-PLAT.JS</Functype>
-        <Subtype>2</Subtype>
-        <Funcimpl>#new snsoft.ft.code.comm.SheetCuiDefaultValueJSListener({tgtUINames:["*"]})</Funcimpl>
-        <Remark>商户默认值</Remark>
-    </Functions>
     
-    <Functions>
-        <Functype>SN-PLAT.UI</Functype>
-        <Subtype>1</Subtype>
-        <Funcimpl>SN-UI.VOListener?[{'sheetCode':'ST-CODE.TX.XYPricelib'}]</Funcimpl>
-        <Remark>默认值</Remark>
-    </Functions>
-    <Functions>
-        <Functype>SN-PLAT.UI</Functype>
-        <Subtype>1</Subtype>
-        <Funcimpl><![CDATA[
-            SN-UI.SheetListener?[{'sheetCode':'ST-CODE.TX.XYPricelib'}]
-            ]]></Funcimpl>
-        <Remark>单据监听：界面控制</Remark>
-    </Functions>
-    <Functions>
-        <Functype>SN-PLAT.UI</Functype>
-        <Subtype>1</Subtype>
-        <Funcimpl><![CDATA[
-            SN-UI.UIOptCtrlListener?[{'sheetCode':'ST-CODE.TX.XYPricelib','stdUICtrl':true}]
-            ]]></Funcimpl>
-        <Remark>界面属性控制</Remark>
-    </Functions>
-    <Functions>
-        <Functype>SN-PLAT.JS</Functype>
-        <Subtype>2</Subtype>
-        <Funcimpl>#new snsoft.plat.sheet.chk.ApprCheckErrListener({})</Funcimpl>
-        <Remark>错误检查监听</Remark>
-    </Functions>
-    <Functions>
-        <Functype>SN-PLAT.JS</Functype>
-        <Subtype>2</Subtype>
-        <Funcimpl>#new snsoft.plat.bas.busi.PageTitleBarJSListener({})</Funcimpl>
-        <Remark>页面标题条JS监听</Remark>
-    </Functions>
     <Functions>
         <Functype>SN-PLAT.JS</Functype>
         <Subtype>2</Subtype>
@@ -61,67 +20,21 @@
                      ]]></Funcimpl>
         <Remark>多选界面处理监听</Remark>
     </Functions>
-
+    
     <Functions>
         <Functype>SN-PLAT.JS</Functype>
         <Subtype>2</Subtype>
-        <Funcimpl>#new snsoft.sheet.comm.OperateJSListener({tgtUINames:["st_xy_pricelib"],'cmds':['delete']})
+        <Funcimpl>#new snsoft.ft.trd.comm.operate.TrdCommServCopyOperateJSListener({"tgtUINames":["st_xy_pricelib"],"cmds":['add','edit','copy','delete'],"cellCols":4,"copymode":"10","nummode":"10",addVirtual:false,"cellWidth":120,"labelAlign":"right","opt":2,"unCopyCols":"item"},"tableCtrlListeners":["snsoft.ft.code.gcode.comm.FTXGattrBuildJSListener({srcTblName:'st_xy_pricelib',buildTblname:'edit_st_xy_prot_good_sharedialog'}).new","snsoft.ft.trd.comm.unit.UnitRateConvertCliListener({'flags':6}).new"])
         </Funcimpl>
-        <Remark><![CDATA[
-            		界面操作列监听JS(四个按钮)
-            ]]></Remark>
+        <Remark>共享对话框监听(四个按钮，操作列)</Remark>
     </Functions>
     
     <Functions>
         <Functype>SN-PLAT.JS</Functype>
         <Subtype>2</Subtype>
         <Funcimpl>#new snsoft.plat.bas.comm.BatchModifyJSListener({tgtUINames:["st_xy_pricelib"],cellNames:"stdate,ledate"})</Funcimpl>
-        <Remark><![CDATA[批量修改（日期）
+        <Remark><![CDATA[批量修改（调整日期）
             ]]></Remark>
-    </Functions>
-
-    <Functions>
-        <Functype>SN-PLAT.JS</Functype>
-        <Subtype>2</Subtype>
-        <Funcimpl>#new snsoft.ft.trd.comm.operate.TrdCommServCopyOperateJSListener({"tgtUINames":["st_xy_pricelib"],"cmds":['add','edit','copy','delete'],"cellCols":4,"copymode":"10","nummode":"10",addVirtual:false,"cellWidth":120,"labelAlign":"right","opt":2,"unCopyCols":"item"})
-        </Funcimpl>
-        <Remark>共享对话框监听 操作列按钮</Remark>
-    </Functions>
-
-    <Functions>
-        <Functype>SN-PLAT.JS</Functype>
-        <Subtype>2</Subtype>
-        <Funcimpl>#new snsoft.ft.trd.tx.prot.agcyimp.AgcyImpProtListener({"tgtUINames":["st_xy_pricelib"]})</Funcimpl>
-        <Remark><![CDATA[
-                基本信息界面JS
-            ]]></Remark>
-    </Functions>
-   
-  
-    <Functions>
-        <Functype>SN-PLAT.UI</Functype>
-        <Subtype>1</Subtype>
-        <Funcimpl>
-            <![CDATA[
-     SN-PLAT.SheetDocSaveUIListener?[{'tgtUINames':'st_xy_pricelib','sheetCodes':'ST-CODE.TX.XYPricelib'}]
-     ]]>
-        </Funcimpl>
-        <Remark>单据文档存盘监听</Remark>
-    </Functions>
-    
-    <Functions>
-        <Functype>SN-PLAT.UI</Functype>
-        <Subtype>1</Subtype>
-        <Funcimpl><![CDATA[
-        SN-PLAT.SheetAccodeUIListener?[{'tgtUINames':'st_xy_pricelib','sheetCode':'ST-CODE.TX.XYPricelib','colname':'item'}]
-    ]]></Funcimpl>
-        <Remark>单据编码规则初始化</Remark>
-    </Functions>
-    <Functions>
-        <Functype>SN-PLAT.JS</Functype>
-        <Subtype>2</Subtype>
-        <Funcimpl>#new snsoft.ft.comm.busi.FTSheetAccodeJSListener({"tgtUINames":["st_xy_pricelib"],colname:'item'})</Funcimpl>
-        <Remark>单据编码规则逻辑处理</Remark>
     </Functions>
     
     <Functions>
@@ -139,5 +52,5 @@
         </Funcimpl>
         <Remark>Excel导入价格</Remark>
     </Functions>
-    
+
 </SystemFunctions>
