@@ -168,7 +168,7 @@
         <Subtype>2</Subtype>
         <Funcimpl>#new snsoft.ft.trd.comm.operate.TrdCommServCopyOperateJSListener({"tgtUINames":["st_xy_prot_good"],"cmds":['add','edit','copy','delete'],"cellCols":4,"copymode":"10","nummode":"10",addVirtual:false,"cellWidth":120,"labelAlign":"right","opt":2,"unCopyCols":"hisflag","tableCtrlListeners":["snsoft.ft.code.gcode.comm.FTXGattrBuildJSListener({srcTblName:'st_xy_prot_good',buildTblname:'edit_st_xy_prot_good_sharedialog'}).new","snsoft.ft.trd.comm.unit.UnitRateConvertCliListener({'flags':6}).new"]})
         </Funcimpl>
-        <Remark>共享对话框监听</Remark>
+        <Remark>共享对话框监听(四个按钮，操作列)</Remark>
     </Functions>
     <!--</Groups>-->
     <!--<Groups id="客户端计算公式">-->
