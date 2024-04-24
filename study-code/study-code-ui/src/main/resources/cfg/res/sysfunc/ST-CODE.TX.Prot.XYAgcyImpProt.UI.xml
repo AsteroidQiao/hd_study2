@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<SystemFunctions xmlns="http://www.snsoft.com.cn/schema/plat-sysfunc" xsi:schemaLocation="http://www.snsoft.com.cn/schema/plat-sysfunc http://www.snsoft.com.cn/schema/plat-sysfunc.xsd"
-                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<SystemFunctions xmlns="http://www.snsoft.com.cn/schema/plat-sysfunc" xsi:schemaLocation="http://www.snsoft.com.cn/schema/plat-sysfunc http://www.snsoft.com.cn/schema/plat-sysfunc.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <Name>代理进口协议详情UI</Name>
     <Remark><![CDATA[
 	]]></Remark>
@@ -87,7 +86,7 @@
                      ]]></Funcimpl>
         <Remark>多选界面处理监听</Remark>
     </Functions>
-
+    
     <Functions>
         <Functype>SN-PLAT.JS</Functype>
         <Subtype>2</Subtype>
@@ -106,7 +105,7 @@
             属性控制值改变清空值
         </Remark>
     </Functions> -->
-
+    
     <Functions>
         <Functype>SN-PLAT.JS</Functype>
         <Subtype>2</Subtype>
@@ -116,7 +115,7 @@
             属性控制值改变清空值
         </Remark>
     </Functions>
-
+    
     <Functions>
         <Functype>SN-PLAT.JS</Functype>
         <Subtype>2</Subtype>
@@ -133,7 +132,7 @@
             属性控制值改变清空值
         </Remark>
     </Functions>
-
+    
     <Functions>
         <Functype>SN-PLAT.JS</Functype>
         <Subtype>2</Subtype>
@@ -154,7 +153,7 @@
         <Functype>SN-PLAT.JS</Functype>
         <Subtype>2</Subtype>
         <Funcimpl>#new snsoft.plat.bas.comm.BatchModifyJSListener({tgtUINames:["st_xy_prot_good"],cellNames:"cnamedesc,enamedesc,brand,specifidesc,goodsdesc,qtc,qtcunit,upric"})</Funcimpl>
-        <Remark><![CDATA[
+        <Remark><![CDATA[商品批量修改
             ]]></Remark>
     </Functions>
     <Functions>
@@ -181,14 +180,27 @@
             计算金额
             ]]></Remark>
     </Functions>
-<!--<Functions>-->
-<!--        <Functype>SN-PLAT.JS</Functype>-->
-<!--        <Subtype>2</Subtype>-->
-<!--        <Funcimpl>#new snsoft.study.code.service.impl.StudyDisupricQty({tgtUINames:["st_xy_prot_good"]})</Funcimpl>-->
-<!--&lt;!&ndash;        <Funcimpl>#new snsoft.ft.trd.comm.formula.TrdUpricQtcListener({tgtUINames:["st_fjd_prot_good"]})</Funcimpl>&ndash;&gt;-->
-<!--        <Remark>计算优惠原币金额</Remark>-->
-<!--    </Functions>-->
+    <!--<Functions>-->
+    <!--        <Functype>SN-PLAT.JS</Functype>-->
+    <!--        <Subtype>2</Subtype>-->
+    <!--        <Funcimpl>#new snsoft.study.code.service.impl.StudyDisupricQty({tgtUINames:["st_xy_prot_good"]})</Funcimpl>-->
+    <!--        <Remark>计算优惠原币金额</Remark> -->
+    <!--</Functions>-->
     
+    <Functions>
+        <Functype>SN-PLAT.JS</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl>#new snsoft.ft.trd.comm.formula.TrdUpricQtcListener({tgtUINames:["st_xy_prot_good"],qtcColumn:"qtc",upricColumn:"disupric",fcyColumn:"disfcy"})</Funcimpl>
+        <Remark>计算优惠原币金额</Remark>
+    </Functions>
+    
+    
+    <!--<Functions>-->
+    <!--    <Functype>SN-PLAT.JS</Functype>-->
+    <!--    <Subtype>2</Subtype>-->
+    <!--    <Funcimpl>#new snsoft.ft.trd.comm.formula.TrdUpricQtcListener({tgtUINames:["st_xy_prot_good"],qtcColumn:"qtc",upricColumn:"disupric",fcyColumn:"diszusd"})</Funcimpl>-->
+    <!--    <Remark>计算优惠美元金额</Remark>-->
+    <!--</Functions>-->
     <Functions>
         <Functype>SN-PLAT.JS</Functype>
         <Subtype>2</Subtype>
@@ -220,7 +232,7 @@
         <Remark>审批链-审批</Remark>
     </Functions>
     <!--</Groups>-->
-
+    
     <!--<Groups id="条款">-->
     <!--      <Functions>
              <Functype>SN-PLAT.UI</Functype>
@@ -286,7 +298,7 @@
         <Funcimpl>#new snsoft.plat.bas.sheet.doc.DocTypeResBtnJSListener({tgtUINames:["prtdoctype"],sheetCode:'ST-CODE.TX.Prot.XYAgcyImpProt'})</Funcimpl>
         <Remark>单据文档类型JS监听</Remark>
     </Functions>
-
+    
     <Functions>
         <Functype>SN-PLAT.JS</Functype>
         <Subtype>2</Subtype>
@@ -295,7 +307,7 @@
         <Remark>单据文档附件JS监听</Remark>
     </Functions>
     <!--</Groups>-->
-
+    
     <!--<Groups id="组织默认值处理">-->
     <Functions>
         <Functype>SN-PLAT.UI</Functype>
@@ -344,7 +356,7 @@
         <Remark>单据编码规则逻辑处理</Remark>
     </Functions>
     <!--</Groups>-->
-
+    
     <!--<Groups id="级联查询">-->
     <Functions>
         <Functype>SN-PLAT.UI</Functype>
@@ -361,7 +373,7 @@
         <Remark>JS监听</Remark>
     </Functions>
     <!--</Groups>-->
-
+    
     <!--<Groups id="单位换算比例">-->
     <Functions>
         <Functype>SN-PLAT.JS</Functype>
@@ -378,7 +390,7 @@
         <Remark>单位换算比例UI监听</Remark>
     </Functions>
     <!--</Groups>-->
-
+    
     <!--<Groups id="作废相关">-->
     <Functions>
         <Functype>SN-PLAT.JS</Functype>
@@ -387,7 +399,7 @@
         <Remark>作废数据处理</Remark>
     </Functions>
     <!--</Groups>-->
-
+    
     <!--<Groups id="穿透监听">-->
     <Functions>
         <Functype>SN-PLAT.JS</Functype>
@@ -400,12 +412,12 @@
     <Functions>
         <Functype>SN-PLAT.JS</Functype>
         <Subtype>2</Subtype>
-        <Funcimpl>#new snsoft.bastool.excel.ExcelStrategyImportListener({tgtUINames:["st_xy_prot_good"],xlscode:'FT-TRD.st_xy_prot_aimp_g',strategyEnables:'7',runParam:{"pticode":"T#st_xy_prot#pticode","Cuicode":"T#st_xy_prot#cuicode","cuicode":"T#st_xy_prot#cuicode"}})
+        <Funcimpl>#new snsoft.bastool.excel.ExcelStrategyImportListener({tgtUINames:["st_xy_prot_good"],xlscode:'import',strategyEnables:'7',runParam:{"pticode":"T#st_xy_prot#pticode","Cuicode":"T#st_xy_prot#cuicode","cuicode":"T#st_xy_prot#cuicode"}})
         </Funcimpl>
-        <Remark>Excel导入[配置]：根据Gcode进行匹配</Remark>
+        <Remark>从Excel导入商品</Remark>
     </Functions>
     <!--</Groups>-->
-
+    
     <!--<Groups id="商品属性动态控制">-->
     <Functions>
         <Functype>SN-PLAT.UI</Functype>
