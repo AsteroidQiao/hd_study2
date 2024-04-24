@@ -263,7 +263,7 @@
                 <!--选择商品-->
                 <ToolbarBtn name="st_xy_prot_good_btn_getGoods" title="${RES.$.title.F.btn.selgoods}" xprops.iconClassName="icons-btn-add"/>
                 <!--导入商品-->
-                <ToolbarBtn name="st_xy_prot_good_btn_XLSIMP_FT-TRD_st_xy_prot_aimp_g" noClientComponent="true" title="${RES.$.title.F.btn.importgoods}" xprops.iconClassName="icons-btn-import"/>
+                <ToolbarBtn name="st_xy_prot_good_btn_import" noClientComponent="true" title="${RES.$.title.F.btn.importgoods}" xprops.iconClassName="icons-btn-import"/>
                 <!--批量修改-->
                 <ToolbarBtn name="st_xy_prot_good_btn_batchModify" noClientComponent="true" title="${RES.$.title.F.btn.batchmodify}" xprops.iconClassName="icons-btn-batch_edit"/>
             </m:P>
@@ -276,7 +276,7 @@
                     <!--选择商品-->
                     <attr type="203" name="getGoods" title="${RES.$.title.F.btn.selgoods}" _rlog="true"/>
                     <!--导入商品-->
-                    <attr type="203" name="XLSIMP_FT-TRD_st_xy_prot_aimp_g" title="${RES.$.title.F.btn.importgoods}" _rlog="true"/>
+                    <attr type="203" name="import" title="${RES.$.title.F.btn.importgoods}" _rlog="true"/>
                     <!--批量修改-->
                     <attr type="203" name="batchModify" title="${RES.$.title.F.btn.batchmodify}" _rlog="true"/>
                 </attrs>
@@ -345,7 +345,7 @@
                 <c name="qtyunit" title="${RES.C}" sqltype="12" aidInputerBtn="true" rdonly="true" showname="true" disableed="true" codedata="#FT-CODE.SysUnit" width="${RES.$.D.G.CW.unit}" disableDelIfAI="true" noblankOnSubmit="true"/>
                 <!--15单价 -->
                 <c name="upric" title="${RES.C}" sqltype="2" width="${RES.$.D.G.CW.upric}" noblankOnSubmit="true"/>
-                <!--16原币金额-->
+                <!--16原币金额 bottomval汇总-->
                 <c name="fcy" title="${RES.C}" sqltype="2" mindeci="2" width="${RES.$.D.G.CW.fcy}" bottomval="*" noblankOnSubmit="true"/>
                 <!--本位币金额 hidden-->
                 <c name="scy" title="${RES.C}" sqltype="2" mindeci="2" width="${RES.$.D.G.CW.fcy}" bottomval="*" rdonly="true" hidden="true"/>
