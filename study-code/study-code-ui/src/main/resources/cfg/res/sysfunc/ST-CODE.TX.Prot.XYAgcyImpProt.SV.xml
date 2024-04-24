@@ -128,7 +128,7 @@
         <Funcimpl><![CDATA[
              ST-CODE.TX.AgcyImpProtBusiFormulaListener?[{}]
             ]]></Funcimpl>
-        <Remark>子表计算</Remark>
+        <Remark>子表合计计算</Remark>
     </Functions>
     <Functions>
         <Functype>SN-PLAT.SV</Functype>
