@@ -110,6 +110,7 @@
     
     <!--编辑商品-->
     <m:T name="tab">
+    <!--基本信息-->
         <m:P name="st_xy_pot_basbas" title="${RES.$.title.F.tab.bas}">
             <m:RecordTable title="${RES.$.title.F.tab.bas}" name="st_xy_prot_bas" mainui="st_xy_prot">
                 <!--界面定义UI监听-->
@@ -267,7 +268,7 @@
                 <!--批量修改-->
                 <ToolbarBtn name="st_xy_prot_good_btn_batchModify" noClientComponent="true" title="${RES.$.title.F.btn.batchmodify}" xprops.iconClassName="icons-btn-batch_edit"/>
             </m:P>
-            <!--商品信息子表-->
+            <!--商品信息-->
             <m:GridTable title="${RES.$.title.F.tab.goods}" all_c_columns="true" titleHidden="true" mutiple="true" name="st_xy_prot_good" sqlexpr="st_xy_prot_good" mainui="st_xy_prot"
                          xprops.LoadDataService="STUDY-CODE.StudyCodeUIService#queryProtGoodUI" skipRdOnlyCellOnEnterKey="true" uiprops.minVisibleRows="10" uiprops.fitSizeOnWinResize="{flags:0x15,oheight:10}"
                          dsprops="masterColumnsOnRefresh:['cuicode','bcode','corpbcode']" uiprops.zdomid="@st_xy_prot_good_bas">
@@ -380,6 +381,7 @@
                     <include src="FT-TRD.Comm.SheetTerm#ft_trd_termdetail"    mainui="ft_trd_prot" />
                     <include src="FT-TRD.Comm.SheetTerm#ft_trd_termfill"   mainui="ft_trd_prot" />
                 </m:B>  -->
+        <!--打印及附件-->
         <m:T title="${RES.$.title.F.tab.print}" uiprops.cellClassName="ui-tabpane-level2">
             <H name="sheetPrt" title="打印" uiprops.leftSize="430" height="450">
                 <GroupPane name="torder_dylx" title="文档类型" align="left">
@@ -404,6 +406,7 @@
                 </GroupPane>
             </P>
         </m:T>
+        <!--审批情况-->
         <m:P title="${RES.$.title.F.tab.appr}">
             <m:DialogPane hidden="true" layoutm="grid" name="taskParam" region="north" title="审批结果">
                 <c name="taskid" noblank="true" sqltype="12"/>
@@ -414,6 +417,7 @@
                 <m:P title="${RES.$.title.F.tab.taskroute}" name="taskroute"/>
             </m:T>
         </m:P>
+        <!--版本-->
         <m:B title="${RES.$.title.F.tab.vbhistory}">
             <include src="SN-PLAT.VBVersion.VBHistoryEmbed#vbhistory" mainui="st_xy_prot"/>
         </m:B>
