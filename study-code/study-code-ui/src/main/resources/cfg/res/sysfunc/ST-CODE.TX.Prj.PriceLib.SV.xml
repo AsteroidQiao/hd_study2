@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SystemFunctions xmlns="http://www.snsoft.com.cn/schema/plat-sysfunc" xsi:schemaLocation="http://www.snsoft.com.cn/schema/plat-sysfunc http://www.snsoft.com.cn/schema/plat-sysfunc.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Name>价格库存盘</Name>
+    <Remark><![CDATA[
+    adsf
+    ]]></Remark>
+    <Functions>
+        <Functype>SN-PLAT.SV</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl><![CDATA[
+            snsoft.plat.bas.busi.service.impl.SaveCheckSVListener.new
+        ]]></Funcimpl>
+        <Remark>标准生效数据存盘检查</Remark>
+    </Functions>
+</SystemFunctions>
