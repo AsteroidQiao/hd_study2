@@ -113,7 +113,7 @@
     <!--基本信息-->
         <m:P name="st_xy_pot_basbas" title="${RES.$.title.F.tab.bas}">
             <m:RecordTable title="${RES.$.title.F.tab.bas}" name="st_xy_prot_bas" mainui="st_xy_prot">
-                <!--界面定义UI监听-->
+                <!--界面属性控制监听-->
                 <uilisteners>
                     <![CDATA[snsoft.ui.optctrl.UIOptCtrlListener.new]]>
                 </uilisteners>
@@ -181,9 +181,13 @@
                 <GroupPane name="st_xy_prot_fcy" title="${RES.$.title.F.grp.money}" layoutm="grid" cellcols="4" clayoutwids="${RES.$.D.R.4CW}" uiprops.subCompOpts="2">
                     <!--币种-->
                     <c name="fcode" title="${RES.$.fcode}" sqltype="12" codedata="#FT-CODE.Fcode" showcode="true" disableed="true" disableDelIfAI="true" noblankOnSubmit="true" submitOnInput="true"/>
+                    <!--本位币种-->
                     <c name="sfcode" title="${RES.C}" sqltype="12" codedata="#FT-CODE.Fcode" showcode="true" disableed="true" disableDelIfAI="true" hidden="true"/>
+                    <!--对本位币汇率-->
                     <c name="fserate" title="${RES.C}" sqltype="2" rdonly="true" noblankOnSubmit="true"/>
+                    <!--对人民币汇率-->
                     <c name="fcerate" title="${RES.C}" sqltype="2" noblankOnSubmit="true" hidden="true"/>
+                    <!--对美元汇率-->
                     <c name="fuerate" title="${RES.C}" sqltype="2" noblankOnSubmit="true" hidden="true"/>
                     <!--原币金额-->
                     <c name="fcy" title="${RES.C}" sqltype="2" mindeci="2" rdonly="true" noblankOnSubmit="true"/>
@@ -355,14 +359,14 @@
                 <!--18人民币金额-->
                 <c name="zcny" title="${RES.C}" sqltype="2" mindeci="2" width="${RES.$.D.G.CW.fcy}" bottomval="*" rdonly="true" noblankOnSubmit="true"/>
                 <!--19  添加1 优惠单价-->
-                <c name="disupric" title="${RES.C}" sqltype="2" mindeci="2" width="${RES.$.D.G.CW.fcy}" bottomval="*" noblankOnSubmit="true"/>
+                <c name="disupric" title="${RES.C}" sqltype="2" mindeci="2" width="${RES.$.D.G.CW.fcy}"  noblankOnSubmit="true"/>
                 <!--20  添加2 优惠原币金额=优惠单价x签约数量-->
                 <c name="disfcy" title="${RES.C}" sqltype="2" mindeci="2" width="${RES.$.D.G.CW.fcy}" bottomval="*" noblankOnSubmit="true"/>
                 <!--21 添加3 优惠本位币金额 hidden-->
                 <c name="disscy" title="${RES.C}" sqltype="2" mindeci="2" width="${RES.$.D.G.CW.fcy}" bottomval="*" noblankOnSubmit="true" hidden="true"/>
-                <!--22 添加4 优惠美元金额-->
+                <!--22 添加4 优惠美元金额=优惠原币金额x对美元汇率-->
                 <c name="diszusd" title="${RES.C}" sqltype="2" mindeci="2" width="${RES.$.D.G.CW.fcy}" bottomval="*" noblankOnSubmit="true"/>
-                <!--25 添加5  优惠人民币金额-->
+                <!--25 添加5  优惠人民币金额=优惠原币金额x对人民币汇率-->
                 <c name="diszcny" title="${RES.C}" sqltype="2" mindeci="2" width="${RES.$.D.G.CW.fcy}" bottomval="*" noblankOnSubmit="true"/>
                 <!--26关税税率-->
                 <c name="customrate" title="${RES.C}" sqltype="2" width="${RES.$.D.G.CW.rate}" percent="true"/>
