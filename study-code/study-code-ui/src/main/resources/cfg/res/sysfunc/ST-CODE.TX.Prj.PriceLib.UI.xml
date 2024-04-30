@@ -20,15 +20,31 @@
                      ]]></Funcimpl>
         <Remark>多选界面处理监听</Remark>
     </Functions>
+    <Functions>
+        <Functype>SN-PLAT.UI</Functype>
+        <Subtype>2</Subtype>
+        <Funcimpl><![CDATA[
+            snsoft.ui.optctrl.UIOptCtrlListener.new
+        ]]></Funcimpl>
+        <Remark>界面属性控制</Remark>
+    </Functions>
+
     
+    <!--<Functions>-->
+    <!--<Functype>SN-PLAT.JS</Functype>-->
+    <!--<Subtype>2</Subtype>-->
+    <!--<Funcimpl><![CDATA[-->
+    <!--            #new snsoft.hd.comm.bascli.HDCommOperateJSListener({tgtUINames:["st_xy_pricelib"],insertable:true,editable:true,delable:true,"popedUiname":"pricelibedit","popedUinameIns":"pricelibadd",cmds:["add","edit","delete","copy"],isStartCommCopy:true,saveAfterCopy:true})-->
+    <!--        ]]></Funcimpl>-->
+    <!--<Remark>功能按钮监听</Remark>-->
+    <!--</Functions>-->
     <Functions>
         <Functype>SN-PLAT.JS</Functype>
         <Subtype>2</Subtype>
-        <Funcimpl>#new snsoft.ft.trd.comm.operate.TrdCommServCopyOperateJSListener({"tgtUINames":["st_xy_pricelib"],"cmds":['add','edit','copy','delete'],"cellCols":4,"copymode":"10","nummode":"10",addVirtual:false,"cellWidth":120,"labelAlign":"right","opt":2,"unCopyCols":"item"},"tableCtrlListeners":["snsoft.ft.code.gcode.comm.FTXGattrBuildJSListener({srcTblName:'st_xy_pricelib',buildTblname:'edit_st_xy_prot_good_sharedialog'}).new","snsoft.ft.trd.comm.unit.UnitRateConvertCliListener({'flags':6}).new"])
+        <Funcimpl>#new snsoft.sheet.comm.OperateJSListener({"popedUiname":"st_xy_pricelib_edit", insertable:true,editable:true,delable:true,autoSaveOnPopupedit:true,"popedUinameIns":"st_xy_pricelib_add",cmds:['add','edit','delete','copy']})
         </Funcimpl>
-        <Remark>共享对话框监听(四个按钮，操作列)</Remark>
+        <Remark>操作列 按钮</Remark>
     </Functions>
-    
     <Functions>
         <Functype>SN-PLAT.JS</Functype>
         <Subtype>2</Subtype>
