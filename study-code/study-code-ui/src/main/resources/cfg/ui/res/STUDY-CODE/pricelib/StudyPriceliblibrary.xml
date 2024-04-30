@@ -8,8 +8,6 @@
         <ToolbarBtn name="st_xy_pricelib_btn_batchModify" title="调整日期" noClientComponent="true" xprops.iconClassName="icons-btn-batch_edit"/>
         <!--导入价格-->
         <ToolbarBtn name="st_xy_pricelib_btn_importPrice" title="导入价格" noClientComponent="true" xprops.iconClassName="icons-btn-import"/>
-        <!--保存-->
-        <ToolbarBtn name="st_xy_pricelib_btn_save" noClientComponent="true" title="${RES.$.title.F.btn.save}" uiprops.cellClassName="icons-btn-import" xprops.iconClassName="icons-btn-saves"/>
     </m:Toolbar>
     
     <!--展示表格-->
@@ -25,7 +23,6 @@
             <attr type="203" name="newSheet" title="新建" _rlog="true"/>
             <attr type="203" name="batchModify" title="调整日期" _rlog="true"/>
             <attr type="203" name="importPrice" title="导入价格" _rlog="true"/>
-            <attr type="203" name="save" title="保存" _rlog="true"/>
         </attrs>
         <!--操作-->
         <Operate fixedLeft="true" name="operate" title="操作" width="110" sqlexpr="null" disableEnterEd="true" staticText="true" align="center" bottomval="recind"/>
