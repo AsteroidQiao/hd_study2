@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datalimdef limnm="价格库管理" xmlns="http://www.snsoft.com.cn/schema/Datalimdef" xsi:schemaLocation="http://www.snsoft.com.cn/schema/Datalimdef http://www.snsoft.com.cn/schema/Datalimdef.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <datalimop opid="C" opnm="修改"/>
+    <datalimop opid="R" opnm="查询"/>
+</datalimdef>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExcelImportDef xmlns="http://www.snsoft.com.cn/schema/ExcelImportDef" xsi:schemaLocation="http://www.snsoft.com.cn/schema/ExcelImportDef http://www.snsoft.com.cn/schema/ExcelImportDef.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Title>海关关区导入</Title>
+    <!-- 01:单表导入;02:主子表导入;06:maplist -->
+    <ImpType>SN-PLAT.01</ImpType>
+    <!-- 0x01:设置默认值；0x02:校验合法性；0x04:存盘；0x08:错误不抛出；0x10:不走afterParse方法； -->
+    <ImpOpts>0x01+0x02+0x04</ImpOpts>
+    <VOClass>snsoft.ft.code.bas.custom.vo.Custom</VOClass>
+    <SheetCode>FT-CODE.Bas.Custom</SheetCode>
+    <Optids>C</Optids>
+    <ReadOptions><![CDATA[
+	"skipRows":1,
+	"sheetName":"海关关区"
+	]]></ReadOptions>
+    <TacFormula><![CDATA[
+		#snsoft.ft.code.bas.custom.listener.CustomExcelImportListener.new
+	]]></TacFormula>
+    <ExcelTemplate>ST-CODE.Custom.xlsx|海关关区.xlsx</ExcelTemplate>
+    <Remark><![CDATA[
+	单表：
+	1、主表新建；
+	2、处理默认值；
+	3、处理码表转换；
+	]]></Remark>
+    <Fields>
+        <TableColumn>customcode</TableColumn>
+        <Title>编码</Title>
+        <ExcelColumn>A</ExcelColumn>
+        <CtrlOpts>0x02</CtrlOpts>
+    </Fields>
+    <Fields>
+        <TableColumn>customname</TableColumn>
+        <Title>名称</Title>
+        <ExcelColumn>B</ExcelColumn>
+    </Fields>
+    <Fields>
+        <TableColumn>shortname</TableColumn>
+        <Title>简称</Title>
+        <ExcelColumn>C</ExcelColumn>
+    </Fields>
+    <Fields>
+        <TableColumn>remark</TableColumn>
+        <Title>备注</Title>
+        <ExcelColumn>D</ExcelColumn>
+    </Fields>
+    <Fields>
+        <TableColumn>status</TableColumn>
+        <Title>状态</Title>
+        <ExcelColumn>E</ExcelColumn>
+    </Fields>
+</ExcelImportDef>

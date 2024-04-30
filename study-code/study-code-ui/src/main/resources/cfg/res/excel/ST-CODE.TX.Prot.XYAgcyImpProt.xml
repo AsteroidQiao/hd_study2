@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ExcelImportDef xmlns="http://www.snsoft.com.cn/schema/ExcelImportDef" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://www.snsoft.com.cn/schema/ExcelImportDef http://www.snsoft.com.cn/schema/ExcelImportDef.xsd">
+    <Title>商品表导入</Title>
+    <ImpType>SN-PLAT.01</ImpType>
+    <ImpOpts>0x01+0x02+0x04</ImpOpts>
+    <SheetCode>ST-CODE.TX.Prot.XYAgcyImpProt</SheetCode>
+    <ReadOptions>
+        <![CDATA[ "skipRows":1, "sheetName":"商品" ]]>
+    </ReadOptions>
+    <TacFormula/>
+    <ExcelTemplate>代理进口协议导入商品.xlsx</ExcelTemplate>
+    <Remark>
+        <![CDATA[ 商品信息 ]]>
+    </Remark>
+    <Fields>
+        <TableColumn>gcode</TableColumn>
+        <Title>商品编码</Title>
+        <ExcelColumn>A</ExcelColumn>
+    </Fields>
+    <Fields>
+        <TableColumn>cnamedesc</TableColumn>
+        <Title>商品名称</Title>
+        <ExcelColumn>B</ExcelColumn>
+        <TacFormula/>
+    </Fields>
+    <Fields>
+        <TableColumn>enamedesc</TableColumn>
+        <Title>商品英文名称</Title>
+        <ExcelColumn>C</ExcelColumn>
+        <TacFormula/>
+    </Fields>
+    <Fields>
+        <TableColumn>brand</TableColumn>
+        <Title>品牌</Title>
+        <ExcelColumn>D</ExcelColumn>
+    </Fields>
+    <Fields>
+        <TableColumn>specifidesc</TableColumn>
+        <Title>规格型号</Title>
+        <ExcelColumn>E</ExcelColumn>
+    </Fields>
+    <Fields>
+        <TableColumn>qtcunit</TableColumn>
+        <Title>签约单位</Title>
+        <ExcelColumn>F</ExcelColumn>
+    </Fields>
+    <Fields>
+        <TableColumn>qcyrate</TableColumn>
+        <Title>换算比例</Title>
+        <ExcelColumn>G</ExcelColumn>
+    </Fields>
+    <Fields>
+        <TableColumn>goodsdesc</TableColumn>
+        <Title>货物描述</Title>
+        <ExcelColumn>H</ExcelColumn>
+    </Fields>
+    <Fields>
+        <TableColumn>qtc</TableColumn>
+        <Title>签约数量</Title>
+        <ExcelColumn>I</ExcelColumn>
+    </Fields>
+    <Fields>
+        <TableColumn>qty</TableColumn>
+        <Title>统计数量</Title>
+        <ExcelColumn>J</ExcelColumn>
+    </Fields>
+    <Fields>
+        <TableColumn>upric</TableColumn>
+        <Title>单价</Title>
+        <ExcelColumn>K</ExcelColumn>
+    </Fields>
+    <Fields>
+        <TableColumn>fcy</TableColumn>
+        <Title>原币金额</Title>
+        <ExcelColumn>L</ExcelColumn>
+    </Fields>
+</ExcelImportDef>

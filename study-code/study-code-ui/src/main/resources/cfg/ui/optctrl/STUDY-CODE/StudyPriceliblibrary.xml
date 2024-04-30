@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<UIOptCtrl xmlns="http://www.snsoft.com.cn/schema/OptsCtrl" xsi:schemaLocation="http://www.snsoft.com.cn/schema/OptsCtrl http://www.snsoft.com.cn/schema/OptsCtrl.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <!-- 界面 -->
+    <UIOpts>
+        <uiname>st_xy_pricelib_add</uiname>
+        <ctrlFields>readOnly</ctrlFields>
+        <setValue>false</setValue>
+        <sheetcode>ST-CODE.TX.XYPricelib</sheetcode>
+        <btnOpids>C</btnOpids>
+    </UIOpts>
+    <UIOpts>
+        <uiname>st_xy_pricelib_edit</uiname>
+        <ctrlFields>readOnly</ctrlFields>
+        <setValue>false</setValue>
+        <sheetcode>ST-CODE.TX.XYPricelib</sheetcode>
+        <btnOpids>C</btnOpids>
+    </UIOpts>
+    <!-- 按钮 -->
+    <UIOpts>
+        <uiname>st_xy_pricelib</uiname>
+        <button>newSheet,reSetDate,importPrice</button>
+        <ctrlFields>disabled</ctrlFields>
+        <setValue>false</setValue>
+        <sheetcode>ST-CODE.TX.XYPricelib</sheetcode>
+        <btnOpids>C</btnOpids>
+    </UIOpts>
+    <!-- 操作列 -->
+    <UIOpts>
+        <uiname>st_xy_pricelib</uiname>
+        <colname>operate</colname>
+        <operateid>operate_add,operate_edit,operate_delete,operate_copy</operateid>
+        <ctrlFields>disabled</ctrlFields>
+        <setValue>false</setValue>
+        <sheetcode>ST-CODE.TX.XYPricelib</sheetcode>
+        <dataOpids>C</dataOpids>
+    </UIOpts>
+</UIOptCtrl>
