@@ -27,9 +27,9 @@ public class StudyCodePricelibParam extends QueryParams {
     //基本参数
     
     /**
-     * 材料号
+     * 材料号（可通过料件号、名称，英文名称搜索，忽略大小写）
      */
-    @SqlColumn(sqlop = SqlExpression.LIKE)
+    @SqlColumn(sqlop = SqlExpression.LIKE, column = "gcode,gname,engname", ignorecase = true)
     private String item;
     /**
      * 起始日期从
