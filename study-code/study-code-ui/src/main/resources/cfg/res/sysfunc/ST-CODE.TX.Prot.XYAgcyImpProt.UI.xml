@@ -84,7 +84,7 @@
         <Funcimpl><![CDATA[
                       #new snsoft.plat.bas.busi.PageNavPaneJSListener({sheetcode:"ST-CODE.TX.Prot.XYAgcyImpProt",tgtUINames:["st_xy_prot"]})
                      ]]></Funcimpl>
-        <Remark>多选界面处理监听</Remark>
+        <Remark>页面翻页监听</Remark>
     </Functions>
     
     <Functions>
@@ -96,15 +96,7 @@
             		界面操作列监听JS
             ]]></Remark>
     </Functions>
-    <!-- <Functions>
-        <Functype>SN-PLAT.JS</Functype>
-        <Subtype>2</Subtype>
-        <Funcimpl>#new snsoft.plat.bas.comm.CleanValueJSListener({tgtUINames:["st_fjd_prot"],cleanIfNull:false,postInfos:[{uiname:"st_fjd_prot",colnames:["margintype"],infos:[{colnames:["marginrate","marginfcy"]}]},{uiname:"st_fjd_prot",colnames:["agentfeemode"],infos:[{colnames:["agentfeevalue"]}]},{uiname:"st_fjd_prot",colnames:["isgood"],infos:[{uiname:'st_fjd_prot_good'},{colnames:["fcode","fcy","scy","zcny","zusd","fserate","fcerate","fuerate"]}]},{uiname:"st_fjd_prot",colnames:["isfmtprot"],infos:[{uiname:'ft_trd_termdetail'}]},{uiname:"st_fjd_prot",colnames:["isfmtprot"],infos:[{uiname:'ft_trd_termfill'}]}]})
-        </Funcimpl>
-        <Remark>
-            属性控制值改变清空值
-        </Remark>
-    </Functions> -->
+
     
     <Functions>
         <Functype>SN-PLAT.JS</Functype>
@@ -121,7 +113,7 @@
         <Subtype>2</Subtype>
         <Funcimpl>#new snsoft.ft.comm.listener.FTAidConverterListener({tgtUINames:["st_xy_prot"],aidCols:'bcode'})</Funcimpl>
         <Remark>
-            属性控制值改变清空值
+            辅助录入赋值转换器
         </Remark>
     </Functions>
     <Functions>
@@ -129,7 +121,7 @@
         <Subtype>2</Subtype>
         <Funcimpl>#new snsoft.ft.comm.listener.CcodeCleanValueJSListener({tgtUINames:["st_xy_prot"],postInfo:{uiname:"st_xy_prot",ccodeInfos:[{uiname:'st_xy_prot_bas',ccodeColname:"ccodetrust",cleanColnames:["ccodetrust","pa_ctname","pa_ctmobile"]}]}})</Funcimpl>
         <Remark>
-            属性控制值改变清空值
+            依赖FTAidConverterListener监听，二者配合使用
         </Remark>
     </Functions>
     
@@ -231,29 +223,7 @@
         </Funcimpl>
         <Remark>审批链-审批</Remark>
     </Functions>
-    <!--</Groups>-->
-    
-    <!--<Groups id="条款">-->
-    <!--      <Functions>
-             <Functype>SN-PLAT.UI</Functype>
-             <Subtype>2</Subtype>
-             <Funcimpl><![CDATA[
-             snsoft.ft.trd.comm.term.ui.SheetTermUIListener.new?sheetCode=ST-CODE.TX.Prot.FJDAgcyImpProt&tgtUINames=st_fjd_prot&termCfg=st_fjd_prot:ft_trd_termdetail,ft_trd_termfill
-              ]]></Funcimpl>
-             <Remark><![CDATA[
-             ]]></Remark>
-         </Functions>
-         <Functions>
-             <Functype>SN-PLAT.JS</Functype>
-             <Subtype>2</Subtype>
-             <Funcimpl><![CDATA[
-             #new snsoft.ft.trd.comm.term.SheetTermJSListener({sheetHistoryTermUI:"ST-CODE.TX.Prot.FJDAgcyImpProtSheetTermDialog",ccodeColname:"ccodetrust",termTableName:"st_fjd_prot", termTableUIName:"st_fjd_prot"})
-             ]]></Funcimpl>
-             <Remark><![CDATA[
-             ]]></Remark>
-         </Functions> -->
-    <!--</Groups>-->
-    <!--<Groups id="业务相关">-->
+
     <Functions>
         <Functype>SN-PLAT.JS</Functype>
         <Subtype>2</Subtype>
