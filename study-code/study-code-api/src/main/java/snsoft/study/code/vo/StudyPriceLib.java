@@ -1,6 +1,7 @@
 package snsoft.study.code.vo;
 
 import lombok.Data;
+import snsoft.api.dx.BasVO;
 import snsoft.api.dx.SheetInfo;
 import snsoft.api.dx.VOField;
 import snsoft.api.validation.annotation.CodeTable;
@@ -29,7 +30,7 @@ import java.util.Date;
 @Table(name = "st_xy_pricelib")
 @SheetInfo("ST-CODE.TX.XYPricelib")
 @ValidResource("STUDY-CODE")
-public class StudyPriceLib extends FTSheetVO {
+public class StudyPriceLib extends BasVO {
     
     private static final long   serialVersionUID = -272422946219486538L;
     public static final  String SheetCode        = "ST-CODE.TX.XYPricelib";
@@ -114,7 +115,7 @@ public class StudyPriceLib extends FTSheetVO {
     @Column
     @VOField(maxdeci = "${OPTS.Decimal.Money}")
     private BigDecimal sc_natupric;
-//
+
     /**
      * 适用部门
      */
@@ -137,18 +138,4 @@ public class StudyPriceLib extends FTSheetVO {
     @Column
     private String     remark;
     
-    @Override
-    public void setInnercode(String s) {
-    
-    }
-    
-    @Override
-    public String getInnercode() {
-        return null;
-    }
-    
-    @Override
-    public String getOutercode() {
-        return null;
-    }
 }
